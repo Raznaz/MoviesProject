@@ -1,8 +1,8 @@
 function App() {
 	return (
-		<div>
-			<h1>START MOVIE</h1>
-		</div>
+		<>
+			<h1>MOVIES PROJECT</h1>
+		</>
 	);
 }
 
