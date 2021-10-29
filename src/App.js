@@ -1,10 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-
 function App() {
 	return (
-		<div className="App">
-			<h1>START</h1>
+		<div>
+			<h1>START MOVIE</h1>
 		</div>
 	);
 }
