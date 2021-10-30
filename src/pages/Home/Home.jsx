@@ -1,5 +1,4 @@
 import React from 'react';
-import { test } from '../../api/api';
 import Main from '../../components/Layout/Main';
 
 function Home() {

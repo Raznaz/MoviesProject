@@ -8,7 +8,10 @@ function Movie(props) {
 			<div>id:{id}</div>
 			<div>title: {title}</div>
 			<div>overview: {overview}</div>
-			<img src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
+			<img
+				src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+				alt={title}
+			/>
 		</div>
 	);
 }
