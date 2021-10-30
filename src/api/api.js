@@ -13,7 +13,7 @@ export function fetchMovies() {
 	return instaAPI.get();
 }
 
-// var 2
+var 2
 export const api = {
 	async getMovies(filter = 'upcoming') {
 		const { data } = await axios.get(`${API_URL}${API_KEY}`);
