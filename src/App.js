@@ -1,10 +1,33 @@
+import { Container } from '@mui/material';
+import {
+	Switch,
+	Route,
+	Navigate,
+	BrowserRouter,
+} from 'react-router-dom';
+import Footer from './components/Layout/Footer';
+import Header from './components/Layout/Header';
+import Error from './pages/Error/Error';
+import Home from './pages/Home/Home';
+import Kinoafisha from './pages/Kinoafisha/Kinoafisha';
+import MovieById from './pages/MovieById/MovieById';
+
 function App() {
-	const API_URL = process.env.REACT_APP_API_URL;
-	console.log(API_URL);
 	return (
 		<>
-			<h1>MOVIES HELLO !!! jo</h1>
-			<h2>разработка</h2>
+			<BrowserRouter>
+				<Header />
+				<Container maxWidth="lg">
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route path="/movies" component={Kinoafisha} />
+						<Route path="/movie/:movieId" component={MovieById} />
+						<Route component={Error} />
+					</Switch>
+				</Container>
+
+				<Footer />
+			</BrowserRouter>
 		</>
 	);
 }
