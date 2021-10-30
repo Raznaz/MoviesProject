@@ -5,9 +5,14 @@ import React from 'react';
 function Footer() {
 	return (
 		<footer>
-			<Box bgcolor="#15528f" color="white">
+			<Box
+				bgcolor="#15528f"
+				color="white"
+				px={{ xs: 2, sm: 5 }}
+				py={{ xs: 2, sm: 5 }}
+			>
 				<Container maxWidth="lg">
-					<Grid container spacing={5} sx={{ pb: 4, mt: 2 }}>
+					<Grid container spacing={5}>
 						<Grid item xs={12} sm={4}>
 							<Box borderBottom={1} component="h3" variant="h3">
 								Help
@@ -94,6 +99,13 @@ function Footer() {
 							</Box>
 						</Grid>
 					</Grid>
+					<Box
+						textAlign="center"
+						pt={{ xs: 5, sm: 8 }}
+						pb={{ xs: 5, sm: 0 }}
+					>
+						Create by Nazar 2021
+					</Box>
 				</Container>
 			</Box>
 		</footer>

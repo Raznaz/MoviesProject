@@ -1,10 +1,5 @@
 import { Container } from '@mui/material';
-import {
-	Switch,
-	Route,
-	Navigate,
-	BrowserRouter,
-} from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Footer from './components/Layout/Footer';
 import Header from './components/Layout/Header';
 import Error from './pages/Error/Error';
