@@ -22,7 +22,7 @@ function Movie(props) {
 		vote_average,
 	} = props;
 	return (
-		<Grid item xs={12} md="4">
+		<Grid item xs={12} md={4}>
 			<Card
 				sx={{
 					height: '100%',
@@ -56,7 +56,6 @@ function Movie(props) {
 						<CircularProgress
 							variant="determinate"
 							thickness={5}
-							{...props}
 							value={vote_average * 10}
 						/>
 						<Box
