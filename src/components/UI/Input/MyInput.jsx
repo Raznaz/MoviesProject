@@ -3,6 +3,11 @@ import React, { forwardRef } from 'react';
 
 export const MyInput = forwardRef((props, ref) => {
 	return (
-		<TextField variant="filled" inputRef={ref} {...props} fullWidth />
+		<TextField
+			variant="outlined"
+			inputRef={ref}
+			{...props}
+			fullWidth
+		/>
 	);
 });
