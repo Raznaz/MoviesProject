@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import Movie from './Movie';
 
 function MoviesList() {
-	const { movies, searchMovies } = useSelector(
+	const { movies, searchMovies, searchValue } = useSelector(
 		(state) => state.moviesArr,
 	);
 
-	if (searchMovies.length) {
+	if (searchValue.length) {
 		return (
 			<Grid container spacing={2}>
 				{searchMovies.map((movie) => {

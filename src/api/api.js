@@ -5,24 +5,24 @@ const API_KEY = process.env.REACT_APP_KEY;
 
 export const testAPI = `${API_URL}`;
 
-const instaAPI = axios.create({
+const movieAPI = axios.create({
 	baseURL: testAPI,
+	params: {
+		api_key: API_KEY,
+	},
 });
 
 export function fetchMovies() {
-	return instaAPI.get('movie/popular', {
-		params: {
-			api_key: API_KEY,
-		},
+	return movieAPI.get('movie/popular', {
+		params: {},
 	});
 }
 
-export function filterMovies(srt) {
-	return instaAPI.get('search/movie', {
+export function filterMovies(str) {
+	return movieAPI.get('search/movie', {
 		params: {
-			api_key: API_KEY,
 			language: 'en-US',
-			query: srt,
+			query: str,
 		},
 	});
 }
