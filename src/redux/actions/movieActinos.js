@@ -5,6 +5,7 @@ export const SEARCH_MOVIES = '[MOVIE] Search movies';
 export const SEARCH_MOVIES_ARR = '[MOVIE] Search movies arr';
 export const LIST_GENRES = '[MOVIE] List genres';
 export const FILTER_MOVIES = '[MOVIE] Filter movies';
+export const CREATE_FILTER = '[MOVIE] Create filter';
 
 export const fetchMoviesSuccess = (movies) => ({
 	type: FETCH_MOVIES_SUCCESS,
@@ -26,6 +27,11 @@ export const searchMovieArr = (searchArr = []) => ({
 export const showListGenres = (genres) => ({
 	type: LIST_GENRES,
 	payload: { genres },
+});
+
+export const createFilter = (filter) => ({
+	type: CREATE_FILTER,
+	payload: filter,
 });
 
 export const filterMoviesByGenre = (filteredArr) => ({

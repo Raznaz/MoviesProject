@@ -12,7 +12,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 // import StarBorder from '@mui/icons-material/StarBorder';
 import { useSelector } from 'react-redux';
-import { listGenres } from '../../redux/actions/thunk';
+import { filterMovie, listGenres } from '../../redux/actions/thunk';
 import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { LocalMovies } from '@mui/icons-material';
@@ -21,7 +21,10 @@ import './list.scss';
 
 export default function NestedList() {
 	const [open, setOpen] = useState(true);
-	const [filter, setFilter] = useState([]);
+	const [filter, setFilter] = useState({
+		genres: [],
+		language: [],
+	});
 	const dispatch = useDispatch();
 	console.log(filter);
 	useEffect(() => {
@@ -39,10 +42,18 @@ export default function NestedList() {
 		console.log(id);
 		e.target.classList.toggle('select');
 		if (e.target.classList.contains('select')) {
-			setFilter([...filter, id]);
+			setFilter({ ...filter, genres: [...filter.genres, id] });
 		} else {
-			setFilter([...filter.filter((genre) => genre !== id)]);
+			// setFilter([...filter.filter((genre) => genre !== id)]);
+			setFilter({
+				...filter,
+				genres: [...filter.genres.filter((genre) => genre !== id)],
+			});
 		}
+	};
+
+	const startFilter = () => {
+		dispatch(filterMovie(filter));
 	};
 
 	return (
@@ -79,6 +90,14 @@ export default function NestedList() {
 						{genre.name}
 					</Button>
 				))}
+				<Button
+					fullWidth
+					variant="contained"
+					color="success"
+					onClick={() => startFilter()}
+				>
+					START FILTER
+				</Button>
 			</Collapse>
 		</List>
 	);
