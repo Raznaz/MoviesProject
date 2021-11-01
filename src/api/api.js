@@ -9,6 +9,7 @@ const movieAPI = axios.create({
 	baseURL: testAPI,
 	params: {
 		api_key: API_KEY,
+		language: 'en-US',
 	},
 });
 
@@ -18,11 +19,24 @@ export function fetchMovies() {
 	});
 }
 
-export function filterMovies(str) {
+export function findMovies(str) {
 	return movieAPI.get('search/movie', {
 		params: {
-			language: 'en-US',
 			query: str,
+		},
+	});
+}
+
+export function getListGenres() {
+	return movieAPI.get('genre/movie/list');
+}
+
+export function filterMovies(filter) {
+	return movieAPI.get('discover/movie', {
+		params: {
+			sort_by: 'popularity.desc',
+			with_genres: filter.genres[0],
+			with_original_language: filter.language[0],
 		},
 	});
 }

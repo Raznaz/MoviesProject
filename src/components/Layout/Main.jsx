@@ -1,23 +1,22 @@
 import { Grid } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchMovieArr } from '../../redux/actions/movieActinos';
 import { fetchMovie, filterMovie } from '../../redux/actions/thunk';
 import MoviesList from '../Movies/MoviesList';
-import Search from '../Search/Search';
 import Aside from './Aside';
 
 function Main() {
 	const dispatch = useDispatch();
-	const { searchValue } = useSelector((state) => state.moviesArr);
-	console.log('search movies val', searchValue);
+	const { searchValue, filter } = useSelector(
+		(state) => state.moviesArr,
+	);
+
+	// console.log('search movies val', searchValue);
 
 	useEffect(() => {
-		console.log(searchValue.length);
-		if (searchValue.length) {
-			dispatch(filterMovie(searchValue));
-		}
+		searchValue && dispatch(filterMovie(searchValue));
 		dispatch(fetchMovie());
+		dispatch(filterMovie(filter));
 	}, [searchValue]);
 	return (
 		<div>

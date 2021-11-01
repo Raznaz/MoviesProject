@@ -1,18 +1,45 @@
-import { fetchMovies, filterMovies } from '../../api/api';
-import { fetchMoviesSuccess, searchMovieArr } from './movieActinos';
+import {
+	fetchMovies,
+	filterMovies,
+	findMovies,
+	getListGenres,
+} from '../../api/api';
+import {
+	fetchMoviesSuccess,
+	filterMoviesByGenre,
+	searchMovieArr,
+	showListGenres,
+} from './movieActinos';
 
 export const fetchMovie = () => {
 	return async (dispatch) => {
 		const movies = await fetchMovies();
-		console.log('movies thunk', movies);
+		// console.log('movies thunk', movies);
 		dispatch(fetchMoviesSuccess(movies.data.results));
 	};
 };
 
-export const filterMovie = (searchValue) => {
+export const findMovie = (searchValue) => {
 	return async (dispatch) => {
-		const movies = await filterMovies(searchValue);
-		console.log('FILTER movie thunk', movies);
+		const movies = await findMovies(searchValue);
+		// console.log('FILTER movie thunk', movies);
 		dispatch(searchMovieArr(movies.data.results));
+	};
+};
+
+export const listGenres = () => {
+	return async (dispatch) => {
+		const genres = await getListGenres();
+		// console.log('LIST genres thunk', genres.data);
+		dispatch(showListGenres(genres.data.genres));
+	};
+};
+
+export const filterMovie = (filter) => {
+	console.log('111 filter:', filter);
+	return async (dispatch) => {
+		const filteredMovies = await filterMovies(filter);
+		console.log('FILTERED genres thunk', filteredMovies.data.results);
+		dispatch(filterMoviesByGenre(filteredMovies.data.results));
 	};
 };
