@@ -14,9 +14,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
 import { filterMovie, listGenres } from '../../redux/actions/thunk';
 import { useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { LocalMovies } from '@mui/icons-material';
-import { set } from 'react-hook-form';
 import './list.scss';
 
 export default function NestedList() {
@@ -29,7 +28,7 @@ export default function NestedList() {
 	console.log(filter);
 	useEffect(() => {
 		dispatch(listGenres());
-	}, []);
+	}, [dispatch]);
 
 	const { genres } = useSelector((state) => state.moviesArr);
 	// console.log('LIST', genres);
@@ -53,6 +52,7 @@ export default function NestedList() {
 	};
 
 	const startFilter = () => {
+		console.log('START FILTER', filter.genres);
 		dispatch(filterMovie(filter));
 	};
 
@@ -67,19 +67,27 @@ export default function NestedList() {
 			component="nav"
 			aria-labelledby="nested-list-subheader"
 			subheader={
-				<ListSubheader component="div" id="nested-list-subheader">
-					FILTER
-				</ListSubheader>
+				<ListSubheader
+					component="div"
+					id="nested-list-subheader"
+				></ListSubheader>
 			}
 		>
 			<ListItemButton onClick={handleClick}>
 				<ListItemIcon>
 					<LocalMovies />
 				</ListItemIcon>
-				<ListItemText primary="GENRES" />
+				<ListItemText primary="FILTER" />
 				{open ? <ExpandLess /> : <ExpandMore />}
 			</ListItemButton>
 			<Collapse in={open} timeout="auto" unmountOnExit>
+				<Typography
+					component="h3"
+					variant="h5"
+					sx={{ textAlign: 'center', bgcolor: '#eee' }}
+				>
+					GENRES
+				</Typography>
 				{genres.map((genre) => (
 					<Button
 						key={genre.id}
@@ -90,6 +98,13 @@ export default function NestedList() {
 						{genre.name}
 					</Button>
 				))}
+				<Typography
+					component="h3"
+					variant="h5"
+					sx={{ textAlign: 'center', bgcolor: '#eee' }}
+				>
+					LANGUAGE
+				</Typography>
 				<Button
 					fullWidth
 					variant="contained"

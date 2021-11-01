@@ -13,14 +13,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 
 function Movie(props) {
-	const {
-		id,
-		title,
-		overview,
-		poster_path,
-		release_date,
-		vote_average,
-	} = props;
+	const { title, poster_path, release_date, vote_average } = props;
 	return (
 		<Grid item xs={12} md={4}>
 			<Card

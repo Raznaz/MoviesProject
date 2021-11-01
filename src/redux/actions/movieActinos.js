@@ -1,5 +1,3 @@
-import { Filter } from '@mui/icons-material';
-
 export const FETCH_MOVIES_SUCCESS = '[MOVIE] Fetch movies success';
 export const SEARCH_MOVIES = '[MOVIE] Search movies';
 export const SEARCH_MOVIES_ARR = '[MOVIE] Search movies arr';
