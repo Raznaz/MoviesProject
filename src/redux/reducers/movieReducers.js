@@ -1,4 +1,5 @@
 import {
+	CREATE_FILTER,
 	FETCH_MOVIES_SUCCESS,
 	FILTER_MOVIES,
 	LIST_GENRES,
@@ -14,8 +15,8 @@ const initialState = {
 	genres: [],
 	languages: [],
 	filter: {
-		genres: [10402],
-		language: ['ru'],
+		genres: [],
+		language: '',
 	},
 };
 
@@ -35,6 +36,16 @@ export const movieReducer = (state = initialState, action) => {
 			return {
 				...state,
 				movies: action.payload.searchArr,
+			};
+		case CREATE_FILTER:
+			console.log('CRATE FILTER:', action.payload);
+			return {
+				...state,
+				filter: {
+					...state.filter,
+					genres: action.payload.filter.genres,
+					language: action.payload.filter.language,
+				},
 			};
 		case FILTER_MOVIES:
 			return { ...state, movies: action.payload.filteredArr };

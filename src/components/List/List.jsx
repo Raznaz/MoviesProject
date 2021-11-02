@@ -25,6 +25,7 @@ import {
 import { LocalMovies } from '@mui/icons-material';
 import './list.scss';
 import { Box } from '@mui/system';
+import { createFilter } from '../../redux/actions/movieActinos';
 
 export default function NestedList() {
 	const [open, setOpen] = useState(true);
@@ -42,10 +43,17 @@ export default function NestedList() {
 		dispatch(listLanguages());
 	}, [dispatch]);
 
-	const { genres, languages } = useSelector(
-		(state) => state.moviesArr,
-	);
+	useEffect(() => {
+		dispatch(createFilter(filter));
+	}, [filter]);
 
+	const {
+		genres,
+		languages,
+		filter: mainFilter,
+	} = useSelector((state) => state.moviesArr);
+
+	console.log('LIST', mainFilter);
 	const handleClick = () => {
 		setOpen(!open);
 	};
@@ -54,6 +62,7 @@ export default function NestedList() {
 
 	const handleChange = (event) => {
 		setFilter({ ...filter, language: event.target.value });
+		// dispatch(createFilter())
 	};
 
 	const handleGenreChoose = (e, id) => {
@@ -66,21 +75,12 @@ export default function NestedList() {
 		} else {
 			setFilter({ ...filter, genres: [...filter.genres, id] });
 		}
-
-		// e.target.classList.toggle('select');
-		// if (e.target.classList.contains('select')) {
-		// 	setFilter({ ...filter, genres: [...filter.genres, id] });
-		// } else {
-		// 	setFilter({
-		// 		...filter,
-		// 		genres: [...filter.genres.filter((genre) => genre !== id)],
-		// 	});
-		// }
 	};
 
 	const startFilter = () => {
 		// console.log('START FILTER', filter.genres);
-		dispatch(filterMovie(filter));
+		// dispatch(createFilter(filter));
+		dispatch(filterMovie(mainFilter));
 	};
 
 	const resetFilter = () => {

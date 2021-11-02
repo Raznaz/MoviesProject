@@ -36,7 +36,7 @@ export const showListLanguages = (lang) => ({
 //  TODO:Возможно не нужен этот action creator
 export const createFilter = (filter) => ({
 	type: CREATE_FILTER,
-	payload: filter,
+	payload: { filter },
 });
 
 export const filterMoviesByGenre = (filteredArr) => ({
