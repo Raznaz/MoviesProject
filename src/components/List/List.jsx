@@ -5,12 +5,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
-// import DraftsIcon from '@mui/icons-material/Drafts';
-// import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-// import StarBorder from '@mui/icons-material/StarBorder';
 import { useSelector } from 'react-redux';
 import {
 	filterMovie,
@@ -27,7 +23,6 @@ import {
 } from '@mui/material';
 import { LocalMovies } from '@mui/icons-material';
 import './list.scss';
-import Filter from '../Filter/Filter';
 import { Box } from '@mui/system';
 
 export default function NestedList() {
@@ -36,8 +31,11 @@ export default function NestedList() {
 		genres: [],
 		language: '',
 	});
+
 	const dispatch = useDispatch();
-	console.log(filter);
+
+	// console.log(filter);
+
 	useEffect(() => {
 		dispatch(listGenres());
 		dispatch(listLanguages());
@@ -46,27 +44,22 @@ export default function NestedList() {
 	const { genres, languages } = useSelector(
 		(state) => state.moviesArr,
 	);
-	// console.log('LIST', genres);
 
 	const handleClick = () => {
 		setOpen(!open);
 	};
 
 	// Languages
-	// const [currency, setCurrency] = useState('EUR');
 
 	const handleChange = (event) => {
-		// setCurrency(event.target.value);
 		setFilter({ ...filter, language: event.target.value });
 	};
 
 	const handleGenreChoose = (e, id) => {
-		console.log(id);
 		e.target.classList.toggle('select');
 		if (e.target.classList.contains('select')) {
 			setFilter({ ...filter, genres: [...filter.genres, id] });
 		} else {
-			// setFilter([...filter.filter((genre) => genre !== id)]);
 			setFilter({
 				...filter,
 				genres: [...filter.genres.filter((genre) => genre !== id)],
@@ -107,7 +100,7 @@ export default function NestedList() {
 				<Typography
 					component="h3"
 					variant="h5"
-					sx={{ textAlign: 'center', bgcolor: '#eee' }}
+					sx={{ textAlign: 'center', bgcolor: '#ffe4a9' }}
 				>
 					GENRES
 				</Typography>
@@ -124,37 +117,34 @@ export default function NestedList() {
 				<Typography
 					component="h3"
 					variant="h5"
-					sx={{ textAlign: 'center', bgcolor: '#eee' }}
+					sx={{ textAlign: 'center', bgcolor: '#ffe4a9' }}
 				>
 					LANGUAGE
 				</Typography>
 				<Box
 					component="form"
-					sx={{
-						'& .MuiTextField-root': { mb: 2 },
-					}}
+					// sx={{
+					// 	'& .MuiTextField-root': { mb: 2 },
+					// }}
 					noValidate
 					autoComplete="off"
 				>
-					<div></div>
-					<div>
-						<TextField
-							id="filled-select-currency"
-							select
-							label="Select language"
-							value={filter.language}
-							onChange={handleChange}
-							helperText="Please select language"
-							variant="outlined"
-							fullWidth
-						>
-							{languages.map((lang, i) => (
-								<MenuItem key={i} value={lang.iso_639_1}>
-									{lang.english_name}
-								</MenuItem>
-							))}
-						</TextField>
-					</div>
+					<TextField
+						id="filled-select-currency"
+						select
+						label="Select language"
+						value={filter.language}
+						onChange={handleChange}
+						// helperText="Please select language"
+						variant="outlined"
+						fullWidth
+					>
+						{languages.map((lang, i) => (
+							<MenuItem key={i} value={lang.iso_639_1}>
+								{lang.english_name}
+							</MenuItem>
+						))}
+					</TextField>
 				</Box>
 				<Divider />
 				<Button
