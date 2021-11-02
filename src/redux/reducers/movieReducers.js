@@ -82,7 +82,11 @@ export const movieReducer = (state = initialState, action) => {
 				},
 			};
 		case FILTER_MOVIES:
-			return { ...state, movies: action.payload.filteredArr };
+			return {
+				...state,
+				movies: action.payload.filteredArr,
+				searchValue: '',
+			};
 		case LIST_GENRES:
 			return { ...state, genres: action.payload.genres };
 		case LIST_LANGUAGES:
