@@ -18,9 +18,6 @@ function Search() {
 			<MyInput
 				type="search"
 				placeholder="Search..."
-				// onChange={() =>
-				// 	dispatch(searchMovies(valInpRef.current.value))
-				// }
 				ref={valInpRef}
 				onKeyDown={handleKey}
 			/>

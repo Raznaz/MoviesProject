@@ -2,6 +2,7 @@ export const FETCH_MOVIES_SUCCESS = '[MOVIE] Fetch movies success';
 export const SEARCH_MOVIES = '[MOVIE] Search movies';
 export const SEARCH_MOVIES_ARR = '[MOVIE] Search movies arr';
 export const LIST_GENRES = '[MOVIE] List genres';
+export const LIST_LANGUAGES = '[MOVIE] List languages';
 export const FILTER_MOVIES = '[MOVIE] Filter movies';
 export const CREATE_FILTER = '[MOVIE] Create filter';
 
@@ -17,7 +18,7 @@ export const searchMovies = (value) => ({
 });
 
 // TODO:Переименовать ф-ю
-export const searchMovieArr = (searchArr = []) => ({
+export const searchMovieArr = (searchArr) => ({
 	type: SEARCH_MOVIES_ARR,
 	payload: { searchArr },
 });
@@ -27,6 +28,12 @@ export const showListGenres = (genres) => ({
 	payload: { genres },
 });
 
+export const showListLanguages = (lang) => ({
+	type: LIST_LANGUAGES,
+	payload: { lang },
+});
+
+//  TODO:Возможно не нужен этот action creator
 export const createFilter = (filter) => ({
 	type: CREATE_FILTER,
 	payload: filter,

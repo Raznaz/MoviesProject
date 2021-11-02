@@ -12,29 +12,52 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 // import StarBorder from '@mui/icons-material/StarBorder';
 import { useSelector } from 'react-redux';
-import { filterMovie, listGenres } from '../../redux/actions/thunk';
+import {
+	filterMovie,
+	listGenres,
+	listLanguages,
+} from '../../redux/actions/thunk';
 import { useDispatch } from 'react-redux';
-import { Button, Typography } from '@mui/material';
+import {
+	Button,
+	Divider,
+	MenuItem,
+	TextField,
+	Typography,
+} from '@mui/material';
 import { LocalMovies } from '@mui/icons-material';
 import './list.scss';
+import Filter from '../Filter/Filter';
+import { Box } from '@mui/system';
 
 export default function NestedList() {
 	const [open, setOpen] = useState(true);
 	const [filter, setFilter] = useState({
 		genres: [],
-		language: [],
+		language: '',
 	});
 	const dispatch = useDispatch();
 	console.log(filter);
 	useEffect(() => {
 		dispatch(listGenres());
+		dispatch(listLanguages());
 	}, [dispatch]);
 
-	const { genres } = useSelector((state) => state.moviesArr);
+	const { genres, languages } = useSelector(
+		(state) => state.moviesArr,
+	);
 	// console.log('LIST', genres);
 
 	const handleClick = () => {
 		setOpen(!open);
+	};
+
+	// Languages
+	// const [currency, setCurrency] = useState('EUR');
+
+	const handleChange = (event) => {
+		// setCurrency(event.target.value);
+		setFilter({ ...filter, language: event.target.value });
 	};
 
 	const handleGenreChoose = (e, id) => {
@@ -105,6 +128,35 @@ export default function NestedList() {
 				>
 					LANGUAGE
 				</Typography>
+				<Box
+					component="form"
+					sx={{
+						'& .MuiTextField-root': { mb: 2 },
+					}}
+					noValidate
+					autoComplete="off"
+				>
+					<div></div>
+					<div>
+						<TextField
+							id="filled-select-currency"
+							select
+							label="Select language"
+							value={filter.language}
+							onChange={handleChange}
+							helperText="Please select language"
+							variant="outlined"
+							fullWidth
+						>
+							{languages.map((lang, i) => (
+								<MenuItem key={i} value={lang.iso_639_1}>
+									{lang.english_name}
+								</MenuItem>
+							))}
+						</TextField>
+					</div>
+				</Box>
+				<Divider />
 				<Button
 					fullWidth
 					variant="contained"

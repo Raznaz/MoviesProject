@@ -8,15 +8,15 @@ function MoviesList() {
 		(state) => state.moviesArr,
 	);
 
-	if (searchValue.length) {
-		return (
-			<Grid container spacing={2}>
-				{searchMovies.map((movie) => {
-					return <Movie key={movie.id} {...movie} />;
-				})}
-			</Grid>
-		);
-	}
+	// if (searchValue.length) {
+	// 	return (
+	// 		<Grid container spacing={2}>
+	// 			{searchMovies.map((movie) => {
+	// 				return <Movie key={movie.id} {...movie} />;
+	// 			})}
+	// 		</Grid>
+	// 	);
+	// }
 
 	return (
 		<Grid container spacing={2}>

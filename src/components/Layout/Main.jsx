@@ -12,9 +12,8 @@ function Main() {
 	// console.log('search movies val', searchValue);
 
 	useEffect(() => {
-		searchValue && dispatch(findMovie(searchValue));
 		dispatch(fetchMovie());
-		// dispatch(filterMovie(filter));
+		searchValue && dispatch(findMovie(searchValue));
 	}, [searchValue, dispatch]);
 	return (
 		<div>

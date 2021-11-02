@@ -3,12 +3,14 @@ import {
 	filterMovies,
 	findMovies,
 	getListGenres,
+	getListLanguages,
 } from '../../api/api';
 import {
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
 	searchMovieArr,
 	showListGenres,
+	showListLanguages,
 } from './movieActinos';
 
 export const fetchMovie = () => {
@@ -32,6 +34,14 @@ export const listGenres = () => {
 		const genres = await getListGenres();
 		// console.log('LIST genres thunk', genres.data);
 		dispatch(showListGenres(genres.data.genres));
+	};
+};
+
+export const listLanguages = () => {
+	return async (dispatch) => {
+		const languages = await getListLanguages();
+		// console.log('LIST LANG thunk', languages.data);
+		dispatch(showListLanguages(languages.data));
 	};
 };
 
