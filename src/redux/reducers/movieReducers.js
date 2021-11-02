@@ -1,11 +1,14 @@
 import {
 	CREATE_FILTER,
+	CREATE_FILTER_GENRES,
+	CREATE_FILTER_LANGUAGE,
 	FETCH_MOVIES_SUCCESS,
 	FILTER_MOVIES,
 	LIST_GENRES,
 	LIST_LANGUAGES,
 	SEARCH_MOVIES,
 	SEARCH_MOVIES_ARR,
+	RESET_FILTER,
 } from '../actions/movieActinos';
 
 const initialState = {
@@ -37,14 +40,45 @@ export const movieReducer = (state = initialState, action) => {
 				...state,
 				movies: action.payload.searchArr,
 			};
-		case CREATE_FILTER:
-			console.log('CRATE FILTER:', action.payload);
+		case CREATE_FILTER_GENRES:
+			console.log('CREATE FILTER GENRES:', action.payload);
+			if (
+				state.filter.genres.find(
+					(genre) => action.payload.id === genre,
+				)
+			) {
+				return {
+					...state,
+					filter: {
+						...state.filter,
+						genres: state.filter.genres.filter(
+							(genre) => genre !== action.payload.id,
+						),
+					},
+				};
+			}
 			return {
 				...state,
 				filter: {
 					...state.filter,
-					genres: action.payload.filter.genres,
-					language: action.payload.filter.language,
+					genres: [...state.filter.genres, action.payload.id],
+				},
+			};
+		case CREATE_FILTER_LANGUAGE:
+			console.log('CREATE FILTER LANG:', action.payload);
+			return {
+				...state,
+				filter: {
+					...state.filter,
+					language: action.payload.lang,
+				},
+			};
+		case RESET_FILTER:
+			return {
+				...state,
+				filter: {
+					genres: [],
+					language: '',
 				},
 			};
 		case FILTER_MOVIES:

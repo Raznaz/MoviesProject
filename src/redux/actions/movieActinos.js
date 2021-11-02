@@ -4,7 +4,10 @@ export const SEARCH_MOVIES_ARR = '[MOVIE] Search movies arr';
 export const LIST_GENRES = '[MOVIE] List genres';
 export const LIST_LANGUAGES = '[MOVIE] List languages';
 export const FILTER_MOVIES = '[MOVIE] Filter movies';
-export const CREATE_FILTER = '[MOVIE] Create filter';
+export const CREATE_FILTER_LANGUAGE =
+	'[MOVIE] Create filter language';
+export const CREATE_FILTER_GENRES = '[MOVIE] Create filter genres';
+export const RESET_FILTER = '[MOVIE] Reset filter';
 
 export const fetchMoviesSuccess = (movies) => ({
 	type: FETCH_MOVIES_SUCCESS,
@@ -34,9 +37,17 @@ export const showListLanguages = (lang) => ({
 });
 
 //  TODO:Возможно не нужен этот action creator
-export const createFilter = (filter) => ({
-	type: CREATE_FILTER,
-	payload: { filter },
+export const createFilterLanguage = (lang) => ({
+	type: CREATE_FILTER_LANGUAGE,
+	payload: { lang },
+});
+export const createFilterGenres = (id) => ({
+	type: CREATE_FILTER_GENRES,
+	payload: { id },
+});
+
+export const resetFilter = () => ({
+	type: RESET_FILTER,
 });
 
 export const filterMoviesByGenre = (filteredArr) => ({
