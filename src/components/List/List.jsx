@@ -9,6 +9,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
 import {
+	fetchMovie,
 	filterMovie,
 	listGenres,
 	listLanguages,
@@ -34,7 +35,7 @@ export default function NestedList() {
 
 	const dispatch = useDispatch();
 
-	// console.log(filter);
+	console.log('FILTER:', filter);
 
 	useEffect(() => {
 		dispatch(listGenres());
@@ -56,20 +57,35 @@ export default function NestedList() {
 	};
 
 	const handleGenreChoose = (e, id) => {
-		e.target.classList.toggle('select');
-		if (e.target.classList.contains('select')) {
-			setFilter({ ...filter, genres: [...filter.genres, id] });
-		} else {
+		console.log('id', id);
+		if (filter.genres.find((item) => id === item)) {
 			setFilter({
 				...filter,
-				genres: [...filter.genres.filter((genre) => genre !== id)],
+				genres: filter.genres.filter((item) => item !== id),
 			});
+		} else {
+			setFilter({ ...filter, genres: [...filter.genres, id] });
 		}
+
+		// e.target.classList.toggle('select');
+		// if (e.target.classList.contains('select')) {
+		// 	setFilter({ ...filter, genres: [...filter.genres, id] });
+		// } else {
+		// 	setFilter({
+		// 		...filter,
+		// 		genres: [...filter.genres.filter((genre) => genre !== id)],
+		// 	});
+		// }
 	};
 
 	const startFilter = () => {
-		console.log('START FILTER', filter.genres);
+		// console.log('START FILTER', filter.genres);
 		dispatch(filterMovie(filter));
+	};
+
+	const resetFilter = () => {
+		setFilter({ genres: [], language: '' });
+		dispatch(fetchMovie());
 	};
 
 	return (
@@ -104,16 +120,42 @@ export default function NestedList() {
 				>
 					GENRES
 				</Typography>
-				{genres.map((genre) => (
-					<Button
-						key={genre.id}
-						variant="outlined"
-						sx={{ borderRadius: '20px', margin: '1px' }}
-						onClick={(e) => handleGenreChoose(e, genre.id)}
-					>
-						{genre.name}
-					</Button>
-				))}
+				{genres.map((genre) => {
+					let id = filter.genres.find((item) => item === genre.id);
+					// console.log('ID:', id);
+
+					if (id === genre.id) {
+						return (
+							<Button
+								key={genre.id}
+								variant="outlined"
+								sx={{
+									borderRadius: '20px',
+									margin: '1px',
+									bgcolor: '#000',
+								}}
+								onClick={(e) => handleGenreChoose(e, genre.id)}
+							>
+								{genre.name}
+							</Button>
+						);
+					}
+
+					return (
+						<Button
+							key={genre.id}
+							variant="outlined"
+							sx={{
+								borderRadius: '20px',
+								margin: '1px',
+								bgcolor: '#fff',
+							}}
+							onClick={(e) => handleGenreChoose(e, genre.id)}
+						>
+							{genre.name}
+						</Button>
+					);
+				})}
 				<Typography
 					component="h3"
 					variant="h5"
@@ -126,6 +168,7 @@ export default function NestedList() {
 					// sx={{
 					// 	'& .MuiTextField-root': { mb: 2 },
 					// }}
+					sx={{ mb: 10 }}
 					noValidate
 					autoComplete="off"
 				>
@@ -154,6 +197,14 @@ export default function NestedList() {
 					onClick={() => startFilter()}
 				>
 					START FILTER
+				</Button>
+				<Button
+					fullWidth
+					variant="contained"
+					color="warning"
+					onClick={() => resetFilter()}
+				>
+					RESET FILTER
 				</Button>
 			</Collapse>
 		</List>
