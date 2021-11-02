@@ -38,13 +38,16 @@ export function getListLanguages() {
 // TODO:Преобразовать массив в строку
 export function filterMovies(filter) {
 	const genresStr = filter.genres.join(',');
-	console.log(genresStr, filter.language);
-	return movieAPI.get('discover/movie', {
+	// console.log(genresStr, filter.language);
+	return movieAPI.get('/discover/movie', {
 		params: {
 			sort_by: 'popularity.desc',
 			with_genres: genresStr,
-			// with_genres: filter.genres[0],
 			with_original_language: filter.language,
 		},
 	});
+}
+
+export function getInformationMovieById(movieId) {
+	return movieAPI.get(`/movie/${movieId}`);
 }

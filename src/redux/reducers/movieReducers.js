@@ -9,10 +9,12 @@ import {
 	SEARCH_MOVIES,
 	SEARCH_MOVIES_ARR,
 	RESET_FILTER,
+	INFO_MOVIE_BY_ID,
 } from '../actions/movieActinos';
 
 const initialState = {
 	movies: [],
+	movieById: {},
 	searchMovies: [],
 	searchValue: '',
 	genres: [],
@@ -25,13 +27,16 @@ const initialState = {
 
 export const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case INFO_MOVIE_BY_ID:
+			console.log('Movie ID reducer', action.payload.searchArr);
+			return { ...state, movieById: action.payload.id };
 		case FETCH_MOVIES_SUCCESS:
 			// console.log('movie reducer', action.payload.movies);
 			return { ...state, movies: action.payload.movies };
 		case SEARCH_MOVIES:
 			return { ...state, searchValue: action.payload.value };
 		case SEARCH_MOVIES_ARR:
-			console.log('search reducer', action.payload.searchArr);
+			// console.log('search reducer', action.payload.searchArr);
 			// return {
 			// 	...state,
 			// 	searchMovies: [...action.payload.searchArr],

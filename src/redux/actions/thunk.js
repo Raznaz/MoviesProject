@@ -2,6 +2,7 @@ import {
 	fetchMovies,
 	filterMovies,
 	findMovies,
+	getInformationMovieById,
 	getListGenres,
 	getListLanguages,
 } from '../../api/api';
@@ -9,6 +10,7 @@ import {
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
 	searchMovieArr,
+	showInfoMovieById,
 	showListGenres,
 	showListLanguages,
 } from './movieActinos';
@@ -46,10 +48,17 @@ export const listLanguages = () => {
 };
 
 export const filterMovie = (filter) => {
-	console.log('111 filter:', filter);
+	// console.log('111 filter:', filter);
 	return async (dispatch) => {
 		const filteredMovies = await filterMovies(filter);
-		console.log('FILTERED genres thunk', filteredMovies.data.results);
+		// console.log('FILTERED genres thunk', filteredMovies.data.results);
 		dispatch(filterMoviesByGenre(filteredMovies.data.results));
+	};
+};
+
+export const getInfoAboutMovieById = (movieId) => {
+	return async (dispatch) => {
+		const currentMovie = await getInformationMovieById(movieId);
+		dispatch(showInfoMovieById(currentMovie.data));
 	};
 };

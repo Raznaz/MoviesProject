@@ -1,5 +1,6 @@
 import { FavoriteBorder } from '@mui/icons-material';
 import {
+	Button,
 	Card,
 	CardActions,
 	CardContent,
@@ -11,9 +12,18 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { getInfoAboutMovieById } from '../../redux/actions/thunk';
 
 function Movie(props) {
-	const { title, poster_path, release_date, vote_average } = props;
+	const { id, title, poster_path, release_date, vote_average } =
+		props;
+	const dispatch = useDispatch();
+
+	const handleShowInfoById = (id) => {
+		console.log('MOVIE', id);
+		dispatch(getInfoAboutMovieById(id));
+	};
 	return (
 		<Grid item xs={12} md={4}>
 			<Card
@@ -39,6 +49,9 @@ function Movie(props) {
 					<IconButton>
 						<FavoriteBorder />
 					</IconButton>
+					<Button onClick={() => handleShowInfoById(id)}>
+						Show info
+					</Button>
 					<Box
 						sx={{
 							position: 'relative',
