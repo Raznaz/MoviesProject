@@ -53,8 +53,7 @@ const schema = yup.object().shape({
 	confirmPassword: yup
 		.string()
 		.required('Password is required field')
-		.min(3, 'Should be more then 3 characters')
-		.max(20),
+		.oneOf([yup.ref('password'), null], 'Password must match.'),
 });
 
 function RegistrationForm() {
