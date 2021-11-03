@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { MyInput } from '../UI/Input/MyInput';
 import Form from '../UI/Form/Form';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import {
 	Divider,
 	FormControl,
@@ -29,15 +29,20 @@ const schema = yup.object().shape({
 		.max(255)
 		.email('Must be a valid email')
 		.required('Email is required.'),
-	birthDay: yup
-		.string('correct date DD:MM:YEAR')
-		.required('Birth of date is required field. '),
+	// birthDay: yup
+	// 	.string('correct date DD:MM:YEAR')
+	// 	.required('Birth of date is required field. '),
 	gender: yup.string().required('Should be required'),
 	password: yup
 		.string()
-		.min(3)
-		.max(20)
-		.required('Password is required field'),
+		.required('Password is required field')
+		.min(3, 'Should be more then 3 characters')
+		.max(20),
+	confirmPassword: yup
+		.string()
+		.required('Password is required field')
+		.min(3, 'Should be more then 3 characters')
+		.max(20),
 });
 
 function RegistrationForm() {
@@ -45,6 +50,7 @@ function RegistrationForm() {
 		register,
 		handleSubmit,
 		formState: { errors },
+		control,
 		reset,
 	} = useForm({
 		mode: 'onBlur',
@@ -106,47 +112,29 @@ function RegistrationForm() {
 					<InputLabel id="demo-simple-select-label">
 						Gender
 					</InputLabel>
-					<Select
-						sx={{ mb: 2 }}
-						{...register('gender')}
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						// value={age}
-						label="gender"
+					<Controller
+						name="gender"
+						render={({ field }) => (
+							<Select
+								{...field}
+								sx={{ mb: 2 }}
+								label="gender"
+								error={!!errors.gender}
+								helpertext={errors?.gender?.message}
+							>
+								<MenuItem value={'Male'}>Male</MenuItem>
+								<MenuItem value={'Female'}>Female</MenuItem>
+								<MenuItem value={'Other'}>Other</MenuItem>
+							</Select>
+						)}
+						control={control}
 						defaultValue=""
-						// onChange={handleChange}
-						// inputRef={ref}
-						error={!!errors.gender}
-						// helperText="Birth of date"
-						helperText={errors?.gender?.message}
-					>
-						<MenuItem value={'Male'}>Male</MenuItem>
-						<MenuItem value={'Female'}>Female</MenuItem>
-						<MenuItem value={'Other'}>Other</MenuItem>
-					</Select>
-					<InputLabel id="birthDay">Gender</InputLabel>
-					<MyInput
-						{...register('birthDay')}
-						id="birthDay"
-						type="date"
-						// label="Birth of Date"
-						placeholder="Date"
-						name="birthDay"
-						sx={{ mb: 2 }}
-						error={!!errors.birthDay}
-						// helperText="Birth of date"
-						helperText={errors?.birthDay?.message}
 					/>
-					{/* <select {...register('gender')}>
-					<option value="female">female</option>
-					<option value="male">male</option>
-					<option value="other">other</option>
-				</select> */}
 				</FormControl>
-				<Divider sx={{ mb: 2 }} />
+
 				<MyInput
 					{...register('password')}
-					id="password"
+					// id="password"
 					type="password"
 					label="Password"
 					name="password"
@@ -156,7 +144,7 @@ function RegistrationForm() {
 				/>
 				<MyInput
 					{...register('confirmPassword')}
-					id="confirmPassword"
+					// id="confirmPassword"
 					type="password"
 					label="Confirm Password"
 					name="confirmPassword"
