@@ -16,7 +16,7 @@ function Main() {
 		searchValue && dispatch(findMovie(searchValue));
 	}, [searchValue, dispatch]);
 	return (
-		<div>
+		<>
 			<h1>Main</h1>
 			<Grid container spacing={2} sx={{ mb: 2 }}>
 				<Grid item xs={3} sx={{ bgcolor: '#eee', p: 2 }}>
@@ -26,7 +26,7 @@ function Main() {
 					<MoviesList />
 				</Grid>
 			</Grid>
-		</div>
+		</>
 	);
 }
 

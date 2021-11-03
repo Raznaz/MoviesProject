@@ -1,6 +1,11 @@
 import { Container } from '@mui/material';
 import { Provider } from 'react-redux';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import {
+	Switch,
+	Route,
+	BrowserRouter,
+	Redirect,
+} from 'react-router-dom';
 import Footer from './components/Layout/Footer';
 import Header from './components/Layout/Header';
 import Error from './pages/Error/Error';
@@ -20,7 +25,8 @@ function App() {
 							<Route exact path="/" component={Home} />
 							<Route path="/movies" component={Kinoafisha} />
 							<Route path="/movie/:movieId" component={MovieById} />
-							<Route component={Error} />
+							<Route path="/error" component={Error} />
+							<Redirect to="/error" />
 						</Switch>
 					</Container>
 					<Footer />
