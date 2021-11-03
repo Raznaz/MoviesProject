@@ -30,7 +30,11 @@ function Header() {
 							Movie Universal
 						</Link>
 					</Typography>
-					<IconButton color="inherit">
+					<IconButton
+						color="inherit"
+						component={LinkRoute}
+						to="/registration"
+					>
 						<Login />
 					</IconButton>
 				</Toolbar>

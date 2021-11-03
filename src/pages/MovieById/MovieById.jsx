@@ -9,7 +9,13 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import { Divider, Grid, Typography } from '@mui/material';
+import {
+	Divider,
+	Grid,
+	ImageList,
+	ImageListItem,
+	Typography,
+} from '@mui/material';
 import { Box } from '@mui/system';
 
 function MovieById() {
@@ -18,6 +24,7 @@ function MovieById() {
 	const dispatch = useDispatch();
 	const { movieById } = useSelector((state) => state.moviesArr);
 	console.log(movieById);
+	console.log(movieById.production_companies);
 	useEffect(() => {
 		dispatch(getInfoAboutMovieById(movieId));
 	}, [movieId]);
@@ -68,10 +75,24 @@ function MovieById() {
 						src={`https://image.tmdb.org/t/p/w500/${movieById.backdrop_path}`}
 						alt={movieById.original_title}
 					/>
-					<Divider />
-					<Typography component="div" variant="h5">
-						{movieById.genres[0].name}
-					</Typography>
+					<ImageList
+						sx={{ width: 500, height: 450 }}
+						variant="quilted"
+						cols={2}
+						// rowHeight={50}
+					>
+						{movieById.production_companies &&
+							movieById.production_companies.map((comp) => (
+								<ImageListItem key={comp.name}>
+									<img
+										src={`https://image.tmdb.org/t/p/w500/${comp.logo_path} `}
+										// srcSet={`https://image.tmdb.org/t/p/w500/${comp.logo_path} 5x`}
+										alt={comp.name}
+										loading="lazy"
+									/>
+								</ImageListItem>
+							))}
+					</ImageList>
 				</Grid>
 			</Grid>
 		</>

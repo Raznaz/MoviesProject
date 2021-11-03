@@ -12,6 +12,7 @@ import Error from './pages/Error/Error';
 import Home from './pages/Home/Home';
 import Kinoafisha from './pages/Kinoafisha/Kinoafisha';
 import MovieById from './pages/MovieById/MovieById';
+import Registration from './pages/Registration/Registration';
 import { store } from './redux/store';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 							<Route exact path="/" component={Home} />
 							<Route path="/movies" component={Kinoafisha} />
 							<Route path="/movie/:movieId" component={MovieById} />
+							<Route path="/registration" component={Registration} />
 							<Route path="/error" component={Error} />
 							<Redirect to="/error" />
 						</Switch>
