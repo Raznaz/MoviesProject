@@ -6,9 +6,13 @@ import { Controller, useForm } from 'react-hook-form';
 import {
 	Divider,
 	FormControl,
+	FormControlLabel,
 	InputLabel,
 	MenuItem,
+	Radio,
+	RadioGroup,
 	Select,
+	TextField,
 	Typography,
 } from '@mui/material';
 import MyButton from '../UI/Button/MyButton';
@@ -29,9 +33,9 @@ const schema = yup.object().shape({
 		.max(255)
 		.email('Must be a valid email')
 		.required('Email is required.'),
-	// birthDay: yup
-	// 	.string('correct date DD:MM:YEAR')
-	// 	.required('Birth of date is required field. '),
+	birthDay: yup
+		.string('correct date DD:MM:YEAR')
+		.required('Birth of date is required field. '),
 	gender: yup.string().required('Should be required'),
 	password: yup
 		.string()
@@ -109,10 +113,10 @@ function RegistrationForm() {
 				{/* ================================================ */}
 
 				<FormControl fullWidth>
-					<InputLabel id="demo-simple-select-label">
+					{/* <InputLabel id="demo-simple-select-label">
 						Gender
-					</InputLabel>
-					<Controller
+					</InputLabel> */}
+					{/* <Controller
 						name="gender"
 						render={({ field }) => (
 							<Select
@@ -129,8 +133,41 @@ function RegistrationForm() {
 						)}
 						control={control}
 						defaultValue=""
+					/> */}
+
+					<Controller
+						rules={{ required: true }}
+						control={control}
+						defaultValue="man"
+						name="gender"
+						render={({ field }) => (
+							<RadioGroup {...field}>
+								<FormControlLabel
+									value="man"
+									control={<Radio />}
+									label="Man"
+								/>
+								<FormControlLabel
+									value="woman"
+									control={<Radio />}
+									label="Woman"
+								/>
+							</RadioGroup>
+						)}
 					/>
 				</FormControl>
+				{/* ================================================ */}
+				<MyInput
+					{...register('birthDay')}
+					id="birthDay"
+					type="date"
+					// label="Birth of Day"
+					name="birthDay"
+					defaultValue=""
+					sx={{ mb: 2 }}
+					error={!!errors.birthDay}
+					helperText={errors?.birthDay?.message}
+				/>
 
 				<MyInput
 					{...register('password')}
@@ -152,6 +189,8 @@ function RegistrationForm() {
 					error={!!errors.confirmPassword}
 					helperText={errors?.confirmPassword?.message}
 				/>
+
+				{/* Radio */}
 
 				<MyButton color="success">Registration</MyButton>
 			</Form>
