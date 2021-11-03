@@ -7,6 +7,7 @@ import {
 	Divider,
 	FormControl,
 	FormControlLabel,
+	FormLabel,
 	InputLabel,
 	MenuItem,
 	Radio,
@@ -35,8 +36,15 @@ const schema = yup.object().shape({
 		.required('Email is required.'),
 	birthDay: yup
 		.string('correct date DD:MM:YEAR')
-		.required('Birth of date is required field. '),
-	gender: yup.string().required('Should be required'),
+		.required('Birth of day is required field. '),
+	// gender: yup.string().required('Should be required'),
+	userName: yup
+		.string()
+		.matches(
+			/^([a-z, 0-9, \. , _ ]*)$/,
+			'User name should contains just small latter, digits, . or _',
+		)
+		.required('Should be required'),
 	password: yup
 		.string()
 		.required('Password is required field')
@@ -70,7 +78,8 @@ function RegistrationForm() {
 			sx={{
 				textAlign: 'center',
 				maxWidth: '400px',
-				margin: '100px auto',
+				margin: '0 auto',
+				mb: 5,
 				p: 2,
 				boxShadow: '0 0 10px 2px #08005c',
 				borderRadius: '20px',
@@ -86,7 +95,7 @@ function RegistrationForm() {
 					type="text"
 					label="First Name"
 					name="firstName"
-					sx={{ mb: 2 }}
+					sx={{ mb: 1 }}
 					error={!!errors.firstName}
 					helperText={errors?.firstName?.message}
 				/>
@@ -96,7 +105,7 @@ function RegistrationForm() {
 					type="text"
 					label="Last Name"
 					name="lastName"
-					sx={{ mb: 2 }}
+					sx={{ mb: 1 }}
 					error={!!errors.lastName}
 					helperText={errors?.lastName?.message}
 				/>
@@ -112,44 +121,26 @@ function RegistrationForm() {
 				/>
 				{/* ================================================ */}
 
-				<FormControl fullWidth>
-					{/* <InputLabel id="demo-simple-select-label">
-						Gender
-					</InputLabel> */}
-					{/* <Controller
-						name="gender"
-						render={({ field }) => (
-							<Select
-								{...field}
-								sx={{ mb: 2 }}
-								label="gender"
-								error={!!errors.gender}
-								helpertext={errors?.gender?.message}
-							>
-								<MenuItem value={'Male'}>Male</MenuItem>
-								<MenuItem value={'Female'}>Female</MenuItem>
-								<MenuItem value={'Other'}>Other</MenuItem>
-							</Select>
-						)}
-						control={control}
-						defaultValue=""
-					/> */}
-
+				<FormControl fullWidth component="fieldset">
 					<Controller
 						rules={{ required: true }}
 						control={control}
 						defaultValue="man"
 						name="gender"
 						render={({ field }) => (
-							<RadioGroup {...field}>
+							<RadioGroup
+								row
+								sx={{ justifyContent: 'center' }}
+								{...field}
+							>
 								<FormControlLabel
 									value="man"
-									control={<Radio />}
+									control={<Radio color="success" />}
 									label="Man"
 								/>
 								<FormControlLabel
 									value="woman"
-									control={<Radio />}
+									control={<Radio color="secondary" />}
 									label="Woman"
 								/>
 							</RadioGroup>
@@ -167,6 +158,17 @@ function RegistrationForm() {
 					sx={{ mb: 2 }}
 					error={!!errors.birthDay}
 					helperText={errors?.birthDay?.message}
+				/>
+
+				<MyInput
+					{...register('userName')}
+					id="userName"
+					type="text"
+					label="User name"
+					name="userName"
+					sx={{ mb: 2 }}
+					error={!!errors.userName}
+					helperText={errors?.userName?.message}
 				/>
 
 				<MyInput
