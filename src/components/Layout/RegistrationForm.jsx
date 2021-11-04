@@ -1,5 +1,5 @@
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import { MyInput } from '../UI/Input/MyInput';
 import Form from '../UI/Form/Form';
 import { Controller, useForm } from 'react-hook-form';
@@ -20,6 +20,7 @@ import MyButton from '../UI/Button/MyButton';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+// TODO:Вынести shema  в отдельный файл
 const schema = yup.object().shape({
 	firstName: yup
 		.string()
@@ -37,7 +38,6 @@ const schema = yup.object().shape({
 	birthDay: yup
 		.string('correct date DD:MM:YEAR')
 		.required('Birth of day is required field. '),
-	// gender: yup.string().required('Should be required'),
 	userName: yup
 		.string()
 		.matches(
@@ -119,13 +119,12 @@ function RegistrationForm() {
 					helperText={errors?.email?.message}
 				/>
 				{/* ================================================ */}
-
 				<FormControl fullWidth component="fieldset">
 					<Controller
 						rules={{ required: true }}
+						name="gender"
 						control={control}
 						defaultValue="man"
-						name="gender"
 						render={({ field }) => (
 							<RadioGroup
 								row
@@ -146,7 +145,8 @@ function RegistrationForm() {
 						)}
 					/>
 				</FormControl>
-				{/* ================================================ */}
+
+				{/* TODO:Попробовать пофиксить дату */}
 				<MyInput
 					{...register('birthDay')}
 					id="birthDay"
@@ -158,7 +158,6 @@ function RegistrationForm() {
 					error={!!errors.birthDay}
 					helperText={errors?.birthDay?.message}
 				/>
-
 				<MyInput
 					{...register('userName')}
 					id="userName"
@@ -169,7 +168,6 @@ function RegistrationForm() {
 					error={!!errors.userName}
 					helperText={errors?.userName?.message}
 				/>
-
 				<MyInput
 					{...register('password')}
 					// id="password"
@@ -190,9 +188,7 @@ function RegistrationForm() {
 					error={!!errors.confirmPassword}
 					helperText={errors?.confirmPassword?.message}
 				/>
-
 				{/* Radio */}
-
 				<MyButton color="success">Registration</MyButton>
 			</Form>
 		</Box>
