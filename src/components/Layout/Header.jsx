@@ -1,4 +1,11 @@
-import { Login } from '@mui/icons-material';
+import {
+	AccessAlarmRounded,
+	AccountCircle,
+	Login,
+	LogoutRounded,
+	OutboxSharp,
+	VerifiedUser,
+} from '@mui/icons-material';
 import { Link as LinkRoute } from 'react-router-dom';
 
 import {
@@ -36,6 +43,13 @@ function Header() {
 						to="/registration"
 					>
 						<Login />
+					</IconButton>
+					<IconButton
+						color="inherit"
+						component={LinkRoute}
+						to="/login"
+					>
+						<AccountCircle />
 					</IconButton>
 				</Toolbar>
 			</Container>
