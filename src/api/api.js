@@ -1,17 +1,42 @@
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;
+const API_IMAGE_URL = process.env.REACT_APP_API_IMAGE_URL;
 const API_KEY = process.env.REACT_APP_KEY;
 
-export const testAPI = `${API_URL}`;
+// export const testAPI = `${API_URL}`;
 
 const movieAPI = axios.create({
-	baseURL: testAPI,
+	baseURL: API_URL,
 	params: {
 		api_key: API_KEY,
 		language: 'en-US',
 	},
 });
+
+// TEST MOVIE
+export const getMovie = async (movieId) => {
+	const { data } = await movieAPI.get(`/movie/${movieId}`);
+	return data;
+};
+
+// TOKEN
+export const generateToken = async () => {
+	const { data } = await movieAPI.get(`/authentication/token/new`);
+	return data;
+};
+
+// SESSION ID
+
+export const generateSessionID = async (request_token) => {
+	const { data } = await movieAPI.post(
+		'/authentication/session/new',
+		{
+			request_token,
+		},
+	);
+	return data;
+};
 
 export function fetchMovies() {
 	return movieAPI.get('/movie/popular', {
