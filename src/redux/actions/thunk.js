@@ -71,7 +71,6 @@ export const getInfoAboutMovieById = (movieId) => {
 
 export const generateSessionAndGetUser = (requestToken) => {
 	return async (dispatch) => {
-		// const request_token = localStorage.getItem(requestToken);
 		const { session_id } = await generateSessionID(requestToken);
 		localStorage.setItem('session_id', session_id);
 
