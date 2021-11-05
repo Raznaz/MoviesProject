@@ -25,15 +25,6 @@ function App() {
 				<BrowserRouter>
 					<Header />
 					<Container maxWidth="lg">
-						{/* <Switch>
-							<Route exact path="/" component={Home} />
-							<Route path="/movies" component={Kinoafisha} />
-							<Route path="/movie/:movieId" component={MovieById} />
-							<Route path="/registration" component={Registration} />
-							<Route path="/login" component={Login} />
-							<Route path="/error" component={Error} />
-							<Redirect to="/error" />
-						</Switch> */}
 						<Routes />
 					</Container>
 					<Footer />

@@ -27,7 +27,7 @@ function Header() {
 	console.log(usersArr.currentUser.username);
 
 	return (
-		<AppBar position="static">
+		<AppBar position="static" sx={{ mb: 5 }}>
 			<Container maxWidth="lg" disableGutters>
 				<Toolbar>
 					<Typography
