@@ -14,7 +14,7 @@ import Kinoafisha from './pages/Kinoafisha/Kinoafisha';
 import Login from './pages/Login/Login';
 import MovieById from './pages/MovieById/MovieById';
 import Registration from './pages/Registration/Registration';
-import Session from './pages/Session';
+// import Session from './pages/Session';
 import { store } from './redux/store';
 
 function App() {
@@ -30,7 +30,6 @@ function App() {
 							<Route path="/movie/:movieId" component={MovieById} />
 							<Route path="/registration" component={Registration} />
 							<Route path="/login" component={Login} />
-							<Route path="/session" component={Session} />
 							<Route path="/error" component={Error} />
 							<Redirect to="/error" />
 						</Switch>

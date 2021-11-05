@@ -1,7 +1,7 @@
 import { FETCH_USER_SUCCESS } from '../actions/userActions';
 
 const initialState = {
-	currentUser: {},
+	currentUser: { name: 'NazarTEST' },
 };
 
 export const userReducer = (state = initialState, action) => {
