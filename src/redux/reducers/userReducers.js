@@ -1,7 +1,8 @@
 import { FETCH_USER_SUCCESS } from '../actions/userActions';
 
 const initialState = {
-	currentUser: { name: 'NazarTEST' },
+	isLoggedIn: false,
+	currentUser: {},
 };
 
 export const userReducer = (state = initialState, action) => {

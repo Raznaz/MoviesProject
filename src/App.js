@@ -16,6 +16,7 @@ import MovieById from './pages/MovieById/MovieById';
 import Registration from './pages/Registration/Registration';
 // import Session from './pages/Session';
 import { store } from './redux/store';
+import Routes from './Routes';
 
 function App() {
 	return (
@@ -24,7 +25,7 @@ function App() {
 				<BrowserRouter>
 					<Header />
 					<Container maxWidth="lg">
-						<Switch>
+						{/* <Switch>
 							<Route exact path="/" component={Home} />
 							<Route path="/movies" component={Kinoafisha} />
 							<Route path="/movie/:movieId" component={MovieById} />
@@ -32,7 +33,8 @@ function App() {
 							<Route path="/login" component={Login} />
 							<Route path="/error" component={Error} />
 							<Redirect to="/error" />
-						</Switch>
+						</Switch> */}
+						<Routes />
 					</Container>
 					<Footer />
 				</BrowserRouter>

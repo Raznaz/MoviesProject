@@ -19,7 +19,7 @@ const userMiddleware = (store) => (next) => async (action) => {
 		const sessionId = localStorage.getItem('session_id');
 		const user = await getAccount(sessionId);
 		console.log(user);
-		// store.dispatch(fetchUserSuccess(user));
+		store.dispatch(fetchUserSuccess(user));
 	}
 	next(action);
 };
