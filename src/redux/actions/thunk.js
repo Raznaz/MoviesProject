@@ -5,6 +5,9 @@ import {
 	getInformationMovieById,
 	getListGenres,
 	getListLanguages,
+	generateToken,
+	generateSessionID,
+	getAccount,
 } from '../../api/api';
 import {
 	fetchMoviesSuccess,
@@ -14,6 +17,7 @@ import {
 	showListGenres,
 	showListLanguages,
 } from './movieActinos';
+import { fetchUserSuccess } from './userActions';
 
 export const fetchMovie = () => {
 	return async (dispatch) => {
@@ -60,5 +64,18 @@ export const getInfoAboutMovieById = (movieId) => {
 	return async (dispatch) => {
 		const currentMovie = await getInformationMovieById(movieId);
 		dispatch(showInfoMovieById(currentMovie.data));
+	};
+};
+
+// auth
+
+export const generateSessionAndGetUser = () => {
+	return async (dispatch) => {
+		const request_token = localStorage.getItem('request_token');
+		const { session_id } = await generateSessionID(request_token);
+		localStorage.setItem('session_id', session_id);
+
+		const user = await getAccount(session_id);
+		dispatch(fetchUserSuccess(user));
 	};
 };

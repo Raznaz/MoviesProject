@@ -16,9 +16,16 @@ import {
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function Header() {
+	// const testLocalUser = JSON.parse(localStorage.getItem('user'));
+	// console.log(testLocalUser);
+
+	const usersArr = useSelector((state) => state.usersArr);
+	console.log(usersArr.currentUser.username);
+
 	return (
 		<AppBar position="static">
 			<Container maxWidth="lg" disableGutters>
@@ -51,6 +58,9 @@ function Header() {
 					>
 						<AccountCircle />
 					</IconButton>
+					{usersArr.currentUser.username ? (
+						<div>{`Hello, ${usersArr.currentUser.username}`}</div>
+					) : null}
 				</Toolbar>
 			</Container>
 		</AppBar>

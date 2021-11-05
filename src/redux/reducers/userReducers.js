@@ -1,13 +1,13 @@
+import { FETCH_USER_SUCCESS } from '../actions/userActions';
+
 const initialState = {
-	users: [],
+	currentUser: {},
 };
 
 export const userReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'value':
-			console.log('userReducer');
-			return { ...state, users: action.payload.movies };
-
+		case FETCH_USER_SUCCESS:
+			return { ...state, currentUser: action.payload.user };
 		default:
 			return state;
 	}

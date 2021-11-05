@@ -5,24 +5,32 @@ import { Link } from 'react-router-dom';
 import MyButton from '../UI/Button/MyButton';
 import Form from '../UI/Form/Form';
 import { MyInput } from '../UI/Input/MyInput';
-import { useHistory } from 'react-router-dom';
 import {
 	generateSessionID,
 	generateToken,
 	getMovie,
-} from '../../api';
+} from '../../api/api';
+
+import { useFetching } from '../../hooks/useFetching';
 
 function LoginForm() {
-	const history = useHistory();
+	const [fetchToken] = useFetching(async () => {
+		const token = await generateToken();
+		const redirectURL = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/session`;
+		window.open(redirectURL, '_blank', 'noopener noreferrer');
+	});
 
-	const handleRegister = async (e) => {
+	const handleRegister = (e) => {
 		e.preventDefault();
-		console.log('LOG IN');
-		const response = await generateToken();
-		console.log('response', response);
-		localStorage.setItem('request_token', response.request_token);
-		const redirectURL = `https://www.themoviedb.org/authenticate/${response.request_token}?redirect_to=http://localhost:3000/session`;
-		window.open(redirectURL, '_blank');
+		// const request_token = await fetchToken();
+		// console.log(request_token);
+		fetchToken();
+		// dispatch(generateTokenID);
+
+		// console.log('LOG IN');
+		// const response = await generateToken();
+		// console.log('response', response);
+		// localStorage.setItem('request_token', response.request_token);
 
 		// const sessionResponse = await generateSessionID(
 		// 	response.request_token,
