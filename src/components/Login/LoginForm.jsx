@@ -10,15 +10,24 @@ import {
 	generateToken,
 	getMovie,
 } from '../../api/api';
+import { useLocation } from 'react-router-dom';
 
 import { useFetching } from '../../hooks/useFetching';
 
 function LoginForm() {
+	const search = useLocation().search;
 	const [fetchToken] = useFetching(async () => {
 		const token = await generateToken();
-		const redirectURL = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/session`;
+		const redirectURL = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/login`;
 		window.open(redirectURL, '_blank', 'noopener noreferrer');
 	});
+
+	useEffect(() => {
+		const request_token = new URLSearchParams(search).get(
+			'request_token',
+		);
+		dispatch(generateSessionAndGetUser());
+	}, [search]);
 
 	const handleRegister = (e) => {
 		e.preventDefault();
