@@ -10,9 +10,11 @@ import {
 	generateToken,
 	getMovie,
 } from '../../api/api';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { useFetching } from '../../hooks/useFetching';
+import { generateSessionAndGetUser } from '../../redux/actions/thunk';
 
 function LoginForm() {
 	const search = useLocation().search;
@@ -21,13 +23,17 @@ function LoginForm() {
 		const redirectURL = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/login`;
 		window.open(redirectURL, '_blank', 'noopener noreferrer');
 	});
-
+	const history = useHistory();
+	const dispatch = useDispatch();
 	useEffect(() => {
-		const request_token = new URLSearchParams(search).get(
+		const requestToken = new URLSearchParams(search).get(
 			'request_token',
 		);
-		dispatch(generateSessionAndGetUser());
-	}, [search]);
+		if (requestToken) {
+			dispatch(generateSessionAndGetUser(requestToken));
+			history.push('/');
+		}
+	}, [search, dispatch]);
 
 	const handleRegister = (e) => {
 		e.preventDefault();
