@@ -1,8 +1,14 @@
-import { Favorite, Login, Logout } from '@mui/icons-material';
+import {
+	Favorite,
+	Login,
+	LoginOutlined,
+	Logout,
+} from '@mui/icons-material';
 import { Link as LinkRoute } from 'react-router-dom';
 import {
 	AppBar,
 	Avatar,
+	Button,
 	Container,
 	IconButton,
 	Link,
@@ -11,16 +17,22 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 
 function Header() {
-	// const testLocalUser = JSON.parse(localStorage.getItem('user'));
-	// console.log(testLocalUser);
+	const testLocalUser = JSON.parse(localStorage.getItem('user'));
+	console.log(testLocalUser);
 
 	const usersArr = useSelector((state) => state.usersArr);
 
-	// const history = useHistory();
+	const history = useHistory();
 	// console.log(usersArr.currentUser.username);
+
+	const handleLogOut = () => {
+		console.log('LOGOUT');
+		history.push('/');
+		// localStorage.removeItem('session_id');
+	};
 
 	if (localStorage.getItem('session_id')) {
 		return (
@@ -55,7 +67,6 @@ function Header() {
 						>
 							<Favorite />
 						</IconButton>
-						{/* TODO:Релизовать LOGOUT */}
 
 						<Typography>{`Hello, ${usersArr.currentUser.username}`}</Typography>
 						{usersArr.currentUser.username ? (
@@ -63,11 +74,15 @@ function Header() {
 								alt="Remy Sharp"
 								src={`https://image.tmdb.org/t/p/w500${usersArr.currentUser.avatar.tmdb.avatar_path}`}
 								sx={{ width: 56, height: 56, cursor: 'pointer' }}
-								onClick={() => console.log('AVATAR')}
+								onClick={() =>
+									history.push(`/user/${usersArr.currentUser.id}`)
+								}
 							/>
 						) : null}
-
-						<IconButton color="inherit" component={LinkRoute} to="/">
+						<IconButton
+							color="inherit"
+							onClick={() => handleLogOut()}
+						>
 							<Logout />
 						</IconButton>
 					</Toolbar>

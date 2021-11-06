@@ -5,6 +5,7 @@ import Error from '../pages/Error/Error';
 import FavoriteMovies from '../pages/FavoriteMovies/FavoriteMovies';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
+import User from '../pages/User/User';
 import MovieById from '../pages/MovieById/MovieById';
 import Registration from '../pages/Registration/Registration';
 import PrivateRoutes from './PrivateRoutes';
@@ -21,6 +22,7 @@ function Routes() {
 				<PrivateRoutes path="/movies" component={Main} />
 				<PrivateRoutes path="/movie/:movieId" component={MovieById} />
 				<PrivateRoutes path="/favorite" component={FavoriteMovies} />
+				<PrivateRoutes path="/user/:userId" component={User} />
 				<Route path="/error" component={Error} />
 				<Redirect to="/error" />
 			</Switch>
