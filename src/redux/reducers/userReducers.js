@@ -8,7 +8,11 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_USER_SUCCESS:
-			return { ...state, currentUser: action.payload.user };
+			return {
+				...state,
+				currentUser: action.payload.user,
+				isLoggedIn: true,
+			};
 		default:
 			return state;
 	}

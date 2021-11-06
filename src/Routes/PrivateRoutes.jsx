@@ -8,7 +8,7 @@ function PrivateRoutes({ path, component: Component }) {
 				exact
 				path={path}
 				render={(props) => {
-					if (!localStorage.getItem('session_id')) {
+					if (localStorage.getItem('session_id')) {
 						return <Component />;
 					}
 					return <Redirect to="/login" />;

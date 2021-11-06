@@ -4,7 +4,7 @@ import Main from '../../components/Layout/Main';
 function Home() {
 	return (
 		<div>
-			<h1>Home page include Main component</h1>
+			<h1>Home page</h1>
 			{/* <Main /> */}
 		</div>
 	);

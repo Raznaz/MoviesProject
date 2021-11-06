@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import Main from '../components/Layout/Main';
 import Error from '../pages/Error/Error';
 import Home from '../pages/Home/Home';
-import Kinoafisha from '../pages/Kinoafisha/Kinoafisha';
+import Kinoafisha from '../pages/FavoriteMovies/FavoriteMovies';
 import Login from '../pages/Login/Login';
 import MovieById from '../pages/MovieById/MovieById';
 import Registration from '../pages/Registration/Registration';
