@@ -60,12 +60,12 @@ function Header() {
 						</IconButton>
 						{/* TODO:Релизовать LOGOUT */}
 
-						<div>{`Hello, ${usersArr.currentUser.username}`}</div>
+						<Typography>{`Hello, ${usersArr.currentUser.username}`}</Typography>
 						{usersArr.currentUser.username ? (
 							<Avatar
 								alt="Remy Sharp"
 								src={`https://image.tmdb.org/t/p/w500${usersArr.currentUser.avatar.tmdb.avatar_path}`}
-								sx={{ width: 56, height: 56 }}
+								sx={{ width: 56, height: 56, cursor: 'pointer' }}
 								onClick={() => console.log('AVATAR')}
 							/>
 						) : null}
