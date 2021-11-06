@@ -15,12 +15,13 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getInfoAboutMovieById } from '../../redux/actions/thunk';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Movie(props) {
 	const { id, title, poster_path, release_date, vote_average } =
 		props;
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const handleShowInfoById = (id) => {
 		console.log('MOVIE', id);
@@ -35,20 +36,20 @@ function Movie(props) {
 					flexDirection: 'column',
 				}}
 			>
-				<CardActionArea component={Link} to={`/movie/${id}`}>
+				<CardActionArea onClick={() => history.push('movie/${id}')}>
 					<CardMedia
 						image={`https://image.tmdb.org/t/p/w500${poster_path}`}
 						title={title}
 						alt={title}
 						sx={{ height: 400 }}
 					/>
-					<CardContent sx={{ flexGrow: 1 }}>
-						<Typography variant="h6" component="h3">
-							{title}
-						</Typography>
-						<Typography>{release_date}</Typography>
-					</CardContent>
 				</CardActionArea>
+				<CardContent sx={{ flexGrow: 1 }}>
+					<Typography variant="h6" component="h3">
+						{title}
+					</Typography>
+					<Typography>{release_date}</Typography>
+				</CardContent>
 				<CardActions sx={{ justifyContent: 'space-between' }}>
 					<IconButton>
 						<FavoriteBorder />
