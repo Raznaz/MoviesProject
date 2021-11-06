@@ -1,6 +1,5 @@
 import { FavoriteBorder } from '@mui/icons-material';
 import {
-	Button,
 	Card,
 	CardActionArea,
 	CardActions,
@@ -14,18 +13,29 @@ import {
 import { Box } from '@mui/system';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getInfoAboutMovieById } from '../../redux/actions/thunk';
-import { Link, useHistory } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { getInfoAboutMovieById } from '../../redux/actions/thunk';
+import { useHistory } from 'react-router-dom';
+import { addToFavoriteMovie } from '../../redux/actions/thunk';
 
 function Movie(props) {
 	const { id, title, poster_path, release_date, vote_average } =
 		props;
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const history = useHistory();
+	const dispatch = useDispatch();
+	// const handleShowInfoById = (id) => {
+	// 	console.log('MOVIE', id);
+	// 	dispatch(getInfoAboutMovieById(id));
+	// };
 
-	const handleShowInfoById = (id) => {
-		console.log('MOVIE', id);
-		dispatch(getInfoAboutMovieById(id));
+	const handleAddToFavorite = () => {
+		const sessionId = localStorage.getItem('session_id');
+		const { id: accountId } = JSON.parse(
+			localStorage.getItem('user'),
+		);
+		console.log('ADD TO FAVORITE');
+		dispatch(addToFavoriteMovie(accountId, sessionId, id));
 	};
 	return (
 		<Grid item xs={12} md={4}>
@@ -36,7 +46,7 @@ function Movie(props) {
 					flexDirection: 'column',
 				}}
 			>
-				<CardActionArea onClick={() => history.push('movie/${id}')}>
+				<CardActionArea onClick={() => history.push(`movie/${id}`)}>
 					<CardMedia
 						image={`https://image.tmdb.org/t/p/w500${poster_path}`}
 						title={title}
@@ -51,7 +61,7 @@ function Movie(props) {
 					<Typography>{release_date}</Typography>
 				</CardContent>
 				<CardActions sx={{ justifyContent: 'space-between' }}>
-					<IconButton>
+					<IconButton onClick={() => handleAddToFavorite()}>
 						<FavoriteBorder />
 					</IconButton>
 					{/* <Link

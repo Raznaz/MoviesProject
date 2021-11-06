@@ -1,5 +1,4 @@
 import {
-	CREATE_FILTER,
 	CREATE_FILTER_GENRES,
 	CREATE_FILTER_LANGUAGE,
 	FETCH_MOVIES_SUCCESS,
@@ -10,12 +9,14 @@ import {
 	SEARCH_MOVIES_ARR,
 	RESET_FILTER,
 	INFO_MOVIE_BY_ID,
+	SHOW_FAVORITE_MOVIES,
 } from '../actions/movieActinos';
 
 const initialState = {
 	movies: [],
 	movieById: {},
 	searchMovies: [],
+	favoriteMovies: [],
 	searchValue: '',
 	genres: [],
 	languages: [],
@@ -96,6 +97,8 @@ export const movieReducer = (state = initialState, action) => {
 			return { ...state, genres: action.payload.genres };
 		case LIST_LANGUAGES:
 			return { ...state, languages: action.payload.lang };
+		case SHOW_FAVORITE_MOVIES:
+			return { ...state, favoriteMovies: action.payload.favMovies };
 		default:
 			return state;
 	}

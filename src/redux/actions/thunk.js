@@ -8,11 +8,14 @@ import {
 	generateToken,
 	generateSessionID,
 	getAccount,
+	getFavoriteMovies,
 } from '../../api/api';
+import { markFavoriteMovie } from '../../api/apiUser';
 import {
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
 	searchMovieArr,
+	showFavoriteMoviesSuccess,
 	showInfoMovieById,
 	showListGenres,
 	showListLanguages,
@@ -76,5 +79,28 @@ export const generateSessionAndGetUser = (requestToken) => {
 
 		const user = await getAccount(session_id);
 		dispatch(fetchUserSuccess(user));
+	};
+};
+
+// mark favorite
+
+export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
+	return async (dispatch) => {
+		const info = await markFavoriteMovie(
+			accountId,
+			sessionId,
+			movieId,
+		);
+		console.log(info);
+	};
+};
+
+// get favorite movies
+
+export const showFavoriteMovies = (accountId, sessionId) => {
+	return async (dispatch) => {
+		const { results } = await getFavoriteMovies(accountId, sessionId);
+		console.log(results);
+		dispatch(showFavoriteMoviesSuccess(results));
 	};
 };

@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 import Movie from './Movie';
 
 function MoviesList() {
-	const { movies, searchMovies, searchValue } = useSelector(
-		(state) => state.moviesArr,
-	);
+	const { movies } = useSelector((state) => state.moviesArr);
 
 	// if (searchValue.length) {
 	// 	return (

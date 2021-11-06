@@ -1,29 +1,17 @@
-import {
-	AccessAlarmRounded,
-	AccountCircle,
-	Favorite,
-	Login,
-	Logout,
-	LogoutRounded,
-	OutboxSharp,
-	VerifiedUser,
-} from '@mui/icons-material';
+import { Favorite, Login, Logout } from '@mui/icons-material';
 import { Link as LinkRoute } from 'react-router-dom';
-
 import {
 	AppBar,
 	Avatar,
 	Container,
 	IconButton,
 	Link,
-	Tab,
-	Tabs,
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 function Header() {
 	// const testLocalUser = JSON.parse(localStorage.getItem('user'));
@@ -31,8 +19,8 @@ function Header() {
 
 	const usersArr = useSelector((state) => state.usersArr);
 
-	const history = useHistory();
-	console.log(usersArr.currentUser.username);
+	// const history = useHistory();
+	// console.log(usersArr.currentUser.username);
 
 	if (localStorage.getItem('session_id')) {
 		return (
@@ -53,8 +41,12 @@ function Header() {
 								Movie Universe
 							</Link>
 						</Typography>
-						<Link component={LinkRoute} to="/movies" color="inherit">
-							Popular Movies
+						<Link
+							component={LinkRoute}
+							to="/favorite"
+							color="inherit"
+						>
+							Favorite Movies
 						</Link>
 						<IconButton
 							color="inherit"

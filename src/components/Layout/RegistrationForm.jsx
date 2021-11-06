@@ -1,19 +1,13 @@
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
+import React from 'react';
 import { MyInput } from '../UI/Input/MyInput';
 import Form from '../UI/Form/Form';
 import { Controller, useForm } from 'react-hook-form';
 import {
-	Divider,
 	FormControl,
 	FormControlLabel,
-	FormLabel,
-	InputLabel,
-	MenuItem,
 	Radio,
 	RadioGroup,
-	Select,
-	TextField,
 	Typography,
 } from '@mui/material';
 import MyButton from '../UI/Button/MyButton';
@@ -41,7 +35,7 @@ const schema = yup.object().shape({
 	userName: yup
 		.string()
 		.matches(
-			/^([a-z, 0-9, \. , _ ]*)$/,
+			/^([a-z, 0-9, _ ]*)$/,
 			'User name should contains just small latter, digits, . or _',
 		)
 		.required('Should be required'),
@@ -70,6 +64,7 @@ function RegistrationForm() {
 
 	const onSubmit = (data) => {
 		console.log(data);
+		reset();
 	};
 
 	return (

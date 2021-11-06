@@ -42,17 +42,6 @@ export const generateSessionID = async (requestToken) => {
 	return session_id;
 };
 
-// GET ACCOUNT
-export const getAccount = async (sessionId) => {
-	const { data } = await movieAPI.get('/account', {
-		params: {
-			session_id: sessionId,
-		},
-	});
-	localStorage.setItem('user', JSON.stringify(data));
-	return data;
-};
-
 export function fetchMovies() {
 	return movieAPI.get('/movie/popular', {
 		params: {},
@@ -91,3 +80,30 @@ export function filterMovies(filter) {
 export function getInformationMovieById(movieId) {
 	return movieAPI.get(`/movie/${movieId}`);
 }
+
+// GET ACCOUNT
+export const getAccount = async (sessionId) => {
+	const { data } = await movieAPI.get('/account', {
+		params: {
+			session_id: sessionId,
+		},
+	});
+	localStorage.setItem('user', JSON.stringify(data));
+	return data;
+};
+
+// SHOW FAVORITE MOVIES
+
+export const getFavoriteMovies = async (accountId, sessionId) => {
+	const { data } = await movieAPI.get(
+		`/account/${accountId}/favorite/movies`,
+		{
+			params: {
+				session_id: sessionId,
+				sort_by: 'created_at.desc',
+			},
+		},
+	);
+
+	return data;
+};

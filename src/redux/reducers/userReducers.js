@@ -13,6 +13,7 @@ export const userReducer = (state = initialState, action) => {
 				currentUser: action.payload.user,
 				isLoggedIn: true,
 			};
+
 		default:
 			return state;
 	}

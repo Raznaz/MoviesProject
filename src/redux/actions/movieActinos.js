@@ -9,6 +9,7 @@ export const CREATE_FILTER_LANGUAGE =
 export const CREATE_FILTER_GENRES = '[MOVIE] Create filter genres';
 export const RESET_FILTER = '[MOVIE] Reset filter';
 export const INFO_MOVIE_BY_ID = '[MOVIE] Show info movie by ID';
+export const SHOW_FAVORITE_MOVIES = '[MOVIE] Show favorite movies';
 
 export const fetchMoviesSuccess = (movies) => ({
 	type: FETCH_MOVIES_SUCCESS,
@@ -59,4 +60,9 @@ export const filterMoviesByGenre = (filteredArr) => ({
 export const showInfoMovieById = (id) => ({
 	type: INFO_MOVIE_BY_ID,
 	payload: { id },
+});
+
+export const showFavoriteMoviesSuccess = (favMovies) => ({
+	type: SHOW_FAVORITE_MOVIES,
+	payload: { favMovies },
 });

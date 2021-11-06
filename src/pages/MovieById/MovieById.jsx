@@ -16,7 +16,6 @@ import {
 	ImageListItem,
 	Typography,
 } from '@mui/material';
-import { Box } from '@mui/system';
 
 function MovieById() {
 	const { movieId } = useParams();
@@ -27,7 +26,7 @@ function MovieById() {
 	console.log(movieById.production_companies);
 	useEffect(() => {
 		dispatch(getInfoAboutMovieById(movieId));
-	}, [movieId]);
+	}, [movieId, dispatch]);
 	return (
 		<>
 			<Typography

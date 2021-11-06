@@ -26,7 +26,6 @@ import { LocalMovies } from '@mui/icons-material';
 import './list.scss';
 import { Box } from '@mui/system';
 import {
-	createFilter,
 	createFilterGenres,
 	createFilterLanguage,
 	resetFilter,
@@ -54,7 +53,7 @@ export default function NestedList() {
 		(state) => state.moviesArr,
 	);
 
-	console.log('FILTER:', filter);
+	// console.log('FILTER:', filter);
 	// console.log('LIST', mainFilter);
 	const handleClick = () => {
 		setOpen(!open);
