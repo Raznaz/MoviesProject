@@ -16,7 +16,7 @@ import MovieById from './pages/MovieById/MovieById';
 import Registration from './pages/Registration/Registration';
 // import Session from './pages/Session';
 import { store } from './redux/store';
-import Routes from './Routes';
+import Routes from './Routes/Routes';
 
 function App() {
 	return (

@@ -58,7 +58,7 @@ function Header() {
 					>
 						<AccountCircle />
 					</IconButton>
-					{usersArr.currentUser.username ? (
+					{localStorage.getItem('session_id') ? (
 						<div>{`Hello, ${usersArr.currentUser.username}`}</div>
 					) : null}
 				</Toolbar>

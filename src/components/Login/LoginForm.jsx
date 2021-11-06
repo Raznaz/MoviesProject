@@ -11,7 +11,7 @@ import {
 	getMovie,
 } from '../../api/api';
 import { useLocation, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetching } from '../../hooks/useFetching';
 import { generateSessionAndGetUser } from '../../redux/actions/thunk';
@@ -25,15 +25,20 @@ function LoginForm() {
 	});
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const usersArr = useSelector((state) => state.usersArr);
+
 	useEffect(() => {
 		const requestToken = new URLSearchParams(search).get(
 			'request_token',
 		);
 		if (requestToken) {
 			dispatch(generateSessionAndGetUser(requestToken));
-			history.push('/');
 		}
 	}, [search, dispatch]);
+
+	if (usersArr.isLoggedIn) {
+		history.push('/movies');
+	}
 
 	const handleRegister = (e) => {
 		e.preventDefault();

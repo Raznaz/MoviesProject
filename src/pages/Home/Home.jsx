@@ -5,7 +5,7 @@ function Home() {
 	return (
 		<div>
 			<h1>Home page include Main component</h1>
-			<Main />
+			{/* <Main /> */}
 		</div>
 	);
 }
