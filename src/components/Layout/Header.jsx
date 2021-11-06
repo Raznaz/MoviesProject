@@ -16,6 +16,8 @@ import {
 	Container,
 	IconButton,
 	Link,
+	Tab,
+	Tabs,
 	Toolbar,
 	Typography,
 } from '@mui/material';
@@ -51,6 +53,9 @@ function Header() {
 								Movie Universe
 							</Link>
 						</Typography>
+						<Link component={LinkRoute} to="/movies" color="inherit">
+							Popular Movies
+						</Link>
 						<IconButton
 							color="inherit"
 							component={LinkRoute}
