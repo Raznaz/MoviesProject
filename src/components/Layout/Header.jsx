@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { fetchUserSuccess } from '../../redux/actions/userActions';
+import ThemeSwitch from '../UI/Switch.jsx/Switch';
 
 function Header() {
 	const dispatch = useDispatch();
@@ -70,6 +71,8 @@ function Header() {
 							>
 								Movie Universe
 							</Link>
+
+							<ThemeSwitch />
 						</Typography>
 						<Link
 							component={LinkRoute}
