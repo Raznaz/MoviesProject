@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, Route } from 'react-router-dom';
 import MyButton from '../UI/Button/MyButton';
 import Form from '../UI/Form/Form';
 import { MyInput } from '../UI/Input/MyInput';
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetching } from '../../hooks/useFetching';
 import { generateSessionAndGetUser } from '../../redux/actions/thunk';
+import Login from '../../pages/Login/Login';
 
 function LoginForm() {
 	const search = useLocation().search;
@@ -32,9 +33,11 @@ function LoginForm() {
 		}
 	}, [search, dispatch]);
 
-	if (usersArr.isLoggedIn) {
-		history.push('/movies');
-	}
+	useEffect(() => {
+		if (usersArr.isLoggedIn) {
+			history.push('/movies');
+		}
+	}, [usersArr.isLoggedIn]);
 
 	const handleRegister = (e) => {
 		e.preventDefault();

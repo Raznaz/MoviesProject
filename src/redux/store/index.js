@@ -14,7 +14,10 @@ import { getAccount } from '../../api/api';
 const userMiddleware = (store) => (next) => async (action) => {
 	const { currentUser } = store.getState().usersArr;
 	console.log(currentUser);
-	if (action.type !== FETCH_USER_SUCCESS) {
+	if (
+		action.type !== FETCH_USER_SUCCESS &&
+		localStorage.getItem('session_id')
+	) {
 		console.log('MY MIDDLEWARE');
 		const sessionId = localStorage.getItem('session_id');
 		const user = await getAccount(sessionId);

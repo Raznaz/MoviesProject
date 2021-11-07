@@ -15,13 +15,20 @@ import {
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { fetchUserSuccess } from '../../redux/actions/userActions';
 
 function Header() {
-	const testLocalUser = JSON.parse(localStorage.getItem('user'));
-	console.log(testLocalUser);
+	const dispatch = useDispatch();
+	// useEffect(() => {
+	// 	const user = JSON.parse(localStorage.getItem('user'));
+	// 	console.log('USE EFFECT');
+
+	// 	dispatch(fetchUserSuccess(user));
+	// }, []);
 
 	const usersArr = useSelector((state) => state.usersArr);
 
@@ -34,7 +41,18 @@ function Header() {
 		// localStorage.removeItem('session_id');
 	};
 
+	if (!usersArr.isLoggedIn && localStorage.getItem('session_id')) {
+		console.log('FALSE');
+		const user = JSON.parse(localStorage.getItem('user'));
+		dispatch(fetchUserSuccess(user));
+	}
+
 	if (localStorage.getItem('session_id')) {
+		const {
+			id,
+			avatar: { tmdb },
+		} = JSON.parse(localStorage.getItem('user'));
+		console.log(tmdb);
 		return (
 			<AppBar position="static" sx={{ mb: 5 }}>
 				<Container maxWidth="lg" disableGutters>
@@ -69,16 +87,21 @@ function Header() {
 						</IconButton>
 
 						<Typography>{`Hello, ${usersArr.currentUser.username}`}</Typography>
-						{usersArr.currentUser.username ? (
-							<Avatar
-								alt="Remy Sharp"
-								src={`https://image.tmdb.org/t/p/w500${usersArr.currentUser.avatar.tmdb.avatar_path}`}
-								sx={{ width: 56, height: 56, cursor: 'pointer' }}
-								onClick={() =>
-									history.push(`/user/${usersArr.currentUser.id}`)
-								}
-							/>
-						) : null}
+						{/* 
+						<Avatar
+							alt={username}
+							src={`https://image.tmdb.org/t/p/w500${tmdb.avatar_path}`}
+							sx={{ width: 56, height: 56, cursor: 'pointer' }}
+							onClick={() => history.push(`/user/${id}`)}
+						/> */}
+
+						<Avatar
+							alt={usersArr.currentUser.username}
+							src={`https://image.tmdb.org/t/p/w500${tmdb.avatar_path}`}
+							sx={{ width: 56, height: 56, cursor: 'pointer' }}
+							onClick={() => history.push(`/user/${id}`)}
+						/>
+
 						<IconButton
 							color="inherit"
 							onClick={() => handleLogOut()}
