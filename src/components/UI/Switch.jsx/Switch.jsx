@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { styled } from '@mui/system';
 import { useSwitch } from '@mui/core/SwitchUnstyled';
 import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from '../../../redux/actions/themeActions';
 
 const SwitchRoot = styled('span')`
 	display: inline-block;
@@ -77,6 +78,8 @@ const SwitchTrack = styled('span')(
 );
 
 function MUISwitch(props) {
+	const dispatch = useDispatch();
+
 	const { getInputProps, checked, disabled, focusVisible } =
 		useSwitch(props);
 
@@ -87,7 +90,10 @@ function MUISwitch(props) {
 	};
 
 	return (
-		<SwitchRoot className={clsx(stateClasses)}>
+		<SwitchRoot
+			className={clsx(stateClasses)}
+			onClick={() => dispatch(toggleTheme())}
+		>
 			<SwitchTrack>
 				<SwitchThumb className={clsx(stateClasses)} />
 			</SwitchTrack>
@@ -97,7 +103,6 @@ function MUISwitch(props) {
 }
 
 export default function ThemeSwitch() {
-	const dispatch = useDispatch;
 	const { isLightMode } = useSelector((state) => state.theme);
 	return <MUISwitch isLightMode />;
 }

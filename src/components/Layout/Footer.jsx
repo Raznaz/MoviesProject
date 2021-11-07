@@ -6,8 +6,8 @@ function Footer() {
 	return (
 		<footer>
 			<Box
-				bgcolor="#15528f"
-				color="white"
+				bgcolor="background.main"
+				color="text.primary"
 				px={{ xs: 2, sm: 5 }}
 				py={{ xs: 2, sm: 5 }}
 			>

@@ -21,7 +21,7 @@ function Main() {
 				Welcome to MAIN COMPONENT
 			</Typography>
 			<Grid container spacing={2} sx={{ mb: 2 }}>
-				<Grid item xs={3} sx={{ bgcolor: '#eee', p: 2 }}>
+				<Grid item xs={3}>
 					<Aside />
 				</Grid>
 				<Grid item xs={9}>

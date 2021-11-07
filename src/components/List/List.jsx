@@ -120,7 +120,10 @@ export default function NestedList() {
 				<Typography
 					component="h3"
 					variant="h5"
-					sx={{ textAlign: 'center', bgcolor: '#ffe4a9' }}
+					sx={{
+						textAlign: 'center',
+						bgcolor: 'warning.dark',
+					}}
 				>
 					GENRES
 				</Typography>
@@ -136,7 +139,7 @@ export default function NestedList() {
 								sx={{
 									borderRadius: '20px',
 									margin: '1px',
-									bgcolor: '#000',
+									bgcolor: 'text.primary',
 								}}
 								onClick={(e) => handleGenreChoose(e, genre.id)}
 							>
@@ -152,7 +155,7 @@ export default function NestedList() {
 							sx={{
 								borderRadius: '20px',
 								margin: '1px',
-								bgcolor: '#fff',
+								bgcolor: 'background.default',
 							}}
 							onClick={(e) => handleGenreChoose(e, genre.id)}
 						>
@@ -163,7 +166,10 @@ export default function NestedList() {
 				<Typography
 					component="h3"
 					variant="h5"
-					sx={{ textAlign: 'center', bgcolor: '#ffe4a9' }}
+					sx={{
+						textAlign: 'center',
+						bgcolor: 'warning.dark',
+					}}
 				>
 					LANGUAGE
 				</Typography>
