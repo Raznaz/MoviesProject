@@ -42,9 +42,12 @@ export const generateSessionID = async (requestToken) => {
 	return session_id;
 };
 
-export function fetchMovies() {
+// POPULAR MOVIES
+export function fetchMovies(page) {
 	return movieAPI.get('/movie/popular', {
-		params: {},
+		params: {
+			page: page,
+		},
 	});
 }
 

@@ -22,10 +22,12 @@ import {
 } from './movieActinos';
 import { fetchUserSuccess } from './userActions';
 
-export const fetchMovie = () => {
+// POPULAR MOVIES
+export const fetchMovie = (page = 1) => {
 	return async (dispatch) => {
-		const movies = await fetchMovies();
-		// console.log('movies thunk', movies);
+		const movies = await fetchMovies(page);
+		console.log('movies thunk', movies);
+
 		dispatch(fetchMoviesSuccess(movies.data.results));
 	};
 };

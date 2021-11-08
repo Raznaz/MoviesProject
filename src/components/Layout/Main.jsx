@@ -1,8 +1,9 @@
 import { Grid, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovie, findMovie } from '../../redux/actions/thunk';
 import MoviesList from '../Movies/MoviesList';
+import PaginationMovies from '../UI/Pagination/PaginationMovies';
 import Aside from './Aside';
 
 function Main() {
@@ -15,6 +16,15 @@ function Main() {
 		dispatch(fetchMovie());
 		searchValue && dispatch(findMovie(searchValue));
 	}, [searchValue, dispatch]);
+
+	const [page, setPage] = useState(1);
+
+	const handleChange = (event, value) => {
+		setPage(value);
+		dispatch(fetchMovie(value));
+	};
+	const totalPages = 500;
+
 	return (
 		<>
 			<Typography component="h1" variant="h2">
@@ -25,6 +35,11 @@ function Main() {
 					<Aside />
 				</Grid>
 				<Grid item xs={9}>
+					<PaginationMovies
+						totalPages={totalPages}
+						currentPage={page}
+						handleChange={handleChange}
+					/>
 					<MoviesList />
 				</Grid>
 			</Grid>
