@@ -30,6 +30,9 @@ function Search() {
 		dispatch(resetFilter());
 
 		dispatch(searchMovies(valInpRef.current.value));
+
+		// TODO: Исправить
+		dispatch(findMovie(valInpRef.current.value));
 	};
 
 	return (

@@ -34,7 +34,11 @@ export const movieReducer = (state = initialState, action) => {
 			return { ...state, movieById: action.payload.id };
 		case FETCH_MOVIES_SUCCESS:
 			// console.log('movie reducer', action.payload.movies);
-			return { ...state, movies: action.payload.movies };
+			return {
+				...state,
+				movies: action.payload.movies,
+				typeList: 'popular',
+			};
 		case SEARCH_MOVIES:
 			return { ...state, searchValue: action.payload.value };
 		case SEARCH_MOVIES_ARR:
@@ -46,6 +50,7 @@ export const movieReducer = (state = initialState, action) => {
 			return {
 				...state,
 				movies: action.payload.searchArr,
+				typeList: 'search',
 			};
 		case CREATE_FILTER_GENRES:
 			console.log('CREATE FILTER GENRES:', action.payload);
