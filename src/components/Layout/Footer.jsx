@@ -6,7 +6,7 @@ function Footer() {
 	return (
 		<footer>
 			<Box
-				bgcolor="background.main"
+				sx={{ bgcolor: 'info.main' }}
 				color="text.primary"
 				px={{ xs: 2, sm: 5 }}
 				py={{ xs: 2, sm: 5 }}

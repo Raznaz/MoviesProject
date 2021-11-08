@@ -109,7 +109,10 @@ export default function NestedList() {
 				></ListSubheader>
 			}
 		>
-			<ListItemButton onClick={handleClick}>
+			<ListItemButton
+				onClick={handleClick}
+				sx={{ bgcolor: 'info.main' }}
+			>
 				<ListItemIcon>
 					<LocalMovies />
 				</ListItemIcon>
@@ -169,6 +172,7 @@ export default function NestedList() {
 					sx={{
 						textAlign: 'center',
 						bgcolor: 'warning.dark',
+						my: 2,
 					}}
 				>
 					LANGUAGE
@@ -178,7 +182,7 @@ export default function NestedList() {
 					// sx={{
 					// 	'& .MuiTextField-root': { mb: 2 },
 					// }}
-					sx={{ mb: 10 }}
+					sx={{ mb: 2 }}
 					noValidate
 					autoComplete="off"
 				>
@@ -199,23 +203,24 @@ export default function NestedList() {
 						))}
 					</TextField>
 				</Box>
-				<Divider />
-				<Button
-					fullWidth
-					variant="contained"
-					color="success"
-					onClick={() => startFilter()}
-				>
-					START FILTER
-				</Button>
-				<Button
-					fullWidth
-					variant="contained"
-					color="warning"
-					onClick={() => handleResetFilter()}
-				>
-					RESET FILTER
-				</Button>
+				<Box sx={{ display: 'flex' }}>
+					<Button
+						fullWidth
+						variant="contained"
+						color="success"
+						onClick={() => startFilter()}
+					>
+						Confirm
+					</Button>
+					<Button
+						fullWidth
+						variant="contained"
+						sx={{ bgcolor: 'error.light' }}
+						onClick={() => handleResetFilter()}
+					>
+						Reset
+					</Button>
+				</Box>
 			</Collapse>
 		</List>
 	);
