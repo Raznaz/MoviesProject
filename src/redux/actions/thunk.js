@@ -28,7 +28,7 @@ export const fetchMovie = (page = 1) => {
 		const movies = await fetchMovies(page);
 		console.log('movies thunk', movies);
 
-		dispatch(fetchMoviesSuccess(movies.data.results));
+		dispatch(fetchMoviesSuccess(movies.data));
 	};
 };
 
