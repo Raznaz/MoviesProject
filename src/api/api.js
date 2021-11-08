@@ -51,10 +51,12 @@ export function fetchMovies(page) {
 	});
 }
 
-export function findMovies(str) {
+//FIND MOVIE
+export function findMovies(str, page) {
 	return movieAPI.get('/search/movie', {
 		params: {
 			query: str,
+			page: 1,
 		},
 	});
 }

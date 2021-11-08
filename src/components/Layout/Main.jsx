@@ -8,7 +8,9 @@ import Aside from './Aside';
 
 function Main() {
 	const dispatch = useDispatch();
-	const { searchValue } = useSelector((state) => state.moviesArr);
+	const { searchValue, movies } = useSelector(
+		(state) => state.moviesArr,
+	);
 
 	// console.log('search movies val', searchValue);
 
@@ -23,7 +25,6 @@ function Main() {
 		setPage(value);
 		dispatch(fetchMovie(value));
 	};
-	const totalPages = 500;
 
 	return (
 		<>
@@ -36,7 +37,7 @@ function Main() {
 				</Grid>
 				<Grid item xs={9}>
 					<PaginationMovies
-						totalPages={totalPages}
+						totalPages={movies.total_pages}
 						currentPage={page}
 						handleChange={handleChange}
 					/>

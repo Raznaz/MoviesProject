@@ -32,14 +32,24 @@ export const fetchMovie = (page = 1) => {
 	};
 };
 
+// FIND
 export const findMovie = (searchValue) => {
 	return async (dispatch) => {
 		const movies = await findMovies(searchValue);
-		// console.log('FILTER movie thunk', movies);
-		dispatch(searchMovieArr(movies.data.results));
+		console.log('FILTER movie thunk', movies);
+		dispatch(searchMovieArr(movies.data));
 	};
 };
 
+// FILTER
+export const filterMovie = (filter) => {
+	// console.log('111 filter:', filter);
+	return async (dispatch) => {
+		const filteredMovies = await filterMovies(filter);
+		// console.log('FILTERED genres thunk', filteredMovies.data.results);
+		dispatch(filterMoviesByGenre(filteredMovies.data));
+	};
+};
 export const listGenres = () => {
 	return async (dispatch) => {
 		const genres = await getListGenres();
@@ -53,15 +63,6 @@ export const listLanguages = () => {
 		const languages = await getListLanguages();
 		// console.log('LIST LANG thunk', languages.data);
 		dispatch(showListLanguages(languages.data));
-	};
-};
-
-export const filterMovie = (filter) => {
-	// console.log('111 filter:', filter);
-	return async (dispatch) => {
-		const filteredMovies = await filterMovies(filter);
-		// console.log('FILTERED genres thunk', filteredMovies.data.results);
-		dispatch(filterMoviesByGenre(filteredMovies.data.results));
 	};
 };
 

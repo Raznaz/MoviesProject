@@ -18,9 +18,10 @@ function MoviesList() {
 
 	return (
 		<Grid container spacing={2}>
-			{movies.results.map((movie) => {
-				return <Movie key={movie.id} {...movie} />;
-			})}
+			{movies.results &&
+				movies.results.map((movie) => {
+					return <Movie key={movie.id} {...movie} />;
+				})}
 		</Grid>
 	);
 }
