@@ -17,6 +17,7 @@ const initialState = {
 	movieById: {},
 	searchMovies: [],
 	favoriteMovies: [],
+	typeList: '',
 	searchValue: '',
 	genres: [],
 	languages: [],
