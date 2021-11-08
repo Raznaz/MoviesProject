@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import {
 	resetFilter,
@@ -6,12 +6,17 @@ import {
 } from '../../redux/actions/movieActinos';
 import { MyInput } from '../UI/Input/MyInput';
 import { Button } from '@mui/material';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { findMovie } from '../../redux/actions/thunk';
 
 function Search() {
 	const valInpRef = useRef();
 	const dispatch = useDispatch();
-	// const { searchValue } = useSelector((state) => state.moviesArr);
+	const { searchValue } = useSelector((state) => state.moviesArr);
+
+	useEffect(() => {
+		dispatch(findMovie(searchValue));
+	}, [dispatch, searchValue]);
 
 	const handleKey = (e) => {
 		if (e.key === 'Enter') {

@@ -56,7 +56,7 @@ export function findMovies(str, page) {
 	return movieAPI.get('/search/movie', {
 		params: {
 			query: str,
-			page: 1,
+			page: page,
 		},
 	});
 }
@@ -70,7 +70,7 @@ export function getListLanguages() {
 }
 
 // TODO:Преобразовать массив в строку
-export function filterMovies(filter) {
+export function filterMovies(filter, page) {
 	const genresStr = filter.genres.join(',');
 	// console.log(genresStr, filter.language);
 	return movieAPI.get('/discover/movie', {
@@ -78,6 +78,7 @@ export function filterMovies(filter) {
 			sort_by: 'popularity.desc',
 			with_genres: genresStr,
 			with_original_language: filter.language,
+			page: page,
 		},
 	});
 }

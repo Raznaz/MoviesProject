@@ -1,29 +1,32 @@
 import { Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovie, findMovie } from '../../redux/actions/thunk';
+import {
+	fetchMovie,
+	filterMovie,
+	findMovie,
+} from '../../redux/actions/thunk';
 import MoviesList from '../Movies/MoviesList';
 import PaginationMovies from '../UI/Pagination/PaginationMovies';
 import Aside from './Aside';
 
 function Main() {
 	const dispatch = useDispatch();
-	const { searchValue, movies } = useSelector(
+	const { searchValue, movies, filter } = useSelector(
 		(state) => state.moviesArr,
 	);
 
-	// console.log('search movies val', searchValue);
-
 	useEffect(() => {
 		dispatch(fetchMovie());
-		searchValue && dispatch(findMovie(searchValue));
-	}, [searchValue, dispatch]);
+	}, [dispatch]);
 
 	const [page, setPage] = useState(1);
 
 	const handleChange = (event, value) => {
 		setPage(value);
-		dispatch(fetchMovie(value));
+		// dispatch(fetchMovie(value));
+		// dispatch(findMovie(searchValue, value));
+		dispatch(filterMovie(filter, value));
 	};
 
 	return (

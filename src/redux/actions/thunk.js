@@ -33,19 +33,19 @@ export const fetchMovie = (page = 1) => {
 };
 
 // FIND
-export const findMovie = (searchValue) => {
+export const findMovie = (searchValue, page) => {
 	return async (dispatch) => {
-		const movies = await findMovies(searchValue);
+		const movies = await findMovies(searchValue, page);
 		console.log('FILTER movie thunk', movies);
 		dispatch(searchMovieArr(movies.data));
 	};
 };
 
 // FILTER
-export const filterMovie = (filter) => {
+export const filterMovie = (filter, page) => {
 	// console.log('111 filter:', filter);
 	return async (dispatch) => {
-		const filteredMovies = await filterMovies(filter);
+		const filteredMovies = await filterMovies(filter, page);
 		// console.log('FILTERED genres thunk', filteredMovies.data.results);
 		dispatch(filterMoviesByGenre(filteredMovies.data));
 	};
