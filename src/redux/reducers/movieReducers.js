@@ -98,6 +98,7 @@ export const movieReducer = (state = initialState, action) => {
 				...state,
 				movies: action.payload.filteredArr,
 				searchValue: '',
+				typeList: 'filtered',
 			};
 		case LIST_GENRES:
 			return { ...state, genres: action.payload.genres };

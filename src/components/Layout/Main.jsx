@@ -29,7 +29,9 @@ function Main() {
 		if (typeList === 'popular') {
 			dispatch(fetchMovie(value));
 		}
-		// dispatch(filterMovie(filter, value));
+		if (typeList === 'filtered') {
+			dispatch(filterMovie(filter, value));
+		}
 	};
 
 	return (
