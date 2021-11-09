@@ -8,6 +8,7 @@ function Snack(props) {
 			open={isOpen}
 			onClose={handleClose}
 			autoHideDuration={3000}
+			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
 			<Alert severity="success">Movie add to favorite.</Alert>
 		</Snackbar>
