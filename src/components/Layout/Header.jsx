@@ -21,6 +21,8 @@ import { Redirect, useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { fetchUserSuccess } from '../../redux/actions/userActions';
 import ThemeSwitch from '../UI/Switch.jsx/Switch';
+import Box from '@mui/material/Box';
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 
 function Header() {
 	const dispatch = useDispatch();
@@ -74,36 +76,81 @@ function Header() {
 
 							<ThemeSwitch />
 						</Typography>
-						<Link
-							component={LinkRoute}
-							to="/favorite"
-							color="inherit"
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+								mr: 2,
+								'&:hover': {
+									color: 'error.light',
+									cursor: 'pointer',
+								},
+							}}
+							onClick={() => history.push('/movies')}
 						>
-							Favorite Movies
-						</Link>
-						<IconButton
-							color="inherit"
-							component={LinkRoute}
-							to="/login"
+							<LocalMoviesIcon sx={{ width: 56, height: 56 }} />
+							{/* <Link
+								component={LinkRoute}
+								to="/movies"
+								color="inherit"
+								sx={{
+									textDecoration: 'none',
+								}}
+							>
+								Movies
+							</Link> */}
+							<Typography>Movies</Typography>
+						</Box>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								mr: 2,
+								'&:hover': {
+									color: 'error.light',
+									cursor: 'pointer',
+								},
+							}}
 						>
-							<Favorite />
-						</IconButton>
+							<Favorite sx={{ width: 56, height: 56 }} />
+							<Link
+								component={LinkRoute}
+								to="/favorite"
+								color="inherit"
+								sx={{
+									textDecoration: 'none',
+								}}
+							>
+								Favorite
+							</Link>
+						</Box>
 
-						<Typography>{`Hello, ${usersArr.currentUser.username}`}</Typography>
-						{/* 
-						<Avatar
-							alt={username}
-							src={`https://image.tmdb.org/t/p/w500${tmdb.avatar_path}`}
-							sx={{ width: 56, height: 56, cursor: 'pointer' }}
-							onClick={() => history.push(`/user/${id}`)}
-						/> */}
-
-						<Avatar
-							alt={usersArr.currentUser.username}
-							src={`https://image.tmdb.org/t/p/w500${tmdb.avatar_path}`}
-							sx={{ width: 56, height: 56, cursor: 'pointer' }}
-							onClick={() => history.push(`/user/${id}`)}
-						/>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+								py: 1,
+								px: 1,
+								bgcolor: 'info.main',
+							}}
+						>
+							<Avatar
+								alt={usersArr.currentUser.username}
+								src={`https://image.tmdb.org/t/p/w500${tmdb.avatar_path}`}
+								sx={{
+									width: 56,
+									height: 56,
+									cursor: 'pointer',
+									'&:hover': {
+										opacity: 0.8,
+									},
+								}}
+								onClick={() => history.push(`/user/${id}`)}
+							/>
+							<Typography>{`Hello, ${usersArr.currentUser.username}`}</Typography>
+						</Box>
 
 						<IconButton
 							color="inherit"
