@@ -10,6 +10,8 @@ export const CREATE_FILTER_GENRES = '[MOVIE] Create filter genres';
 export const RESET_FILTER = '[MOVIE] Reset filter';
 export const INFO_MOVIE_BY_ID = '[MOVIE] Show info movie by ID';
 export const SHOW_FAVORITE_MOVIES = '[MOVIE] Show favorite movies';
+export const PAGE_NUMBER_PAGINATION =
+	'[MOVIES] Page number pagination';
 
 export const fetchMoviesSuccess = (movies) => ({
 	type: FETCH_MOVIES_SUCCESS,
@@ -65,4 +67,9 @@ export const showInfoMovieById = (id) => ({
 export const showFavoriteMoviesSuccess = (favMovies) => ({
 	type: SHOW_FAVORITE_MOVIES,
 	payload: { favMovies },
+});
+
+export const changePageNumber = (pageNumber) => ({
+	type: PAGE_NUMBER_PAGINATION,
+	payload: { pageNumber },
 });

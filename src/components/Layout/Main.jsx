@@ -1,6 +1,7 @@
 import { Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { changePageNumber } from '../../redux/actions/movieActinos';
 import {
 	fetchMovie,
 	filterMovie,
@@ -11,18 +12,25 @@ import PaginationMovies from '../UI/Pagination/PaginationMovies';
 import Aside from './Aside';
 
 function Main() {
-	const [page, setPage] = useState(1);
+	//NOTE:
+	// const [page, setPage] = useState(1);
 	const dispatch = useDispatch();
-	const { searchValue, movies, filter, typeList } = useSelector(
-		(state) => state.moviesArr,
-	);
+	const {
+		searchValue,
+		movies,
+		filter,
+		typeList,
+		pageNumberPagination,
+	} = useSelector((state) => state.moviesArr);
 
 	useEffect(() => {
 		dispatch(fetchMovie());
+		dispatch(changePageNumber(1));
 	}, [dispatch]);
 
 	const handleChange = (event, value) => {
-		setPage(value);
+		// setPage(value);
+		dispatch(changePageNumber(value));
 		if (typeList === 'search') {
 			dispatch(findMovie(searchValue, value));
 		}
@@ -46,7 +54,7 @@ function Main() {
 				<Grid item xs={9}>
 					<PaginationMovies
 						totalPages={movies.total_pages}
-						currentPage={page}
+						currentPage={pageNumberPagination}
 						handleChange={handleChange}
 					/>
 					<MoviesList />

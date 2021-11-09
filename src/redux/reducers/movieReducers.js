@@ -10,6 +10,7 @@ import {
 	RESET_FILTER,
 	INFO_MOVIE_BY_ID,
 	SHOW_FAVORITE_MOVIES,
+	PAGE_NUMBER_PAGINATION,
 } from '../actions/movieActinos';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
 	searchMovies: [],
 	favoriteMovies: [],
 	typeList: '',
+	pageNumberPagination: 1,
 	searchValue: '',
 	genres: [],
 	languages: [],
@@ -41,6 +43,7 @@ export const movieReducer = (state = initialState, action) => {
 			};
 		case SEARCH_MOVIES:
 			return { ...state, searchValue: action.payload.value };
+		// NOTE: delete this action
 		case SEARCH_MOVIES_ARR:
 			// console.log('search reducer', action.payload.searchArr);
 			// return {
@@ -92,6 +95,7 @@ export const movieReducer = (state = initialState, action) => {
 					genres: [],
 					language: '',
 				},
+				pageNumberPagination: 1,
 			};
 		case FILTER_MOVIES:
 			return {
@@ -106,6 +110,11 @@ export const movieReducer = (state = initialState, action) => {
 			return { ...state, languages: action.payload.lang };
 		case SHOW_FAVORITE_MOVIES:
 			return { ...state, favoriteMovies: action.payload.favMovies };
+		case PAGE_NUMBER_PAGINATION:
+			return {
+				...state,
+				pageNumberPagination: action.payload.pageNumber,
+			};
 		default:
 			return state;
 	}

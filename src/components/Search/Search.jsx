@@ -28,7 +28,6 @@ function Search() {
 	const handleClick = () => {
 		// dispatch(searchMovies(valInpRef.current.value));
 		dispatch(resetFilter());
-
 		dispatch(searchMovies(valInpRef.current.value));
 
 		// TODO: Исправить

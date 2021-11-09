@@ -26,6 +26,7 @@ import { LocalMovies } from '@mui/icons-material';
 import './list.scss';
 import { Box } from '@mui/system';
 import {
+	changePageNumber,
 	createFilterGenres,
 	createFilterLanguage,
 	resetFilter,
@@ -84,6 +85,7 @@ export default function NestedList() {
 		// console.log('START FILTER', filter.genres);
 		// dispatch(createFilter(filter));
 		dispatch(filterMovie(filter));
+		dispatch(changePageNumber(1));
 	};
 
 	const handleResetFilter = () => {
