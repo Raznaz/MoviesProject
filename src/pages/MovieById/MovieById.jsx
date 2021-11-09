@@ -16,17 +16,25 @@ import {
 	ImageListItem,
 	Typography,
 } from '@mui/material';
+import Loader from '../../components/UI/Loader/Loader';
 
 function MovieById() {
 	const { movieId } = useParams();
-	console.log(movieId);
+	// console.log(movieId);
 	const dispatch = useDispatch();
 	const { movieById } = useSelector((state) => state.moviesArr);
-	console.log(movieById);
-	console.log(movieById.production_companies);
+	// console.log(movieById);
+	// console.log(movieById.production_companies);
 	useEffect(() => {
 		dispatch(getInfoAboutMovieById(movieId));
 	}, [movieId, dispatch]);
+
+	const { isLoading } = useSelector((state) => state.app);
+
+	if (isLoading) {
+		return <Loader />;
+	}
+
 	return (
 		<>
 			<Typography

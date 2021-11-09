@@ -4,7 +4,7 @@ import { fetchMovie } from '../../../redux/actions/thunk';
 import { useDispatch } from 'react-redux';
 
 function PaginationMovies({ totalPages, currentPage, handleChange }) {
-	console.log(totalPages, currentPage, handleChange);
+	// console.log(totalPages, currentPage, handleChange);
 	return (
 		<>
 			<Stack spacing={2}>

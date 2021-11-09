@@ -1,7 +1,10 @@
+import { List } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { showFavoriteMovies } from '../../redux/actions/thunk';
+import Loader from '../UI/Loader/Loader';
+import FavMovieItem from './FavMovieItem';
 
 function FavMoviesList() {
 	const dispatch = useDispatch();
@@ -15,14 +18,27 @@ function FavMoviesList() {
 	}, []);
 
 	const { favoriteMovies } = useSelector((state) => state.moviesArr);
+	const { isLoading } = useSelector((state) => state.app);
+
+	if (isLoading) {
+		return <Loader />;
+	}
 
 	return (
-		<div>
-			<h1>FAVORITE LIST</h1>
-			{favoriteMovies.map((movie) => (
-				<div key={movie.id}>{movie.title}</div>
-			))}
-		</div>
+		<>
+			<List
+				sx={{
+					width: '100%',
+					// maxWidth: 360,
+					bgcolor: 'background.paper',
+				}}
+			>
+				{favoriteMovies.map((movie) => (
+					// <div key={movie.id}>{movie.title}</div>
+					<FavMovieItem key={movie.id} {...movie} />
+				))}
+			</List>
+		</>
 	);
 }
 

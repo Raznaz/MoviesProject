@@ -11,6 +11,7 @@ import {
 	getFavoriteMovies,
 } from '../../api/api';
 import { markFavoriteMovie } from '../../api/apiUser';
+import { hideLoader, showLoader } from './appActions';
 import {
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
@@ -25,19 +26,23 @@ import { fetchUserSuccess } from './userActions';
 // POPULAR MOVIES
 export const fetchMovie = (page = 1) => {
 	return async (dispatch) => {
+		dispatch(showLoader());
 		const movies = await fetchMovies(page);
-		console.log('movies thunk', movies);
+		// console.log('movies thunk', movies);
 
 		dispatch(fetchMoviesSuccess(movies.data));
+		dispatch(hideLoader());
 	};
 };
 
 // FIND
 export const findMovie = (searchValue, page) => {
 	return async (dispatch) => {
+		dispatch(showLoader());
 		const movies = await findMovies(searchValue, page);
-		console.log('FILTER movie thunk', movies);
+		// console.log('FILTER movie thunk', movies);
 		dispatch(searchMovieArr(movies.data));
+		dispatch(hideLoader());
 	};
 };
 
@@ -45,11 +50,15 @@ export const findMovie = (searchValue, page) => {
 export const filterMovie = (filter, page) => {
 	// console.log('111 filter:', filter);
 	return async (dispatch) => {
+		dispatch(showLoader());
 		const filteredMovies = await filterMovies(filter, page);
 		// console.log('FILTERED genres thunk', filteredMovies.data.results);
 		dispatch(filterMoviesByGenre(filteredMovies.data));
+		dispatch(hideLoader());
 	};
 };
+
+// GENRES
 export const listGenres = () => {
 	return async (dispatch) => {
 		const genres = await getListGenres();
@@ -58,6 +67,7 @@ export const listGenres = () => {
 	};
 };
 
+// LANGUAGES
 export const listLanguages = () => {
 	return async (dispatch) => {
 		const languages = await getListLanguages();
@@ -66,10 +76,13 @@ export const listLanguages = () => {
 	};
 };
 
+// SHOW INFO MOVIE
 export const getInfoAboutMovieById = (movieId) => {
 	return async (dispatch) => {
+		dispatch(showLoader());
 		const currentMovie = await getInformationMovieById(movieId);
 		dispatch(showInfoMovieById(currentMovie.data));
+		dispatch(hideLoader());
 	};
 };
 
@@ -102,8 +115,11 @@ export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
 
 export const showFavoriteMovies = (accountId, sessionId) => {
 	return async (dispatch) => {
+		dispatch(showLoader());
 		const { results } = await getFavoriteMovies(accountId, sessionId);
-		console.log(results);
+		// console.log(results);
+
 		dispatch(showFavoriteMoviesSuccess(results));
+		dispatch(hideLoader());
 	};
 };

@@ -58,6 +58,11 @@ function Main() {
 						handleChange={handleChange}
 					/>
 					<MoviesList />
+					<PaginationMovies
+						totalPages={movies.total_pages}
+						currentPage={pageNumberPagination}
+						handleChange={handleChange}
+					/>
 				</Grid>
 			</Grid>
 		</>
