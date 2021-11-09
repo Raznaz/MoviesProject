@@ -62,7 +62,13 @@ function Movie(props) {
 				</CardContent>
 				<CardActions sx={{ justifyContent: 'space-between' }}>
 					<IconButton onClick={() => handleAddToFavorite()}>
-						<FavoriteBorder />
+						<FavoriteBorder
+							sx={{
+								'&:hover': {
+									color: 'error.dark',
+								},
+							}}
+						/>
 					</IconButton>
 					{/* <Link
 						// onClick={() => handleShowInfoById(id)}

@@ -8,6 +8,7 @@ import { Link as LinkRoute } from 'react-router-dom';
 import {
 	AppBar,
 	Avatar,
+	Badge,
 	Button,
 	Container,
 	IconButton,
@@ -34,7 +35,8 @@ function Header() {
 	// }, []);
 
 	const usersArr = useSelector((state) => state.usersArr);
-
+	const { favoriteMovies } = useSelector((state) => state.moviesArr);
+	console.log(favoriteMovies);
 	const history = useHistory();
 	// console.log(usersArr.currentUser.username);
 
@@ -93,6 +95,7 @@ function Header() {
 
 							<Typography>Movies</Typography>
 						</Box>
+						{/* FAVORITE */}
 						<Box
 							sx={{
 								display: 'flex',
@@ -105,7 +108,12 @@ function Header() {
 							}}
 							onClick={() => history.push('/favorite')}
 						>
-							<Favorite sx={{ width: 56, height: 56 }} />
+							<Badge
+								color="secondary"
+								badgeContent={favoriteMovies.total_results}
+							>
+								<Favorite sx={{ width: 56, height: 56 }} />
+							</Badge>
 
 							<Typography>Favorite</Typography>
 						</Box>

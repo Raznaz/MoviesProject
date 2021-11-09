@@ -13,7 +13,7 @@ function FavMoviesList() {
 		const { id: accountId } = JSON.parse(
 			localStorage.getItem('user'),
 		);
-		console.log('FAV', accountId, sessionId);
+		// console.log('FAV', accountId, sessionId);
 		dispatch(showFavoriteMovies(accountId, sessionId));
 	}, []);
 
