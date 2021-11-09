@@ -2,6 +2,7 @@ import { Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePageNumber } from '../../redux/actions/movieActinos';
+import { toggleSnackMessage } from '../../redux/actions/appActions';
 import {
 	fetchMovie,
 	filterMovie,
@@ -9,12 +10,18 @@ import {
 } from '../../redux/actions/thunk';
 import MoviesList from '../Movies/MoviesList';
 import PaginationMovies from '../UI/Pagination/PaginationMovies';
+import Snack from '../UI/Snack/Snack';
 import Aside from './Aside';
 
 function Main() {
-	//NOTE:
-	// const [page, setPage] = useState(1);
+	// const [isOpen, setIsOpen] = useState(false);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchMovie());
+		dispatch(changePageNumber(1));
+	}, [dispatch]);
+
 	const {
 		searchValue,
 		movies,
@@ -23,10 +30,7 @@ function Main() {
 		pageNumberPagination,
 	} = useSelector((state) => state.moviesArr);
 
-	useEffect(() => {
-		dispatch(fetchMovie());
-		dispatch(changePageNumber(1));
-	}, [dispatch]);
+	const { isOpenSnack } = useSelector((state) => state.app);
 
 	const handleChange = (event, value) => {
 		// setPage(value);
@@ -65,6 +69,10 @@ function Main() {
 					/>
 				</Grid>
 			</Grid>
+			<Snack
+				isOpen={isOpenSnack}
+				handleClose={() => dispatch(toggleSnackMessage())}
+			/>
 		</>
 	);
 }

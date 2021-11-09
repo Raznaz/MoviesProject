@@ -116,10 +116,10 @@ export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
 export const showFavoriteMovies = (accountId, sessionId) => {
 	return async (dispatch) => {
 		dispatch(showLoader());
-		const { results } = await getFavoriteMovies(accountId, sessionId);
-		// console.log(results);
+		const data = await getFavoriteMovies(accountId, sessionId);
+		console.log('get favorite movies', data);
 
-		dispatch(showFavoriteMoviesSuccess(results));
+		dispatch(showFavoriteMoviesSuccess(data));
 		dispatch(hideLoader());
 	};
 };

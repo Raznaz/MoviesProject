@@ -73,3 +73,5 @@ export const changePageNumber = (pageNumber) => ({
 	type: PAGE_NUMBER_PAGINATION,
 	payload: { pageNumber },
 });
+
+// amount favorite movies

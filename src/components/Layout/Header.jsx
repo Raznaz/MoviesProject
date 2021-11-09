@@ -24,18 +24,21 @@ import { fetchUserSuccess } from '../../redux/actions/userActions';
 import ThemeSwitch from '../UI/Switch.jsx/Switch';
 import Box from '@mui/material/Box';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import { showFavoriteMovies } from '../../redux/actions/thunk';
 
 function Header() {
 	const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	const user = JSON.parse(localStorage.getItem('user'));
-	// 	console.log('USE EFFECT');
+	useEffect(() => {
+		const sessionId = localStorage.getItem('session_id');
+		const { id: accountId } = JSON.parse(
+			localStorage.getItem('user'),
+		);
+		// console.log('FAV', accountId, sessionId);
+		dispatch(showFavoriteMovies(accountId, sessionId));
+	}, [dispatch]);
 
-	// 	dispatch(fetchUserSuccess(user));
-	// }, []);
-
-	const usersArr = useSelector((state) => state.usersArr);
 	const { favoriteMovies } = useSelector((state) => state.moviesArr);
+	const usersArr = useSelector((state) => state.usersArr);
 	console.log(favoriteMovies);
 	const history = useHistory();
 	// console.log(usersArr.currentUser.username);
@@ -57,7 +60,8 @@ function Header() {
 			id,
 			avatar: { tmdb },
 		} = JSON.parse(localStorage.getItem('user'));
-		console.log(tmdb);
+		// console.log(tmdb);
+
 		return (
 			<AppBar position="static" sx={{ mb: 5 }}>
 				<Container maxWidth="lg" disableGutters>
@@ -111,6 +115,14 @@ function Header() {
 							<Badge
 								color="secondary"
 								badgeContent={favoriteMovies.total_results}
+								sx={{
+									'& .MuiBadge-badge': {
+										right: 30,
+										top: 27,
+										border: `2px solid background.paper`,
+										padding: '0 4px',
+									},
+								}}
 							>
 								<Favorite sx={{ width: 56, height: 56 }} />
 							</Badge>

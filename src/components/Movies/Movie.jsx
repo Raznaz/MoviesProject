@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { getInfoAboutMovieById } from '../../redux/actions/thunk';
 import { useHistory } from 'react-router-dom';
+import { toggleSnackMessage } from '../../redux/actions/appActions';
 import { addToFavoriteMovie } from '../../redux/actions/thunk';
 
 function Movie(props) {
@@ -36,6 +37,7 @@ function Movie(props) {
 		);
 		console.log('ADD TO FAVORITE');
 		dispatch(addToFavoriteMovie(accountId, sessionId, id));
+		dispatch(toggleSnackMessage());
 	};
 	return (
 		<Grid item xs={12} md={4}>

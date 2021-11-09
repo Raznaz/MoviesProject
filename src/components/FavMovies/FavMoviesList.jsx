@@ -33,7 +33,7 @@ function FavMoviesList() {
 					bgcolor: 'background.paper',
 				}}
 			>
-				{favoriteMovies.map((movie) => (
+				{favoriteMovies.results.map((movie) => (
 					// <div key={movie.id}>{movie.title}</div>
 					<FavMovieItem key={movie.id} {...movie} />
 				))}

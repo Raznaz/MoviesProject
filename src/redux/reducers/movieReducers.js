@@ -18,6 +18,7 @@ const initialState = {
 	movieById: {},
 	searchMovies: [],
 	favoriteMovies: [],
+	amountFavMovies: 0,
 	typeList: '',
 	pageNumberPagination: 1,
 	searchValue: '',
@@ -115,6 +116,7 @@ export const movieReducer = (state = initialState, action) => {
 				...state,
 				pageNumberPagination: action.payload.pageNumber,
 			};
+
 		default:
 			return state;
 	}

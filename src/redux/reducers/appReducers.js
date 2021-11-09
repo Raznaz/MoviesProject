@@ -1,7 +1,12 @@
-import { HIDE_LOADER, SHOW_LOADER } from '../actions/appActions';
+import {
+	HIDE_LOADER,
+	SHOW_LOADER,
+	TOGGLE_SNACK,
+} from '../actions/appActions';
 
 const initialState = {
 	isLoading: false,
+	isOpenSnack: false,
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -10,6 +15,8 @@ export const appReducers = (state = initialState, action) => {
 			return { ...state, isLoading: true };
 		case HIDE_LOADER:
 			return { ...state, isLoading: false };
+		case TOGGLE_SNACK:
+			return { ...state, isOpenSnack: !state.isOpenSnack };
 		default:
 			return state;
 	}
