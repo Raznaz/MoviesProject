@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;
-const API_IMAGE_URL = process.env.REACT_APP_API_IMAGE_URL;
 const API_KEY = process.env.REACT_APP_KEY;
 
 // export const testAPI = `${API_URL}`;

@@ -6,14 +6,24 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { Box } from '@mui/system';
+import { border, Box } from '@mui/system';
 import { Card, CardContent, CardMedia } from '@mui/material';
+import { getImage } from '../../helper/getImage';
 
 export default function FavMovieItem(props) {
 	const { id, title, overview, backdrop_path, poster_path } = props;
+
+	const image = getImage(poster_path);
+
 	return (
 		<ListItem alignItems="flex-start">
-			<Card>
+			<Card sx={{ display: 'flex' }}>
+				<CardMedia
+					component="img"
+					sx={{ width: 151 }}
+					image={image}
+					alt={title}
+				/>
 				<Box>
 					<CardContent sx={{ flex: '1 0 auto' }}>
 						<Typography component="div" variant="h5">
@@ -28,12 +38,6 @@ export default function FavMovieItem(props) {
 						</Typography>
 					</CardContent>
 				</Box>
-				<CardMedia
-					component="img"
-					sx={{ width: 151 }}
-					image="/static/images/cards/live-from-space.jpg"
-					alt={title}
-				/>
 			</Card>
 		</ListItem>
 	);
