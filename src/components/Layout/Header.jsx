@@ -90,16 +90,7 @@ function Header() {
 							onClick={() => history.push('/movies')}
 						>
 							<LocalMoviesIcon sx={{ width: 56, height: 56 }} />
-							{/* <Link
-								component={LinkRoute}
-								to="/movies"
-								color="inherit"
-								sx={{
-									textDecoration: 'none',
-								}}
-							>
-								Movies
-							</Link> */}
+
 							<Typography>Movies</Typography>
 						</Box>
 						<Box
@@ -112,18 +103,11 @@ function Header() {
 									cursor: 'pointer',
 								},
 							}}
+							onClick={() => history.push('/favorite')}
 						>
 							<Favorite sx={{ width: 56, height: 56 }} />
-							<Link
-								component={LinkRoute}
-								to="/favorite"
-								color="inherit"
-								sx={{
-									textDecoration: 'none',
-								}}
-							>
-								Favorite
-							</Link>
+
+							<Typography>Favorite</Typography>
 						</Box>
 
 						<Box
