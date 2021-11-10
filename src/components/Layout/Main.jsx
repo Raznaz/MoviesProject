@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePageNumber } from '../../redux/actions/movieActinos';
 import {
+	closeAlertSnackMsg,
 	toggleAlertSnackMsg,
 	toggleSnackMessage,
 } from '../../redux/actions/appActions';
@@ -81,7 +82,7 @@ function Main() {
 			/>
 			<SnackAlert
 				isOpen={isOpenAlert}
-				handleClose={() => dispatch(toggleAlertSnackMsg())}
+				handleClose={() => dispatch(closeAlertSnackMsg())}
 				error={errorMsg}
 			/>
 		</>

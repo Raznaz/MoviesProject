@@ -13,8 +13,8 @@ import {
 import { markFavoriteMovie } from '../../api/apiUser';
 import {
 	hideLoader,
+	openAlertSnackMsg,
 	showLoader,
-	toggleAlertSnackMsg,
 } from './appActions';
 import {
 	fetchMovieReject,
@@ -40,7 +40,7 @@ export const fetchMovie = (page = 1) => {
 			dispatch(hideLoader());
 			// dispatch(toggleAlertSnackMsg('its my error for example'));
 		} catch (error) {
-			dispatch(toggleAlertSnackMsg(error));
+			dispatch(openAlertSnackMsg(error));
 		}
 	};
 };
@@ -48,11 +48,15 @@ export const fetchMovie = (page = 1) => {
 // FIND
 export const findMovie = (searchValue, page) => {
 	return async (dispatch) => {
-		dispatch(showLoader());
-		const movies = await findMovies(searchValue, page);
-		// console.log('FILTER movie thunk', movies);
-		dispatch(searchMovieArr(movies.data));
-		dispatch(hideLoader());
+		try {
+			dispatch(showLoader());
+			const movies = await findMovies(searchValue, page);
+			// console.log('FILTER movie thunk', movies);
+			dispatch(searchMovieArr(movies.data));
+			dispatch(hideLoader());
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };
 
@@ -60,39 +64,55 @@ export const findMovie = (searchValue, page) => {
 export const filterMovie = (filter, page) => {
 	// console.log('111 filter:', filter);
 	return async (dispatch) => {
-		dispatch(showLoader());
-		const filteredMovies = await filterMovies(filter, page);
-		// console.log('FILTERED genres thunk', filteredMovies.data.results);
-		dispatch(filterMoviesByGenre(filteredMovies.data));
-		dispatch(hideLoader());
+		try {
+			dispatch(showLoader());
+			const filteredMovies = await filterMovies(filter, page);
+			// console.log('FILTERED genres thunk', filteredMovies.data.results);
+			dispatch(filterMoviesByGenre(filteredMovies.data));
+			dispatch(hideLoader());
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };
 
 // GENRES
 export const listGenres = () => {
 	return async (dispatch) => {
-		const genres = await getListGenres();
-		// console.log('LIST genres thunk', genres.data);
-		dispatch(showListGenres(genres.data.genres));
+		try {
+			const genres = await getListGenres();
+			// console.log('LIST genres thunk', genres.data);
+			dispatch(showListGenres(genres.data.genres));
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };
 
 // LANGUAGES
 export const listLanguages = () => {
 	return async (dispatch) => {
-		const languages = await getListLanguages();
-		// console.log('LIST LANG thunk', languages.data);
-		dispatch(showListLanguages(languages.data));
+		try {
+			const languages = await getListLanguages();
+			// console.log('LIST LANG thunk', languages.data);
+			dispatch(showListLanguages(languages.data));
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };
 
 // SHOW INFO MOVIE
 export const getInfoAboutMovieById = (movieId) => {
 	return async (dispatch) => {
-		dispatch(showLoader());
-		const currentMovie = await getInformationMovieById(movieId);
-		dispatch(showInfoMovieById(currentMovie.data));
-		dispatch(hideLoader());
+		try {
+			dispatch(showLoader());
+			const currentMovie = await getInformationMovieById(movieId);
+			dispatch(showInfoMovieById(currentMovie.data));
+			dispatch(hideLoader());
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };
 
@@ -100,11 +120,15 @@ export const getInfoAboutMovieById = (movieId) => {
 
 export const generateSessionAndGetUser = (requestToken) => {
 	return async (dispatch) => {
-		const { session_id } = await generateSessionID(requestToken);
-		localStorage.setItem('session_id', session_id);
+		try {
+			const { session_id } = await generateSessionID(requestToken);
+			localStorage.setItem('session_id', session_id);
 
-		const user = await getAccount(session_id);
-		dispatch(fetchUserSuccess(user));
+			const user = await getAccount(session_id);
+			dispatch(fetchUserSuccess(user));
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };
 
@@ -112,12 +136,16 @@ export const generateSessionAndGetUser = (requestToken) => {
 
 export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
 	return async (dispatch) => {
-		const info = await markFavoriteMovie(
-			accountId,
-			sessionId,
-			movieId,
-		);
-		console.log(info);
+		try {
+			const info = await markFavoriteMovie(
+				accountId,
+				sessionId,
+				movieId,
+			);
+			console.log(info);
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };
 
@@ -125,11 +153,15 @@ export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
 
 export const showFavoriteMovies = (accountId, sessionId) => {
 	return async (dispatch) => {
-		dispatch(showLoader());
-		const data = await getFavoriteMovies(accountId, sessionId);
-		console.log('get favorite movies', data);
+		try {
+			dispatch(showLoader());
+			const data = await getFavoriteMovies(accountId, sessionId);
+			console.log('get favorite movies', data);
 
-		dispatch(showFavoriteMoviesSuccess(data));
-		dispatch(hideLoader());
+			dispatch(showFavoriteMoviesSuccess(data));
+			dispatch(hideLoader());
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
 	};
 };

@@ -51,10 +51,11 @@ export function fetchMovies(page) {
 }
 
 //FIND MOVIE
+// TODO: Исправить значение по умолчанию при поиске
 export function findMovies(str, page) {
 	return movieAPI.get('/search/movie', {
 		params: {
-			query: str,
+			query: str || 'a',
 			page: page,
 		},
 	});

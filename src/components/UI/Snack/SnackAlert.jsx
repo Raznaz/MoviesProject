@@ -6,11 +6,13 @@ import MuiAlert from '@mui/material/Alert';
 
 function SnackAlert(props) {
 	const { isOpen, handleClose, error } = props;
+	console.log('ERROR', error.name);
+
 	return (
 		<Snackbar
 			open={isOpen}
 			onClose={handleClose}
-			autoHideDuration={2000}
+			autoHideDuration={10000}
 			sx={{ width: '90%' }}
 			anchorOrigin={{
 				vertical: 'bottom',
@@ -24,7 +26,7 @@ function SnackAlert(props) {
 					width: '100%',
 				}}
 			>
-				{error}
+				{error.name}: {error.message}
 			</Alert>
 		</Snackbar>
 	);
