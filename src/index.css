@@ -12,3 +12,7 @@ img {
 	width: 100%;
 	height: auto;
 } */
+
+.content {
+	min-height: calc(100vh -70px - 64px);
+}

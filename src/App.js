@@ -13,7 +13,10 @@ function App() {
 			<Theme>
 				<BrowserRouter>
 					<Header />
-					<Container maxWidth="lg">
+					<Container
+						maxWidth="lg"
+						sx={{ minHeight: 'calc(100vh - 442px)' }}
+					>
 						<Routes />
 					</Container>
 					<Footer />
