@@ -17,7 +17,10 @@ import { useDispatch } from 'react-redux';
 // import { getInfoAboutMovieById } from '../../redux/actions/thunk';
 import { useHistory } from 'react-router-dom';
 import { toggleSnackMessage } from '../../redux/actions/appActions';
-import { addToFavoriteMovie } from '../../redux/actions/thunk';
+import {
+	addToFavoriteMovie,
+	showFavoriteMovies,
+} from '../../redux/actions/thunk';
 
 function Movie(props) {
 	const { id, title, poster_path, release_date, vote_average } =
@@ -37,6 +40,8 @@ function Movie(props) {
 		);
 		console.log('ADD TO FAVORITE');
 		dispatch(addToFavoriteMovie(accountId, sessionId, id));
+		// NOTE: test show amount fav movies
+		dispatch(showFavoriteMovies(accountId, sessionId));
 		dispatch(toggleSnackMessage());
 	};
 	return (
