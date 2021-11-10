@@ -1,4 +1,5 @@
 import { FavoriteBorder } from '@mui/icons-material';
+import noImage from '../../theme/images/noImage.png';
 import {
 	Card,
 	CardActionArea,
@@ -16,6 +17,7 @@ import { useDispatch } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { getInfoAboutMovieById } from '../../redux/actions/thunk';
 import { useHistory } from 'react-router-dom';
+import { getImage } from '../../helper/getImage';
 import { toggleSnackMessage } from '../../redux/actions/appActions';
 import {
 	addToFavoriteMovie,
@@ -28,6 +30,9 @@ function Movie(props) {
 	// const dispatch = useDispatch();
 	const history = useHistory();
 	const dispatch = useDispatch();
+
+	const image = getImage(poster_path, noImage);
+
 	// const handleShowInfoById = (id) => {
 	// 	console.log('MOVIE', id);
 	// 	dispatch(getInfoAboutMovieById(id));
@@ -55,7 +60,8 @@ function Movie(props) {
 			>
 				<CardActionArea onClick={() => history.push(`movie/${id}`)}>
 					<CardMedia
-						image={`https://image.tmdb.org/t/p/w500${poster_path}`}
+						image={image}
+						// image={noImage}
 						title={title}
 						alt={title}
 						sx={{ height: 400 }}
