@@ -11,8 +11,13 @@ import {
 	getFavoriteMovies,
 } from '../../api/api';
 import { markFavoriteMovie } from '../../api/apiUser';
-import { hideLoader, showLoader } from './appActions';
 import {
+	hideLoader,
+	showLoader,
+	toggleAlertSnackMsg,
+} from './appActions';
+import {
+	fetchMovieReject,
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
 	searchMovieArr,
@@ -26,12 +31,17 @@ import { fetchUserSuccess } from './userActions';
 // POPULAR MOVIES
 export const fetchMovie = (page = 1) => {
 	return async (dispatch) => {
-		dispatch(showLoader());
-		const movies = await fetchMovies(page);
-		// console.log('movies thunk', movies);
+		try {
+			dispatch(showLoader());
+			const movies = await fetchMovies(page);
+			// console.log('movies thunk', movies);
 
-		dispatch(fetchMoviesSuccess(movies.data));
-		dispatch(hideLoader());
+			dispatch(fetchMoviesSuccess(movies.data));
+			dispatch(hideLoader());
+			// dispatch(toggleAlertSnackMsg('its my error for example'));
+		} catch (error) {
+			dispatch(toggleAlertSnackMsg(error));
+		}
 	};
 };
 

@@ -1,4 +1,5 @@
 export const FETCH_MOVIES_SUCCESS = '[MOVIE] Fetch movies success';
+export const FETCH_MOVIES_REJECT = '[MOVIE] Fetch movies reject';
 export const SEARCH_MOVIES = '[MOVIE] Search movies';
 export const SEARCH_MOVIES_ARR = '[MOVIE] Search movies arr';
 export const LIST_GENRES = '[MOVIE] List genres';
@@ -16,6 +17,11 @@ export const PAGE_NUMBER_PAGINATION =
 export const fetchMoviesSuccess = (movies) => ({
 	type: FETCH_MOVIES_SUCCESS,
 	payload: { movies },
+});
+
+export const fetchMovieReject = (error) => ({
+	type: FETCH_MOVIES_REJECT,
+	payload: { error },
 });
 
 // TODO:Переименовать ф-ю
