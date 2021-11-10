@@ -15,7 +15,7 @@ function Search() {
 	const { searchValue } = useSelector((state) => state.moviesArr);
 
 	useEffect(() => {
-		dispatch(findMovie(searchValue));
+		searchValue && dispatch(findMovie(searchValue));
 	}, [dispatch, searchValue]);
 
 	const handleKey = (e) => {

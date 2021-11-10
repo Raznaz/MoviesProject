@@ -55,7 +55,7 @@ export function fetchMovies(page) {
 export function findMovies(str, page) {
 	return movieAPI.get('/search/movie', {
 		params: {
-			query: str || 'a',
+			query: str,
 			page: page,
 		},
 	});
@@ -69,7 +69,7 @@ export function getListLanguages() {
 	return movieAPI.get('/configuration/languages');
 }
 
-// TODO:Преобразовать массив в строку
+// FILTER TODO:Преобразовать массив в строку
 export function filterMovies(filter, page) {
 	const genresStr = filter.genres.join(',');
 	// console.log(genresStr, filter.language);
