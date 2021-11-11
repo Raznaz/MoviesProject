@@ -14,7 +14,7 @@ import MyButton from '../UI/Button/MyButton';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-// TODO:Вынести shema  в отдельный файл
+// TODO:Вынести schema  в отдельный файл
 const schema = yup.object().shape({
 	firstName: yup
 		.string()
@@ -30,7 +30,9 @@ const schema = yup.object().shape({
 		.email('Must be a valid email')
 		.required('Email is required.'),
 	birthDay: yup
-		.string('correct date DD:MM:YEAR')
+		// .string('correct date DD:MM:YEAR')
+		.date()
+		.max(new Date())
 		.required('Birth of day is required field. '),
 	userName: yup
 		.string()
@@ -60,6 +62,10 @@ function RegistrationForm() {
 	} = useForm({
 		mode: 'onBlur',
 		resolver: yupResolver(schema),
+		defaultValues: {
+			gender: 'man',
+			birthDay: '2000-01-01',
+		},
 	});
 
 	const onSubmit = (data) => {
@@ -116,20 +122,21 @@ function RegistrationForm() {
 				{/* ================================================ */}
 				<FormControl fullWidth component="fieldset">
 					<Controller
-						rules={{ required: true }}
-						name="gender"
 						control={control}
+						// rules={{ required: true }}
+						name="gender"
 						defaultValue="man"
-						render={({ field }) => (
+						render={({ field: { onChange, value } }) => (
 							<RadioGroup
 								row
 								sx={{ justifyContent: 'center' }}
-								{...field}
+								value={value}
+								onChange={onChange}
 							>
 								<FormControlLabel
 									value="man"
-									control={<Radio color="success" />}
 									label="Man"
+									control={<Radio color="success" />}
 								/>
 								<FormControlLabel
 									value="woman"

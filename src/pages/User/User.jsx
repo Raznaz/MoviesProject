@@ -56,10 +56,10 @@ function User() {
 				}}
 			>
 				<Typography variant="p" color="#fff">
-					User name:
+					Name:
 				</Typography>
 				<Typography variant="h3" color="#fff">
-					{currentUser.username}
+					{currentUser.name}
 				</Typography>
 			</Box>
 			<Grid container>
@@ -76,6 +76,7 @@ function User() {
 									R
 								</Avatar>
 							}
+							title={currentUser.username}
 							subheader={`ID: ${currentUser.id}`}
 						/>
 						<CardMedia
