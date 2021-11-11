@@ -1,6 +1,7 @@
 import {
 	CLOSE_ALERT_SNACK,
 	HIDE_LOADER,
+	MODAL_TOGGLE,
 	OPEN_ALERT_SNACK,
 	SHOW_LOADER,
 	TOGGLE_ALERT_SNACK,
@@ -11,6 +12,7 @@ const initialState = {
 	isLoading: false,
 	isOpenSnack: false,
 	isOpenAlert: false,
+	isOpenModalWindow: true,
 	errorMsg: '',
 };
 
@@ -30,6 +32,11 @@ export const appReducers = (state = initialState, action) => {
 			};
 		case CLOSE_ALERT_SNACK:
 			return { ...state, isOpenAlert: false };
+		case MODAL_TOGGLE:
+			return {
+				...state,
+				isOpenModalWindow: !state.isOpenModalWindow,
+			};
 		default:
 			return state;
 	}

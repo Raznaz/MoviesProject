@@ -13,6 +13,9 @@ import {
 import MyButton from '../UI/Button/MyButton';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import MainModal from '../UI/Modal/MainModal';
+import { toggleModalWindow } from '../../redux/actions/appActions';
+import { useDispatch } from 'react-redux';
 
 // TODO:Вынести schema  в отдельный файл
 const schema = yup.object().shape({
@@ -68,8 +71,11 @@ function RegistrationForm() {
 		},
 	});
 
+	const dispatch = useDispatch();
+
 	const onSubmit = (data) => {
 		console.log(data);
+		dispatch(toggleModalWindow());
 		reset();
 	};
 
@@ -193,6 +199,7 @@ function RegistrationForm() {
 				{/* Radio */}
 				<MyButton color="success">Registration</MyButton>
 			</Form>
+			<MainModal />
 		</Box>
 	);
 }

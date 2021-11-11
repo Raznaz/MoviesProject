@@ -17,6 +17,7 @@ import PaginationMovies from '../UI/Pagination/PaginationMovies';
 import Snack from '../UI/Snack/Snack';
 import Aside from './Aside';
 import SnackAlert from '../UI/Snack/SnackAlert';
+import MainModal from '../UI/Modal/MainModal';
 
 function Main() {
 	// const [isOpen, setIsOpen] = useState(false);

@@ -4,6 +4,7 @@ export const TOGGLE_SNACK = '[APP] Toggle snack message';
 // export const TOGGLE_ALERT_SNACK = '[APP] Toggle alert snack';
 export const OPEN_ALERT_SNACK = '[APP] Open alert snack';
 export const CLOSE_ALERT_SNACK = '[APP] Close alert snack';
+export const MODAL_TOGGLE = '[APP] Toggle modal window';
 
 export const showLoader = (params) => ({
 	type: SHOW_LOADER,
@@ -24,4 +25,8 @@ export const openAlertSnackMsg = (error) => ({
 export const closeAlertSnackMsg = (error) => ({
 	type: CLOSE_ALERT_SNACK,
 	payload: { error },
+});
+
+export const toggleModalWindow = () => ({
+	type: MODAL_TOGGLE,
 });
