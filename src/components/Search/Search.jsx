@@ -5,38 +5,77 @@ import {
 	searchMovies,
 } from '../../redux/actions/movieActinos';
 import { MyInput } from '../UI/Input/MyInput';
-import { Button } from '@mui/material';
+import {
+	Button,
+	IconButton,
+	InputAdornment,
+	TextField,
+} from '@mui/material';
 import { useSelector } from 'react-redux';
 import { findMovie } from '../../redux/actions/thunk';
+import { Box } from '@mui/system';
+import SearchIcon from '@mui/icons-material/Search';
+import { useForm } from 'react-hook-form';
+import Form from '../UI/Form/Form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-function Search() {
-	const valInpRef = useRef();
+const schema = yup.object().shape({
+	search: yup.string().min(3, 'Should be most then 3 letter'),
+});
+
+function MySearch() {
+	// const valInpRef = useRef();
 	const dispatch = useDispatch();
 	const { searchValue } = useSelector((state) => state.moviesArr);
 
 	useEffect(() => {
-		searchValue && dispatch(findMovie(searchValue));
+		// searchValue && dispatch(findMovie(searchValue));
 	}, [dispatch, searchValue]);
 
-	const handleKey = (e) => {
-		if (e.key === 'Enter') {
-			dispatch(resetFilter());
-			dispatch(searchMovies(valInpRef.current.value));
-		}
-	};
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm({
+		resolver: yupResolver(schema),
+	});
 
-	const handleClick = () => {
-		// dispatch(searchMovies(valInpRef.current.value));
+	const onSubmit = (data) => {
+		console.log(data);
 		dispatch(resetFilter());
-		dispatch(searchMovies(valInpRef.current.value));
-
-		// TODO: Исправить
-		dispatch(findMovie(valInpRef.current.value));
+		dispatch(findMovie(data.search));
 	};
 
 	return (
-		<>
-			<MyInput
+		<Form onSubmit={handleSubmit(onSubmit)}>
+			<TextField
+				{...register('search')}
+				label="Search"
+				fullWidth
+				InputProps={{
+					endAdornment: (
+						<InputAdornment>
+							<IconButton onClick={handleSubmit(onSubmit)}>
+								<SearchIcon />
+							</IconButton>
+						</InputAdornment>
+					),
+				}}
+				// onKeyDown={handleKey}
+				error={!!errors.search}
+				helperText={errors?.search?.message}
+			/>
+			{/* <Button
+				variant="contained"
+				color="success"
+				fullWidth
+				type="submit"
+			>
+				Search
+			</Button> */}
+			{/* <MyInput
 				type="search"
 				placeholder="Search..."
 				ref={valInpRef}
@@ -49,9 +88,9 @@ function Search() {
 				onClick={() => handleClick()}
 			>
 				Search
-			</Button>
-		</>
+			</Button> */}
+		</Form>
 	);
 }
 
-export default Search;
+export default MySearch;

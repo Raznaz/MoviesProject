@@ -45,7 +45,7 @@ export default function MainModal() {
 					</Typography>
 					<Typography
 						id="modal-modal-description"
-						sx={{ mt: 2, color: 'success' }}
+						sx={{ mt: 2, color: 'success.main' }}
 					>
 						The registration was successfully
 					</Typography>
