@@ -112,7 +112,20 @@ function Header() {
 							}}
 							onClick={() => history.push('/favorite')}
 						>
-							<Favorite sx={{ width: 56, height: 56 }} />
+							<Badge
+								color="secondary"
+								badgeContent={favoriteMovies.total_results}
+								sx={{
+									'& .MuiBadge-badge': {
+										right: 30,
+										top: 27,
+										border: `2px solid background.paper`,
+										padding: '0 4px',
+									},
+								}}
+							>
+								<Favorite sx={{ width: 56, height: 56 }} />
+							</Badge>
 
 							<Typography>Favorite</Typography>
 						</Box>

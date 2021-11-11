@@ -1,4 +1,4 @@
-import { FavoriteBorder } from '@mui/icons-material';
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import noImage from '../../theme/images/noImage.png';
 import {
 	Card,
@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { getInfoAboutMovieById } from '../../redux/actions/thunk';
 import { useHistory } from 'react-router-dom';
@@ -30,7 +30,7 @@ function Movie(props) {
 	// const dispatch = useDispatch();
 	const history = useHistory();
 	const dispatch = useDispatch();
-
+	const { favoriteMovies } = useSelector((state) => state.moviesArr);
 	const image = getImage(poster_path, noImage);
 
 	// const handleShowInfoById = (id) => {
@@ -74,15 +74,19 @@ function Movie(props) {
 					<Typography>{release_date}</Typography>
 				</CardContent>
 				<CardActions sx={{ justifyContent: 'space-between' }}>
-					<IconButton onClick={() => handleAddToFavorite()}>
-						<FavoriteBorder
-							sx={{
-								'&:hover': {
-									color: 'error.dark',
-								},
-							}}
-						/>
-					</IconButton>
+					{favoriteMovies.results.find((item) => item.id === id) ? (
+						<Favorite sx={{ color: 'error.dark' }} />
+					) : (
+						<IconButton onClick={() => handleAddToFavorite()}>
+							<FavoriteBorder
+								sx={{
+									'&:hover': {
+										color: 'error.dark',
+									},
+								}}
+							/>
+						</IconButton>
+					)}
 					{/* <Link
 						// onClick={() => handleShowInfoById(id)}
 						to={`/movie/${id}`}
