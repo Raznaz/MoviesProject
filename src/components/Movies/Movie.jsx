@@ -46,7 +46,7 @@ function Movie(props) {
 		console.log('ADD TO FAVORITE');
 		dispatch(addToFavoriteMovie(accountId, sessionId, id));
 		// NOTE: test show amount fav movies
-		dispatch(showFavoriteMovies(accountId, sessionId));
+		// dispatch(showFavoriteMovies(accountId, sessionId));
 		dispatch(toggleSnackMessage());
 	};
 	return (

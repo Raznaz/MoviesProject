@@ -21,7 +21,7 @@ import { useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { fetchUserSuccess } from '../../redux/actions/userActions';
-import ThemeSwitch from '../UI/Switch.jsx/Switch';
+import ThemeSwitch from '../UI/Switch/Switch';
 import Box from '@mui/material/Box';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import { showFavoriteMovies } from '../../redux/actions/thunk';
@@ -112,20 +112,7 @@ function Header() {
 							}}
 							onClick={() => history.push('/favorite')}
 						>
-							<Badge
-								color="secondary"
-								badgeContent={favoriteMovies.total_results}
-								sx={{
-									'& .MuiBadge-badge': {
-										right: 30,
-										top: 27,
-										border: `2px solid background.paper`,
-										padding: '0 4px',
-									},
-								}}
-							>
-								<Favorite sx={{ width: 56, height: 56 }} />
-							</Badge>
+							<Favorite sx={{ width: 56, height: 56 }} />
 
 							<Typography>Favorite</Typography>
 						</Box>
