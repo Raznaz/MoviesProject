@@ -19,7 +19,7 @@ const initialState = {
 	movieById: {},
 	searchMovies: [],
 	favoriteMovies: [],
-	amountFavMovies: 0,
+	// amountFavMovies: 0,
 	typeList: '',
 	pageNumberPagination: 1,
 	searchValue: '',
@@ -46,13 +46,7 @@ export const movieReducer = (state = initialState, action) => {
 			};
 		case SEARCH_MOVIES:
 			return { ...state, searchValue: action.payload.value };
-		// NOTE: delete this action
 		case SEARCH_MOVIES_ARR:
-			// console.log('search reducer', action.payload.searchArr);
-			// return {
-			// 	...state,
-			// 	searchMovies: [...action.payload.searchArr],
-			// };
 			return {
 				...state,
 				movies: action.payload.searchArr,

@@ -26,7 +26,8 @@ export const fetchMovieReject = (error) => ({
 });
 
 // TODO:Переименовать ф-ю
-export const searchMovies = (value) => ({
+// export const searchMovies = (value) => ({
+export const searchValueStr = (value) => ({
 	type: SEARCH_MOVIES,
 	payload: { value },
 });
@@ -47,7 +48,6 @@ export const showListLanguages = (lang) => ({
 	payload: { lang },
 });
 
-//  TODO:Возможно не нужен этот action creator
 export const createFilterLanguage = (lang) => ({
 	type: CREATE_FILTER_LANGUAGE,
 	payload: { lang },
@@ -57,13 +57,13 @@ export const createFilterGenres = (id) => ({
 	payload: { id },
 });
 
-export const resetFilter = () => ({
-	type: RESET_FILTER,
-});
-
 export const filterMoviesByGenre = (filteredArr) => ({
 	type: FILTER_MOVIES,
 	payload: { filteredArr },
+});
+
+export const resetFilter = () => ({
+	type: RESET_FILTER,
 });
 
 export const showInfoMovieById = (id) => ({

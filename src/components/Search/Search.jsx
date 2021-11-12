@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import {
 	resetFilter,
 	searchMovies,
+	searchValueStr,
 } from '../../redux/actions/movieActinos';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 // import { useSelector } from 'react-redux';
@@ -37,7 +38,8 @@ function MySearch() {
 		console.log(data);
 		dispatch(resetFilter());
 		dispatch(findMovie(data.search));
-		dispatch(searchMovies(data.search));
+		// dispatch(searchMovies(data.search));
+		dispatch(searchValueStr(data.search));
 	};
 
 	return (
