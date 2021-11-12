@@ -56,7 +56,7 @@ function MySearch() {
 				fullWidth
 				InputProps={{
 					endAdornment: (
-						<InputAdornment>
+						<InputAdornment position="start">
 							<IconButton onClick={handleSubmit(onSubmit)}>
 								<SearchIcon />
 							</IconButton>
