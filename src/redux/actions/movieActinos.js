@@ -25,14 +25,11 @@ export const fetchMovieReject = (error) => ({
 	payload: { error },
 });
 
-// TODO:Переименовать ф-ю
-// export const searchMovies = (value) => ({
 export const searchValueStr = (value) => ({
 	type: SEARCH_MOVIES,
 	payload: { value },
 });
 
-// TODO:Переименовать ф-ю
 export const searchMovieArr = (searchArr) => ({
 	type: SEARCH_MOVIES_ARR,
 	payload: { searchArr },
@@ -66,9 +63,9 @@ export const resetFilter = () => ({
 	type: RESET_FILTER,
 });
 
-export const showInfoMovieById = (id) => ({
+export const showInfoMovieById = (currentMovie) => ({
 	type: INFO_MOVIE_BY_ID,
-	payload: { id },
+	payload: { currentMovie },
 });
 
 export const showFavoriteMoviesSuccess = (favMovies) => ({
