@@ -15,7 +15,7 @@ function FavMoviesList() {
 		);
 		// console.log('FAV', accountId, sessionId);
 		dispatch(showFavoriteMovies(accountId, sessionId));
-	}, []);
+	}, [dispatch]);
 
 	const { favoriteMovies } = useSelector((state) => state.moviesArr);
 	const { isLoading } = useSelector((state) => state.app);

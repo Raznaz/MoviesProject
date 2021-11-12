@@ -6,7 +6,7 @@ import { Card, CardContent, CardMedia } from '@mui/material';
 import { getImage } from '../../helper/getImage';
 
 export default function FavMovieItem(props) {
-	const { id, title, overview, backdrop_path, poster_path } = props;
+	const { id, title, overview, poster_path } = props;
 
 	const image = getImage(poster_path);
 
@@ -20,9 +20,12 @@ export default function FavMovieItem(props) {
 					alt={title}
 				/>
 				<Box>
-					<CardContent sx={{ flex: '1 0 auto' }}>
+					<CardContent sx={{ flex: '1 0 auto', py: 0 }}>
 						<Typography component="div" variant="h5">
 							{title}
+						</Typography>
+						<Typography component="p" variant="p">
+							ID:{id}
 						</Typography>
 						<Typography
 							variant="subtitle1"
