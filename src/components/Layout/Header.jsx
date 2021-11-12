@@ -33,7 +33,7 @@ function Header() {
 
 	const { favoriteMovies } = useSelector((state) => state.moviesArr);
 	const usersArr = useSelector((state) => state.usersArr);
-	console.log(favoriteMovies);
+	// console.log(favoriteMovies);
 	const history = useHistory();
 	// console.log(usersArr.currentUser.username);
 
