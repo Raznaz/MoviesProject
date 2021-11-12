@@ -22,16 +22,17 @@ import { showFavoriteMovies } from '../../redux/actions/thunk';
 
 function Header() {
 	const dispatch = useDispatch();
-	useEffect(() => {
-		const sessionId = localStorage.getItem('session_id');
-		const { id: accountId } = JSON.parse(
-			localStorage.getItem('user'),
-		);
-		// console.log('FAV', accountId, sessionId);
-		dispatch(showFavoriteMovies(accountId, sessionId));
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	const sessionId = localStorage.getItem('session_id');
 
-	const { favoriteMovies } = useSelector((state) => state.moviesArr);
+	// 	const { id: accountId } = JSON.parse(
+	// 		localStorage.getItem('user'),
+	// 	);
+	// 	// console.log('FAV', accountId, sessionId);
+	// 	dispatch(showFavoriteMovies(accountId, sessionId));
+	// }, [dispatch]);
+
+	// const { favoriteMovies } = useSelector((state) => state.moviesArr);
 	const usersArr = useSelector((state) => state.usersArr);
 	// console.log(favoriteMovies);
 	const history = useHistory();
@@ -106,7 +107,7 @@ function Header() {
 							}}
 							onClick={() => history.push('/favorite')}
 						>
-							<Badge
+							{/* <Badge
 								color="secondary"
 								badgeContent={favoriteMovies.total_results}
 								sx={{
@@ -118,8 +119,8 @@ function Header() {
 									},
 								}}
 							>
-								<Favorite sx={{ width: 56, height: 56 }} />
-							</Badge>
+							</Badge> */}
+							<Favorite sx={{ width: 56, height: 56 }} />
 
 							<Typography>Favorite</Typography>
 						</Box>

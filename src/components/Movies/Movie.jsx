@@ -17,7 +17,10 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getImage } from '../../helper/getImage';
 import { toggleSnackMessage } from '../../redux/actions/appActions';
-import { addToFavoriteMovie } from '../../redux/actions/thunk';
+import {
+	addToFavoriteMovie,
+	getInfoAboutMovieById,
+} from '../../redux/actions/thunk';
 
 import { getMovieStatusById } from '../../api/api';
 import { useFetching } from '../../hooks/useFetching';
@@ -34,12 +37,12 @@ function Movie(props) {
 		const data = await getMovieStatusById(sessionId, id);
 		setStatus(data.favorite);
 	});
-	/*eslint no-warning-comments: "error"*/
 	useEffect(() => {
 		fetchMovie();
 		return () => {
 			setStatus();
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const history = useHistory();

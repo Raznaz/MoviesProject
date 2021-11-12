@@ -95,9 +95,11 @@ export const listGenres = () => {
 export const listLanguages = () => {
 	return async (dispatch) => {
 		try {
+			dispatch(showLoader());
 			const languages = await getListLanguages();
 			// console.log('LIST LANG thunk', languages.data);
 			dispatch(showListLanguages(languages.data));
+			dispatch(hideLoader());
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
 		}
@@ -125,7 +127,6 @@ export const generateSessionAndGetUser = (requestToken) => {
 		try {
 			const { session_id } = await generateSessionID(requestToken);
 			localStorage.setItem('session_id', session_id);
-
 			const user = await getAccount(session_id);
 			dispatch(fetchUserSuccess(user));
 		} catch (error) {

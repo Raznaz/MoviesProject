@@ -1,18 +1,18 @@
 import { Grid, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePageNumber } from '../../redux/actions/movieActinos';
+// import { changePageNumber } from '../../redux/actions/movieActinos';
 import {
 	closeAlertSnackMsg,
 	toggleSnackMessage,
 } from '../../redux/actions/appActions';
-import {
-	fetchMovie,
-	filterMovie,
-	findMovie,
-} from '../../redux/actions/thunk';
+// import {
+// 	fetchMovie,
+// 	filterMovie,
+// 	findMovie,
+// } from '../../redux/actions/thunk';
 import MoviesList from '../Movies/MoviesList';
-import PaginationMovies from '../UI/Pagination/PaginationMovies';
+// import PaginationMovies from '../UI/Pagination/PaginationMovies';
 import Snack from '../UI/Snack/Snack';
 import Aside from './Aside';
 import SnackAlert from '../UI/Snack/SnackAlert';
@@ -21,36 +21,36 @@ function Main() {
 	// const [isOpen, setIsOpen] = useState(false);
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(fetchMovie());
-		dispatch(changePageNumber(1));
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	dispatch(fetchMovie());
+	// 	dispatch(changePageNumber(1));
+	// }, [dispatch]);
 
-	const {
-		searchValue,
-		movies,
-		filter,
-		typeList,
-		pageNumberPagination,
-	} = useSelector((state) => state.moviesArr);
+	// const {
+	// 	searchValue,
+	// 	movies,
+	// 	filter,
+	// 	typeList,
+	// 	pageNumberPagination,
+	// } = useSelector((state) => state.moviesArr);
 
 	const { isOpenSnack, isOpenAlert, errorMsg } = useSelector(
 		(state) => state.app,
 	);
 
-	const handleChange = (event, value) => {
-		// setPage(value);
-		dispatch(changePageNumber(value));
-		if (typeList === 'search') {
-			dispatch(findMovie(searchValue, value));
-		}
-		if (typeList === 'popular') {
-			dispatch(fetchMovie(value));
-		}
-		if (typeList === 'filtered') {
-			dispatch(filterMovie(filter, value));
-		}
-	};
+	// const handleChange = (event, value) => {
+	// 	// setPage(value);
+	// 	dispatch(changePageNumber(value));
+	// 	if (typeList === 'search') {
+	// 		dispatch(findMovie(searchValue, value));
+	// 	}
+	// 	if (typeList === 'popular') {
+	// 		dispatch(fetchMovie(value));
+	// 	}
+	// 	if (typeList === 'filtered') {
+	// 		dispatch(filterMovie(filter, value));
+	// 	}
+	// };
 
 	return (
 		<>

@@ -23,6 +23,7 @@ import {
 	MonetizationOn,
 	PushPin,
 } from '@mui/icons-material';
+import { showInfoMovieById } from '../../redux/actions/movieActinos';
 
 // const useStylesBase = makeStyles({
 // 	root: {
@@ -41,12 +42,15 @@ function MovieById() {
 	// console.log(movieById.production_companies);
 	useEffect(() => {
 		dispatch(getInfoAboutMovieById(movieId));
+		return () => {
+			dispatch(showInfoMovieById({ original_title: 'Loading...' }));
+		};
 	}, [movieId, dispatch]);
 
 	const { isLoading } = useSelector((state) => state.app);
 
-	const imgPoster = getImage(movieById.poster_path, noImage);
-	const bgImage = getImage(movieById.backdrop_path, noImage);
+	const imgPoster = getImage(movieById.poster_path);
+	const bgImage = getImage(movieById.backdrop_path);
 
 	if (isLoading) {
 		return <Loader />;
