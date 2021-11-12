@@ -6,39 +6,32 @@ import { useParams } from 'react-router-dom';
 import { getInfoAboutMovieById } from '../../redux/actions/thunk';
 
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import {
 	CircularProgress,
 	Divider,
 	Grid,
-	ImageList,
-	ImageListItem,
 	Typography,
 } from '@mui/material';
 import Loader from '../../components/UI/Loader/Loader';
 import { getImage } from '../../helper/getImage';
-import { makeStyles } from '@mui/styles';
+// import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import {
 	AttachMoney,
 	MonetizationOn,
-	Money,
 	PushPin,
 } from '@mui/icons-material';
-import { useFetching } from '../../hooks/useFetching';
-import { getMovie } from '../../api/api';
 
-const useStylesBase = makeStyles({
-	root: {
-		backgroundColor: 'red',
-	},
-});
+// const useStylesBase = makeStyles({
+// 	root: {
+// 		backgroundColor: 'red',
+// 	},
+// });
 
 function MovieById() {
-	const classes = useStylesBase();
+	// const classes = useStylesBase();
 
 	const { movieId } = useParams();
 	// console.log(movieId);
