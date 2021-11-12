@@ -11,6 +11,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetching } from '../../hooks/useFetching';
 import { generateSessionAndGetUser } from '../../redux/actions/thunk';
+import { useForm } from 'react-hook-form';
+import { Schema } from '@mui/icons-material';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+	login: yup.string().required(),
+	password: yup.string().required(),
+});
 
 function LoginForm() {
 	const search = useLocation().search;
@@ -22,6 +32,16 @@ function LoginForm() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const usersArr = useSelector((state) => state.usersArr);
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm({
+		mode: 'onBlur',
+		resolver: yupResolver(schema),
+	});
 
 	useEffect(() => {
 		const requestToken = new URLSearchParams(search).get(
@@ -40,30 +60,19 @@ function LoginForm() {
 
 	const handleRegister = (e) => {
 		e.preventDefault();
-		// const request_token = await fetchToken();
-		// console.log(request_token);
 		fetchToken();
-		// dispatch(generateTokenID);
+	};
 
-		// console.log('LOG IN');
-		// const response = await generateToken();
-		// console.log('response', response);
-		// localStorage.setItem('request_token', response.request_token);
-
-		// const sessionResponse = await generateSessionID(
-		// 	response.request_token,
-		// );
-
-		// localStorage.setItem('session_id', sessionResponse.session_id);
-
-		// history.push('/');
+	const onSubmit = (data) => {
+		// console.log(data);
+		fetchToken();
 	};
 
 	return (
 		<>
 			<Box
 				sx={{
-					width: '400px',
+					maxWidth: '400px',
 					margin: '100px auto',
 				}}
 			>
@@ -74,9 +83,25 @@ function LoginForm() {
 				>
 					LOG IN
 				</Typography>
-				<Form>
-					<MyInput label="Login" sx={{ mb: 2 }} />
-					<MyInput label="Password" sx={{ mb: 2 }} />
+				<Form onSubmit={handleSubmit(onSubmit)}>
+					<MyInput
+						{...register('login')}
+						type="text"
+						label="Login"
+						name="login"
+						sx={{ mb: 2 }}
+						error={!!errors.login}
+						helperText={errors?.login?.message}
+					/>
+					<MyInput
+						{...register('password')}
+						type="password"
+						label="Password"
+						name="password"
+						sx={{ mb: 2 }}
+						error={!!errors.password}
+						helperText={errors?.password?.message}
+					/>
 					<Typography
 						component="span"
 						variant="p"
@@ -86,9 +111,9 @@ function LoginForm() {
 						<Link to="/registration">here</Link>
 					</Typography>
 					<MyButton
-						onClick={(e) => {
-							handleRegister(e);
-						}}
+					// onClick={() => {
+					// 	onSubmit();
+					// }}
 					>
 						Log in
 					</MyButton>
