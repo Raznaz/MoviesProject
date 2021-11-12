@@ -1,12 +1,19 @@
 import { Grid } from '@mui/material';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { showStatusMovieById } from '../../redux/actions/thunk';
 import Loader from '../UI/Loader/Loader';
 import Movie from './Movie';
 
 function MoviesList() {
 	const { movies } = useSelector((state) => state.moviesArr);
 	const { isLoading } = useSelector((state) => state.app);
+	const dispatch = useDispatch();
+
+	// useEffect(() => {
+	// 	const sessionId = localStorage.getItem('session_id');
+	// 	dispatch(showStatusMovieById(sessionId, id));
+	// }, [dispatch, id]);
 
 	if (isLoading) {
 		return <Loader />;

@@ -12,7 +12,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { getInfoAboutMovieById } from '../../redux/actions/thunk';
@@ -22,15 +22,42 @@ import { toggleSnackMessage } from '../../redux/actions/appActions';
 import {
 	addToFavoriteMovie,
 	showFavoriteMovies,
+	showStatusMovieById,
 } from '../../redux/actions/thunk';
+
+import { getMovie, getMovieStatusById } from '../../api/api';
+import { useFetching } from '../../hooks/useFetching';
 
 function Movie(props) {
 	const { id, title, poster_path, release_date, vote_average } =
 		props;
 	// const dispatch = useDispatch();
-	const history = useHistory();
 	const dispatch = useDispatch();
-	const { favoriteMovies } = useSelector((state) => state.moviesArr);
+
+	const [status, setStatus] = useState(false);
+
+	const [fetchMovie] = useFetching(async () => {
+		const sessionId = localStorage.getItem('session_id');
+		const data = await getMovieStatusById(sessionId, id);
+		setStatus(data.favorite);
+	});
+	useEffect(() => {
+		fetchMovie();
+	}, []);
+
+	// useEffect(() => {
+	// 	const sessionId = localStorage.getItem('session_id');
+	// 	dispatch(showStatusMovieById(sessionId, id));
+	// 	console.log('STATUS MOVIE :', statusMovie.favorite);
+	// }, [dispatch, id]);
+
+	// const [status, setStatus] = useState(false);
+
+	const history = useHistory();
+	const { favoriteMovies, statusMovie } = useSelector(
+		(state) => state.moviesArr,
+	);
+
 	const image = getImage(poster_path, noImage);
 
 	// const handleShowInfoById = (id) => {
@@ -43,11 +70,18 @@ function Movie(props) {
 		const { id: accountId } = JSON.parse(
 			localStorage.getItem('user'),
 		);
+
+		// setStatus(true);
+
 		console.log('ADD TO FAVORITE');
 		dispatch(addToFavoriteMovie(accountId, sessionId, id));
 		// NOTE: test show amount fav movies
 		// dispatch(showFavoriteMovies(accountId, sessionId));
 		dispatch(toggleSnackMessage());
+		// check status
+		// dispatch(showStatusMovieById(sessionId, id));
+		// fetchMovie();
+		setStatus(true);
 	};
 	return (
 		<Grid item xs={12} md={4}>
@@ -74,19 +108,26 @@ function Movie(props) {
 					<Typography>{release_date}</Typography>
 				</CardContent>
 				<CardActions sx={{ justifyContent: 'space-between' }}>
-					{favoriteMovies.results.find((item) => item.id === id) ? (
+					{/* {favoriteMovies.results &&
+					favoriteMovies.results.find((item) => item.id === id) ? (
 						<Favorite sx={{ color: 'error.dark' }} />
 					) : (
 						<IconButton onClick={() => handleAddToFavorite()}>
-							<FavoriteBorder
-								sx={{
-									'&:hover': {
-										color: 'error.dark',
-									},
-								}}
-							/>
+							{status ? (
+								<Favorite sx={{ color: 'error.dark' }} />
+							) : (
+								<FavoriteBorder />
+							)}
 						</IconButton>
-					)}
+					)} */}
+					<IconButton onClick={() => handleAddToFavorite()}>
+						{status ? (
+							<Favorite sx={{ color: 'error.dark' }} />
+						) : (
+							<FavoriteBorder />
+						)}
+					</IconButton>
+
 					{/* <Link
 						// onClick={() => handleShowInfoById(id)}
 						to={`/movie/${id}`}

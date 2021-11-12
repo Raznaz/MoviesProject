@@ -113,3 +113,17 @@ export const getFavoriteMovies = async (accountId, sessionId) => {
 
 	return data;
 };
+
+// GET MOVIE STATUS
+
+export const getMovieStatusById = async (session_id, movieId) => {
+	const { data } = await movieAPI.get(
+		`/movie/${movieId}/account_states`,
+		{
+			params: {
+				session_id,
+			},
+		},
+	);
+	return data;
+};

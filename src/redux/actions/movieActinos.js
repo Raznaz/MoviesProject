@@ -13,6 +13,7 @@ export const INFO_MOVIE_BY_ID = '[MOVIE] Show info movie by ID';
 export const SHOW_FAVORITE_MOVIES = '[MOVIE] Show favorite movies';
 export const PAGE_NUMBER_PAGINATION =
 	'[MOVIES] Page number pagination';
+export const STATUS_MOVIE = '[MOVIE] Check status movie';
 
 export const fetchMoviesSuccess = (movies) => ({
 	type: FETCH_MOVIES_SUCCESS,
@@ -80,4 +81,7 @@ export const changePageNumber = (pageNumber) => ({
 	payload: { pageNumber },
 });
 
-// amount favorite movies
+export const statusMovieById = (movie) => ({
+	type: STATUS_MOVIE,
+	payload: { movie },
+});

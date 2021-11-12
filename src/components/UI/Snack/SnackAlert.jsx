@@ -6,7 +6,7 @@ import MuiAlert from '@mui/material/Alert';
 
 function SnackAlert(props) {
 	const { isOpen, handleClose, error } = props;
-	console.log('ERROR', error.name);
+	// console.log('ERROR', error.name);
 
 	return (
 		<Snackbar

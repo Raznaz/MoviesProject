@@ -11,6 +11,7 @@ import {
 	INFO_MOVIE_BY_ID,
 	SHOW_FAVORITE_MOVIES,
 	PAGE_NUMBER_PAGINATION,
+	STATUS_MOVIE,
 } from '../actions/movieActinos';
 
 const initialState = {
@@ -28,6 +29,7 @@ const initialState = {
 		genres: [],
 		language: '',
 	},
+	statusMovie: [],
 };
 
 export const movieReducer = (state = initialState, action) => {
@@ -115,6 +117,11 @@ export const movieReducer = (state = initialState, action) => {
 			return {
 				...state,
 				pageNumberPagination: action.payload.pageNumber,
+			};
+		case STATUS_MOVIE:
+			return {
+				...state,
+				statusMovie: action.payload.movie,
 			};
 
 		default:

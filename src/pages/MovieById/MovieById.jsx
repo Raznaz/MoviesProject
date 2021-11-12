@@ -28,6 +28,8 @@ import {
 	Money,
 	PushPin,
 } from '@mui/icons-material';
+import { useFetching } from '../../hooks/useFetching';
+import { getMovie } from '../../api/api';
 
 const useStylesBase = makeStyles({
 	root: {

@@ -9,6 +9,7 @@ import {
 	generateSessionID,
 	getAccount,
 	getFavoriteMovies,
+	getMovieStatusById,
 } from '../../api/api';
 import { markFavoriteMovie } from '../../api/apiUser';
 import {
@@ -25,6 +26,7 @@ import {
 	showInfoMovieById,
 	showListGenres,
 	showListLanguages,
+	statusMovieById,
 } from './movieActinos';
 import { fetchUserSuccess } from './userActions';
 
@@ -160,6 +162,20 @@ export const showFavoriteMovies = (accountId, sessionId) => {
 
 			dispatch(showFavoriteMoviesSuccess(data));
 			dispatch(hideLoader());
+		} catch (error) {
+			dispatch(openAlertSnackMsg(error));
+		}
+	};
+};
+
+// get status movie
+
+export const showStatusMovieById = (sessionId, movieId) => {
+	return async (dispatch) => {
+		try {
+			const data = await getMovieStatusById(sessionId, movieId);
+			console.log('STATUS', data);
+			dispatch(statusMovieById(data));
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
 		}
