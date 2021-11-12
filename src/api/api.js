@@ -14,10 +14,10 @@ const movieAPI = axios.create({
 });
 
 // TEST MOVIE
-export const getMovie = async (movieId) => {
-	const { data } = await movieAPI.get(`/movie/${movieId}`);
-	return data;
-};
+// export const getMovie = async (movieId) => {
+// 	const { data } = await movieAPI.get(`/movie/${movieId}`);
+// 	return data;
+// };
 
 // TOKEN
 export const generateToken = async () => {
