@@ -62,17 +62,17 @@ function Main() {
 					<Aside />
 				</Grid>
 				<Grid item xs={9}>
-					<PaginationMovies
+					{/* <PaginationMovies
 						totalPages={movies.total_pages}
 						currentPage={pageNumberPagination}
 						handleChange={handleChange}
-					/>
+					/> */}
 					<MoviesList />
-					<PaginationMovies
+					{/* <PaginationMovies
 						totalPages={movies.total_pages}
 						currentPage={pageNumberPagination}
 						handleChange={handleChange}
-					/>
+					/> */}
 				</Grid>
 			</Grid>
 			<Snack
