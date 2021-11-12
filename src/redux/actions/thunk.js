@@ -5,7 +5,7 @@ import {
 	getInformationMovieById,
 	getListGenres,
 	getListLanguages,
-	generateToken,
+	// generateToken,
 	generateSessionID,
 	getAccount,
 	getFavoriteMovies,
@@ -18,7 +18,7 @@ import {
 	showLoader,
 } from './appActions';
 import {
-	fetchMovieReject,
+	// fetchMovieReject,
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
 	searchMovieArr,

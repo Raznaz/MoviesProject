@@ -34,6 +34,7 @@ function Movie(props) {
 		const data = await getMovieStatusById(sessionId, id);
 		setStatus(data.favorite);
 	});
+	/*eslint no-warning-comments: "error"*/
 	useEffect(() => {
 		fetchMovie();
 		return () => {

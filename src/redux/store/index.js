@@ -12,7 +12,7 @@ import { getAccount } from '../../api/api';
 // export const history = createBrowserHistory();
 
 const userMiddleware = (store) => (next) => async (action) => {
-	const { currentUser } = store.getState().usersArr;
+	// const { currentUser } = store.getState().usersArr;
 	// console.log(currentUser);
 	if (
 		action.type !== FETCH_USER_SUCCESS &&

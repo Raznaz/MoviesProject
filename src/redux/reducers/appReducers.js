@@ -4,7 +4,7 @@ import {
 	MODAL_TOGGLE,
 	OPEN_ALERT_SNACK,
 	SHOW_LOADER,
-	TOGGLE_ALERT_SNACK,
+	// TOGGLE_ALERT_SNACK,
 	TOGGLE_SNACK,
 } from '../actions/appActions';
 
