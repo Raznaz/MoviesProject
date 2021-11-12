@@ -29,7 +29,7 @@ export default function MainModal() {
 		history.push('/login');
 	};
 	const { isOpenModalWindow } = useSelector((state) => state.app);
-	console.log(isOpenModalWindow);
+	// console.log(isOpenModalWindow);
 
 	return (
 		<div>

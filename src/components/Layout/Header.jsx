@@ -3,14 +3,13 @@ import { Link as LinkRoute } from 'react-router-dom';
 import {
 	AppBar,
 	Avatar,
-	Badge,
 	Container,
 	IconButton,
 	Link,
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
@@ -18,7 +17,6 @@ import { fetchUserSuccess } from '../../redux/actions/userActions';
 import ThemeSwitch from '../UI/Switch/Switch';
 import Box from '@mui/material/Box';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
-import { showFavoriteMovies } from '../../redux/actions/thunk';
 
 function Header() {
 	const dispatch = useDispatch();

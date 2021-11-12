@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFetching } from '../../hooks/useFetching';
 import { generateSessionAndGetUser } from '../../redux/actions/thunk';
 import { useForm } from 'react-hook-form';
-import { Schema } from '@mui/icons-material';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -58,14 +57,15 @@ function LoginForm() {
 		}
 	}, [usersArr.isLoggedIn, history]);
 
-	const handleRegister = (e) => {
-		e.preventDefault();
-		fetchToken();
-	};
+	// const handleRegister = (e) => {
+	// 	e.preventDefault();
+	// 	fetchToken();
+	// };
 
 	const onSubmit = (data) => {
 		// console.log(data);
 		fetchToken();
+		reset();
 	};
 
 	return (

@@ -8,10 +8,10 @@ import Movie from './Movie';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePageNumber } from '../../redux/actions/movieActinos';
-import {
-	closeAlertSnackMsg,
-	toggleSnackMessage,
-} from '../../redux/actions/appActions';
+// import {
+// 	closeAlertSnackMsg,
+// 	toggleSnackMessage,
+// } from '../../redux/actions/appActions';
 import {
 	fetchMovie,
 	filterMovie,
@@ -19,7 +19,6 @@ import {
 } from '../../redux/actions/thunk';
 // import MoviesList from '../Movies/MoviesList';
 import PaginationMovies from '../UI/Pagination/PaginationMovies';
-import { Box } from '@mui/system';
 // import Snack from '../UI/Snack/Snack';
 // import Aside from './Aside';
 // import SnackAlert from '../UI/Snack/SnackAlert';

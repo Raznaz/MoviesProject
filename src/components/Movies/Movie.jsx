@@ -17,10 +17,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getImage } from '../../helper/getImage';
 import { toggleSnackMessage } from '../../redux/actions/appActions';
-import {
-	addToFavoriteMovie,
-	getInfoAboutMovieById,
-} from '../../redux/actions/thunk';
+import { addToFavoriteMovie } from '../../redux/actions/thunk';
 
 import { getMovieStatusById } from '../../api/api';
 import { useFetching } from '../../hooks/useFetching';
