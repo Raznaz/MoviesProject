@@ -73,7 +73,7 @@ export default function MainModal() {
 							}}
 							onClick={() => handleClose()}
 						>
-							SIGN UP
+							LOG IN
 						</Typography>
 					</Typography>
 				</Box>

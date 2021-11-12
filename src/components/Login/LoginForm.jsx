@@ -60,30 +60,41 @@ function LoginForm() {
 	};
 
 	return (
-		<Box sx={{ width: '300px', margin: '100px auto' }}>
-			<Typography component="h2" variant="h3">
-				LOG IN
-			</Typography>
-			<Form>
-				<MyInput label="Login" />
-				<MyInput label="Password" />
+		<>
+			<Box
+				sx={{
+					width: '400px',
+					margin: '100px auto',
+				}}
+			>
 				<Typography
-					component="span"
-					variant="p"
-					sx={{ color: '#ccc' }}
+					component="h4"
+					variant="h4"
+					sx={{ fontWeight: 900, textAlign: 'center' }}
 				>
-					Go to
-					<Link to="/registration">REGISTRATION </Link>
+					LOG IN
 				</Typography>
-				<MyButton
-					onClick={(e) => {
-						handleRegister(e);
-					}}
-				>
-					Log in
-				</MyButton>
-			</Form>
-		</Box>
+				<Form>
+					<MyInput label="Login" sx={{ mb: 2 }} />
+					<MyInput label="Password" sx={{ mb: 2 }} />
+					<Typography
+						component="span"
+						variant="p"
+						sx={{ color: '#ccc' }}
+					>
+						Not yet a registered user? Please first Register:
+						<Link to="/registration">here</Link>
+					</Typography>
+					<MyButton
+						onClick={(e) => {
+							handleRegister(e);
+						}}
+					>
+						Log in
+					</MyButton>
+				</Form>
+			</Box>
+		</>
 	);
 }
 
