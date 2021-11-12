@@ -1,10 +1,9 @@
 import { Grid, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePageNumber } from '../../redux/actions/movieActinos';
 import {
 	closeAlertSnackMsg,
-	toggleAlertSnackMsg,
 	toggleSnackMessage,
 } from '../../redux/actions/appActions';
 import {
@@ -17,7 +16,6 @@ import PaginationMovies from '../UI/Pagination/PaginationMovies';
 import Snack from '../UI/Snack/Snack';
 import Aside from './Aside';
 import SnackAlert from '../UI/Snack/SnackAlert';
-import MainModal from '../UI/Modal/MainModal';
 
 function Main() {
 	// const [isOpen, setIsOpen] = useState(false);

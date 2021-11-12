@@ -13,25 +13,18 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { getInfoAboutMovieById } from '../../redux/actions/thunk';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getImage } from '../../helper/getImage';
 import { toggleSnackMessage } from '../../redux/actions/appActions';
-import {
-	addToFavoriteMovie,
-	showFavoriteMovies,
-	showStatusMovieById,
-} from '../../redux/actions/thunk';
+import { addToFavoriteMovie } from '../../redux/actions/thunk';
 
-import { getMovie, getMovieStatusById } from '../../api/api';
+import { getMovieStatusById } from '../../api/api';
 import { useFetching } from '../../hooks/useFetching';
 
 function Movie(props) {
 	const { id, title, poster_path, release_date, vote_average } =
 		props;
-	// const dispatch = useDispatch();
 	const dispatch = useDispatch();
 
 	const [status, setStatus] = useState(false);
@@ -45,33 +38,18 @@ function Movie(props) {
 		fetchMovie();
 	}, []);
 
-	// useEffect(() => {
-	// 	const sessionId = localStorage.getItem('session_id');
-	// 	dispatch(showStatusMovieById(sessionId, id));
-	// 	console.log('STATUS MOVIE :', statusMovie.favorite);
-	// }, [dispatch, id]);
-
-	// const [status, setStatus] = useState(false);
-
 	const history = useHistory();
-	const { favoriteMovies, statusMovie } = useSelector(
-		(state) => state.moviesArr,
-	);
+	// const { favoriteMovies, statusMovie } = useSelector(
+	// 	(state) => state.moviesArr,
+	// );
 
 	const image = getImage(poster_path, noImage);
-
-	// const handleShowInfoById = (id) => {
-	// 	console.log('MOVIE', id);
-	// 	dispatch(getInfoAboutMovieById(id));
-	// };
 
 	const handleAddToFavorite = () => {
 		const sessionId = localStorage.getItem('session_id');
 		const { id: accountId } = JSON.parse(
 			localStorage.getItem('user'),
 		);
-
-		// setStatus(true);
 
 		console.log('ADD TO FAVORITE');
 		dispatch(addToFavoriteMovie(accountId, sessionId, id));
