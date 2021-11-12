@@ -7,7 +7,7 @@ import {
 	fetchUserSuccess,
 	FETCH_USER_SUCCESS,
 } from '../actions/userActions';
-import { getAccount } from '../../api/api';
+import { getAccount } from '../../api/apiUser';
 
 // export const history = createBrowserHistory();
 

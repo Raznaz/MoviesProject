@@ -19,28 +19,6 @@ const movieAPI = axios.create({
 // 	return data;
 // };
 
-// TOKEN
-export const generateToken = async () => {
-	const {
-		data: { request_token },
-	} = await movieAPI.get(`/authentication/token/new`);
-	// localStorage.setItem('request_token', request_token); //Проверить
-	return request_token;
-};
-
-// SESSION ID
-
-export const generateSessionID = async (requestToken) => {
-	const { data: session_id } = await movieAPI.post(
-		'/authentication/session/new',
-		{
-			request_token: requestToken,
-		},
-	);
-	localStorage.setItem('session_id', session_id);
-	return session_id;
-};
-
 // POPULAR MOVIES
 export function fetchMovies(page) {
 	return movieAPI.get('/movie/popular', {
@@ -86,17 +64,6 @@ export function filterMovies(filter, page) {
 export function getInformationMovieById(movieId) {
 	return movieAPI.get(`/movie/${movieId}`);
 }
-
-// GET ACCOUNT
-export const getAccount = async (sessionId) => {
-	const { data } = await movieAPI.get('/account', {
-		params: {
-			session_id: sessionId,
-		},
-	});
-	localStorage.setItem('user', JSON.stringify(data));
-	return data;
-};
 
 // SHOW FAVORITE MOVIES
 

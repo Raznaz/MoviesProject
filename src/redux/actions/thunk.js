@@ -6,12 +6,14 @@ import {
 	getListGenres,
 	getListLanguages,
 	// generateToken,
-	generateSessionID,
-	getAccount,
 	getFavoriteMovies,
 	getMovieStatusById,
 } from '../../api/api';
-import { markFavoriteMovie } from '../../api/apiUser';
+import {
+	getAccount,
+	markFavoriteMovie,
+	generateSessionID,
+} from '../../api/apiUser';
 import {
 	hideLoader,
 	openAlertSnackMsg,

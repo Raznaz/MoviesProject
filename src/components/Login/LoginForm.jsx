@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import MyButton from '../UI/Button/MyButton';
 import Form from '../UI/Form/Form';
 import { MyInput } from '../UI/Input/MyInput';
-import { generateToken } from '../../api/api';
+import { generateToken } from '../../api/apiUser';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
