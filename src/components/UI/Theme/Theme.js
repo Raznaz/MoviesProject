@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-	createTheme,
-	ThemeProvider,
-	styled,
-} from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import { darkTheme, lightTheme } from '../../../theme/themes';
 import { CssBaseline } from '@mui/material';

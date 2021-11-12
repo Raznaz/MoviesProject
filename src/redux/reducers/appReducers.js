@@ -12,7 +12,7 @@ const initialState = {
 	isLoading: false,
 	isOpenSnack: false,
 	isOpenAlert: false,
-	isOpenModalWindow: true,
+	isOpenModalWindow: false,
 	errorMsg: '',
 };
 

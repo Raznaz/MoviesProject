@@ -36,6 +36,9 @@ function Movie(props) {
 	});
 	useEffect(() => {
 		fetchMovie();
+		return () => {
+			setStatus();
+		};
 	}, []);
 
 	const history = useHistory();

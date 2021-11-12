@@ -1,8 +1,5 @@
 import React from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import { Alert, Snackbar } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
 
 function SnackAlert(props) {
 	const { isOpen, handleClose, error } = props;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModalWindow } from '../../../redux/actions/appActions';
+import { useHistory } from 'react-router';
 
 const style = {
 	position: 'absolute',
@@ -21,8 +21,13 @@ const style = {
 export default function MainModal() {
 	// const [open, setOpen] = React.useState(false);
 	// const handleOpen = () => setOpen(true);
+	const history = useHistory();
 	const dispatch = useDispatch();
-	const handleClose = () => dispatch(toggleModalWindow());
+
+	const handleClose = () => {
+		dispatch(toggleModalWindow());
+		history.push('/login');
+	};
 	const { isOpenModalWindow } = useSelector((state) => state.app);
 	console.log(isOpenModalWindow);
 
@@ -48,6 +53,28 @@ export default function MainModal() {
 						sx={{ mt: 2, color: 'success.main' }}
 					>
 						The registration was successfully
+					</Typography>
+					<Typography
+						id="modal-modal-description"
+						sx={{ mt: 2, color: 'success.main' }}
+						onClick={() => handleClose()}
+					>
+						Move to{' '}
+						<Typography
+							variant="p"
+							component="span"
+							id="modal-modal-description"
+							sx={{
+								mt: 2,
+								color: 'info.main',
+								'&:hover': {
+									cursor: 'pointer',
+								},
+							}}
+							onClick={() => handleClose()}
+						>
+							SIGN UP
+						</Typography>
 					</Typography>
 				</Box>
 			</Modal>

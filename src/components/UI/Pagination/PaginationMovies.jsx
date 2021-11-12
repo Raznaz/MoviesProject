@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Stack, Pagination } from '@mui/material';
-import { fetchMovie } from '../../../redux/actions/thunk';
-import { useDispatch } from 'react-redux';
 
 function PaginationMovies({ totalPages, currentPage, handleChange }) {
 	// console.log(totalPages, currentPage, handleChange);

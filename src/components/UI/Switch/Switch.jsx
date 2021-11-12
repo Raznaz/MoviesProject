@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
 import { useSwitch } from '@mui/core/SwitchUnstyled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toggleTheme } from '../../../redux/actions/themeActions';
 
 const SwitchRoot = styled('span')`
@@ -103,6 +103,7 @@ function MUISwitch(props) {
 }
 
 export default function ThemeSwitch() {
-	const { isLightMode } = useSelector((state) => state.theme);
+	// TODO: ТЕСТИРОВАТЬ РАБОТАЕТ ИЛИ НЕТ?
+	// const { isLightMode } = useSelector((state) => state.theme);
 	return <MUISwitch isLightMode />;
 }

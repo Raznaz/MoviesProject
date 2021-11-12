@@ -1,19 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
 	resetFilter,
 	searchMovies,
 } from '../../redux/actions/movieActinos';
-import { MyInput } from '../UI/Input/MyInput';
-import {
-	Button,
-	IconButton,
-	InputAdornment,
-	TextField,
-} from '@mui/material';
-import { useSelector } from 'react-redux';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
+// import { useSelector } from 'react-redux';
 import { findMovie } from '../../redux/actions/thunk';
-import { Box } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
 import { useForm } from 'react-hook-form';
 import Form from '../UI/Form/Form';
@@ -25,19 +18,17 @@ const schema = yup.object().shape({
 });
 
 function MySearch() {
-	// const valInpRef = useRef();
 	const dispatch = useDispatch();
-	const { searchValue } = useSelector((state) => state.moviesArr);
+	// const { searchValue } = useSelector((state) => state.moviesArr);
 
-	useEffect(() => {
-		// searchValue && dispatch(findMovie(searchValue));
-	}, [dispatch, searchValue]);
+	// useEffect(() => {
+	// 	// searchValue && dispatch(findMovie(searchValue));
+	// }, [dispatch, searchValue]);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-		reset,
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
