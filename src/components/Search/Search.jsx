@@ -46,6 +46,7 @@ function MySearch() {
 		console.log(data);
 		dispatch(resetFilter());
 		dispatch(findMovie(data.search));
+		dispatch(searchMovies(data.search));
 	};
 
 	return (
