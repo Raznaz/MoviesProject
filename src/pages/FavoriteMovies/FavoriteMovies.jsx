@@ -5,8 +5,12 @@ import FavMoviesList from '../../components/FavMovies/FavMoviesList';
 function FavoriteMovies() {
 	return (
 		<Container maxWidth="lg">
-			<Typography component="h1" variant="h6" sx={{ mb: 2 }}>
-				Favorites movies
+			<Typography
+				component="h1"
+				variant="h2"
+				sx={{ mb: 2, fontWeight: 700, textAlign: 'center' }}
+			>
+				FAVORITE MOVIES
 			</Typography>
 			<FavMoviesList />
 		</Container>

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { showFavoriteMovies } from '../../redux/actions/thunk';
 import Loader from '../UI/Loader/Loader';
 import FavMovieItem from './FavMovieItem';
+import { Typography } from '@mui/material';
 
 function FavMoviesList() {
 	const dispatch = useDispatch();
@@ -19,9 +20,21 @@ function FavMoviesList() {
 
 	const { favoriteMovies } = useSelector((state) => state.moviesArr);
 	const { isLoading } = useSelector((state) => state.app);
-
 	if (isLoading) {
 		return <Loader />;
+	}
+
+	if (!favoriteMovies.length) {
+		return (
+			<Typography
+				component="p"
+				variant="h6"
+				color="error.dark"
+				sx={{ fontWeight: '700', textAlign: 'center', mt: '3rem' }}
+			>
+				You don't have any favorite movies :(
+			</Typography>
+		);
 	}
 
 	return (

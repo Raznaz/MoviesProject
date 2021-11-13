@@ -35,7 +35,6 @@ const initialState = {
 export const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case INFO_MOVIE_BY_ID:
-			console.log('Movie ID reducer', action.payload.searchArr);
 			return { ...state, movieById: action.payload.currentMovie };
 		case FETCH_MOVIES_SUCCESS:
 			// console.log('movie reducer', action.payload.movies);
