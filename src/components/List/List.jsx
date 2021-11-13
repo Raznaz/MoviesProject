@@ -32,7 +32,7 @@ import {
 } from '../../redux/actions/movieActinos';
 
 export default function NestedList() {
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 	// const [filter, setFilter] = useState({
 	// 	genres: [],
 	// 	language: '',

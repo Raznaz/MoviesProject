@@ -7,6 +7,7 @@ import {
 	CardContent,
 	CardMedia,
 	CircularProgress,
+	Divider,
 	Grid,
 	IconButton,
 	Typography,

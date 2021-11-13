@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import Form from '../UI/Form/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { schemaSearchForm } from '../../helper/validationSchema';
+import { schemaSearchForm } from '../../helper';
 
 function MySearch() {
 	const dispatch = useDispatch();

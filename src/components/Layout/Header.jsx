@@ -13,10 +13,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { fetchUserSuccess } from '../../redux/actions/userActions';
+import {
+	fetchUserSuccess,
+	userLogOut,
+} from '../../redux/actions/userActions';
 import ThemeSwitch from '../UI/Switch/Switch';
 import Box from '@mui/material/Box';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import { fetchMovie } from '../../redux/actions/thunk';
 
 function Header() {
 	const dispatch = useDispatch();
@@ -38,9 +42,9 @@ function Header() {
 
 	// TODO: Удалить если не реализовал LOG OUT
 	const handleLogOut = () => {
-		console.log('LOGOUT');
+		localStorage.removeItem('session_id');
+		dispatch(userLogOut());
 		history.push('/');
-		// localStorage.removeItem('session_id');
 	};
 
 	if (!usersArr.isLoggedIn && localStorage.getItem('session_id')) {

@@ -1,4 +1,7 @@
-import { FETCH_USER_SUCCESS } from '../actions/userActions';
+import {
+	FETCH_USER_SUCCESS,
+	USER_LOGOUT,
+} from '../actions/userActions';
 
 const initialState = {
 	isLoggedIn: false,
@@ -13,6 +16,8 @@ export const userReducer = (state = initialState, action) => {
 				currentUser: action.payload.user,
 				isLoggedIn: true,
 			};
+		case USER_LOGOUT:
+			return { ...state, isLoggedIn: false };
 
 		default:
 			return state;
