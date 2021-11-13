@@ -49,8 +49,8 @@ function MovieById() {
 
 	const { isLoading } = useSelector((state) => state.app);
 
-	const imgPoster = getImage(movieById.poster_path);
-	const bgImage = getImage(movieById.backdrop_path);
+	const imgPoster = getImage(movieById.poster_path, noImage);
+	const bgImage = getImage(movieById.backdrop_path, noImage);
 
 	if (isLoading) {
 		return <Loader />;

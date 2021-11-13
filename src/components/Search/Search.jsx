@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
 	resetFilter,
-	searchMovies,
+	// searchMovies,
 	searchValueStr,
 } from '../../redux/actions/movieActinos';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
