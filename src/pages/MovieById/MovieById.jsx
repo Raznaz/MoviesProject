@@ -10,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {
 	CircularProgress,
+	Container,
 	Divider,
 	Grid,
 	Typography,
@@ -57,7 +58,7 @@ function MovieById() {
 	}
 
 	return (
-		<>
+		<Container maxWidth="lg">
 			<Typography
 				component="h2"
 				variant="h2"
@@ -213,7 +214,7 @@ function MovieById() {
 					</ImageList> */}
 				</Grid>
 			</Grid>
-		</>
+		</Container>
 	);
 }
 

@@ -1,10 +1,18 @@
+import { Container, Typography } from '@mui/material';
 import React from 'react';
 
 function Error() {
 	return (
-		<div>
-			<h1 style={{ color: 'red' }}>ERROR 404</h1>
-		</div>
+		<Container maxWidth="lg">
+			<Typography
+				component="h1"
+				variant="h1"
+				color="error.dark"
+				sx={{ fontWeight: '700', textAlign: 'center', mt: '2rem' }}
+			>
+				ERROR 404
+			</Typography>
+		</Container>
 	);
 }
 

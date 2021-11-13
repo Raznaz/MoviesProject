@@ -10,7 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 
-import { Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { Box } from '@mui/system';
 import { getImage } from '../../helper/getImage';
@@ -38,7 +38,7 @@ function User() {
 	// };
 
 	return (
-		<>
+		<Container maxWidth="lg">
 			<Box
 				sx={{
 					backgroundImage: `URL(${image})`,
@@ -95,7 +95,7 @@ function User() {
 					dolore veniam. Odit saepe quam autem?
 				</Grid>
 			</Grid>
-		</>
+		</Container>
 	);
 }
 
