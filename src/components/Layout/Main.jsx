@@ -55,8 +55,12 @@ function Main() {
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Typography component="h1" variant="h2">
-					Welcome to MAIN COMPONENT
+				<Typography
+					component="h1"
+					variant="h4"
+					sx={{ textAlign: 'center', my: 2 }}
+				>
+					Popular movies.
 				</Typography>
 				<Grid container spacing={2} sx={{ mb: 2 }}>
 					<Grid item xs={3}>

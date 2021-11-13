@@ -6,12 +6,12 @@ function Login() {
 	return (
 		<Container maxWidth="lg">
 			<Typography
-				component="h1"
-				variant="h1"
+				component="h2"
+				variant="h5"
 				color="error.dark"
 				sx={{ fontWeight: '700', textAlign: 'center', mt: '2rem' }}
 			>
-				Welcome to Universal Movies Page
+				Please, enter your login and password.
 			</Typography>
 			<LoginForm />
 		</Container>

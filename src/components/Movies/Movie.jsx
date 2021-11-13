@@ -102,13 +102,13 @@ function Movie(props) {
 							)}
 						</IconButton>
 					)} */}
-					<IconButton onClick={() => handleAddToFavorite()}>
-						{status ? (
-							<Favorite sx={{ color: 'error.dark' }} />
-						) : (
+					{status ? (
+						<Favorite sx={{ color: 'error.dark' }} />
+					) : (
+						<IconButton onClick={() => handleAddToFavorite()}>
 							<FavoriteBorder />
-						)}
-					</IconButton>
+						</IconButton>
+					)}
 
 					{/* <Link
 						// onClick={() => handleShowInfoById(id)}
