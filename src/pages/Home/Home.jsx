@@ -20,6 +20,7 @@ function Home() {
 					fontWeight: 900,
 					color: 'background.default',
 					textAlign: 'center',
+					fontSize: { xs: '45px', sm: '90px' },
 				}}
 			>
 				MOVIE UNIVERSE

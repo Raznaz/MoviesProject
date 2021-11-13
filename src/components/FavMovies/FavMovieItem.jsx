@@ -12,10 +12,16 @@ export default function FavMovieItem(props) {
 
 	return (
 		<ListItem alignItems="flex-start">
-			<Card sx={{ display: 'flex', width: '100%' }}>
+			<Card
+				sx={{
+					display: 'flex',
+					width: '100%',
+					flexDirection: { xs: 'column', sm: 'row' },
+				}}
+			>
 				<CardMedia
 					component="img"
-					sx={{ width: 151 }}
+					sx={{ width: 151, alignSelf: { xs: 'center' } }}
 					image={image}
 					alt={title}
 				/>
