@@ -53,7 +53,6 @@ function Header() {
 			id,
 			avatar: { tmdb },
 		} = JSON.parse(localStorage.getItem('user'));
-		// console.log(tmdb);
 
 		return (
 			<AppBar position="static" sx={{ mb: 5 }}>
