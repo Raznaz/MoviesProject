@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { changePageNumber } from '../../redux/actions/movieActinos';
@@ -54,36 +54,38 @@ function Main() {
 
 	return (
 		<>
-			<Typography component="h1" variant="h2">
-				Welcome to MAIN COMPONENT
-			</Typography>
-			<Grid container spacing={2} sx={{ mb: 2 }}>
-				<Grid item xs={3}>
-					<Aside />
-				</Grid>
-				<Grid item xs={9}>
-					{/* <PaginationMovies
+			<Container maxWidth="lg">
+				<Typography component="h1" variant="h2">
+					Welcome to MAIN COMPONENT
+				</Typography>
+				<Grid container spacing={2} sx={{ mb: 2 }}>
+					<Grid item xs={3}>
+						<Aside />
+					</Grid>
+					<Grid item xs={9}>
+						{/* <PaginationMovies
 						totalPages={movies.total_pages}
 						currentPage={pageNumberPagination}
 						handleChange={handleChange}
 					/> */}
-					<MoviesList />
-					{/* <PaginationMovies
+						<MoviesList />
+						{/* <PaginationMovies
 						totalPages={movies.total_pages}
 						currentPage={pageNumberPagination}
 						handleChange={handleChange}
 					/> */}
+					</Grid>
 				</Grid>
-			</Grid>
-			<Snack
-				isOpen={isOpenSnack}
-				handleClose={() => dispatch(toggleSnackMessage())}
-			/>
-			<SnackAlert
-				isOpen={isOpenAlert}
-				handleClose={() => dispatch(closeAlertSnackMsg())}
-				error={errorMsg}
-			/>
+				<Snack
+					isOpen={isOpenSnack}
+					handleClose={() => dispatch(toggleSnackMessage())}
+				/>
+				<SnackAlert
+					isOpen={isOpenAlert}
+					handleClose={() => dispatch(closeAlertSnackMsg())}
+					error={errorMsg}
+				/>
+			</Container>
 		</>
 	);
 }

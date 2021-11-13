@@ -55,7 +55,7 @@ function Header() {
 		} = JSON.parse(localStorage.getItem('user'));
 
 		return (
-			<AppBar position="static" sx={{ mb: 5 }}>
+			<AppBar position="static" sx={{ mb: 0 }}>
 				<Container maxWidth="lg" disableGutters>
 					<Toolbar>
 						<Typography
@@ -162,7 +162,7 @@ function Header() {
 
 	// NOT LOGIN
 	return (
-		<AppBar position="static" sx={{ mb: 5 }}>
+		<AppBar position="static" sx={{ mb: 0 }}>
 			<Container maxWidth="lg" disableGutters>
 				<Toolbar>
 					<Link
