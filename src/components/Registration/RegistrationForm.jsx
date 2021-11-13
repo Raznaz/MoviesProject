@@ -16,44 +16,45 @@ import * as yup from 'yup';
 import MainModal from '../UI/Modal/MainModal';
 import { toggleModalWindow } from '../../redux/actions/appActions';
 import { useDispatch } from 'react-redux';
+import { schemaRegistrationForm } from '../../helper/validationSchema';
 
 // TODO:Вынести schema  в отдельный файл
-const schema = yup.object().shape({
-	firstName: yup
-		.string()
-		.matches(/^([^0-9]*)$/, 'First name should not contain numbers.')
-		.required('First name is required field'),
-	lastName: yup
-		.string()
-		.matches(/^([^0-9]*)$/, 'Last name should not contain numbers.')
-		.required('Last name is required field'),
-	email: yup
-		.string()
-		.max(255)
-		.email('Must be a valid email')
-		.required('Email is required.'),
-	birthDay: yup
-		// .string('correct date DD:MM:YEAR')
-		.date()
-		.max(new Date())
-		.required('Birth of day is required field. '),
-	userName: yup
-		.string()
-		.matches(
-			/^([a-z, 0-9, _ ]*)$/,
-			'User name should contains just small latter, digits, . or _',
-		)
-		.required('Should be required'),
-	password: yup
-		.string()
-		.required('Password is required field')
-		.min(3, 'Should be more then 3 characters')
-		.max(20),
-	confirmPassword: yup
-		.string()
-		.required('Password is required field')
-		.oneOf([yup.ref('password'), null], 'Password must match.'),
-});
+// const schema = yup.object().shape({
+// 	firstName: yup
+// 		.string()
+// 		.matches(/^([^0-9]*)$/, 'First name should not contain numbers.')
+// 		.required('First name is required field'),
+// 	lastName: yup
+// 		.string()
+// 		.matches(/^([^0-9]*)$/, 'Last name should not contain numbers.')
+// 		.required('Last name is required field'),
+// 	email: yup
+// 		.string()
+// 		.max(255)
+// 		.email('Must be a valid email')
+// 		.required('Email is required.'),
+// 	birthDay: yup
+// 		// .string('correct date DD:MM:YEAR')
+// 		.date()
+// 		.max(new Date())
+// 		.required('Birth of day is required field. '),
+// 	userName: yup
+// 		.string()
+// 		.matches(
+// 			/^([a-z, 0-9, _ ]*)$/,
+// 			'User name should contains just small latter, digits, . or _',
+// 		)
+// 		.required('Should be required'),
+// 	password: yup
+// 		.string()
+// 		.required('Password is required field')
+// 		.min(3, 'Should be more then 3 characters')
+// 		.max(20),
+// 	confirmPassword: yup
+// 		.string()
+// 		.required('Password is required field')
+// 		.oneOf([yup.ref('password'), null], 'Password must match.'),
+// });
 
 function RegistrationForm() {
 	const {
@@ -64,7 +65,7 @@ function RegistrationForm() {
 		reset,
 	} = useForm({
 		mode: 'onBlur',
-		resolver: yupResolver(schema),
+		resolver: yupResolver(schemaRegistrationForm),
 		defaultValues: {
 			gender: 'man',
 			birthDay: '2000-01-01',

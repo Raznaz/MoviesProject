@@ -13,10 +13,7 @@ import { useForm } from 'react-hook-form';
 import Form from '../UI/Form/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
-const schema = yup.object().shape({
-	search: yup.string().min(3, 'Should be most then 3 letter'),
-});
+import { schemaSearchForm } from '../../helper/validationSchema';
 
 function MySearch() {
 	const dispatch = useDispatch();
@@ -31,7 +28,7 @@ function MySearch() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(schema),
+		resolver: yupResolver(schemaSearchForm),
 	});
 
 	const onSubmit = (data) => {

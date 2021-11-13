@@ -15,11 +15,7 @@ import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
-const schema = yup.object().shape({
-	login: yup.string().required(),
-	password: yup.string().required(),
-});
+import { schemaLogIn } from '../../helper/validationSchema';
 
 function LoginForm() {
 	const search = useLocation().search;
@@ -40,7 +36,7 @@ function LoginForm() {
 		reset,
 	} = useForm({
 		mode: 'onBlur',
-		resolver: yupResolver(schema),
+		resolver: yupResolver(schemaLogIn),
 	});
 
 	useEffect(() => {
