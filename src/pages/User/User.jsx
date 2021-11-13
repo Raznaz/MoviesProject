@@ -52,7 +52,7 @@ function User() {
 				<Typography variant="p" color="#fff">
 					Name:
 				</Typography>
-				<Typography variant="h3" color="#fff">
+				<Typography variant="h4" component="h4" color="#fff">
 					{currentUser.name}
 				</Typography>
 			</Box>
