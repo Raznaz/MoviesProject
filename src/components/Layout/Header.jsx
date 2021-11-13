@@ -43,7 +43,6 @@ function Header() {
 	};
 
 	if (!usersArr.isLoggedIn && localStorage.getItem('session_id')) {
-		console.log('FALSE');
 		const user = JSON.parse(localStorage.getItem('user'));
 		dispatch(fetchUserSuccess(user));
 	}
