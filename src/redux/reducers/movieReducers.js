@@ -18,7 +18,7 @@ const initialState = {
 	movies: [],
 	movieById: {},
 	searchMovies: [],
-	favoriteMovies: [],
+	favoriteMovies: {},
 	// amountFavMovies: 0,
 	typeList: '',
 	pageNumberPagination: 1,

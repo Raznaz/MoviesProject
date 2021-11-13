@@ -20,11 +20,12 @@ function FavMoviesList() {
 
 	const { favoriteMovies } = useSelector((state) => state.moviesArr);
 	const { isLoading } = useSelector((state) => state.app);
+	console.log(favoriteMovies.results);
 	if (isLoading) {
 		return <Loader />;
 	}
 
-	if (!favoriteMovies.length) {
+	if (!favoriteMovies.results || !favoriteMovies.results.length) {
 		return (
 			<Typography
 				component="p"
