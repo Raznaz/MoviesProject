@@ -9,7 +9,6 @@ import User from '../pages/User/User';
 import MovieById from '../pages/MovieById/MovieById';
 import Registration from '../pages/Registration/Registration';
 import PrivateRoutes from './PrivateRoutes';
-import { Container } from '@mui/material';
 import { Box } from '@mui/system';
 
 function Routes() {

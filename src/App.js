@@ -1,4 +1,3 @@
-import { Container } from '@mui/material';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import Footer from './components/Layout/Footer';
@@ -13,12 +12,7 @@ function App() {
 			<Theme>
 				<BrowserRouter>
 					<Header />
-					{/* <Container
-						maxWidth="lg"
-						sx={{ minHeight: 'calc(100vh - 442px)' }}
-					> */}
 					<Routes />
-					{/* </Container> */}
 					<Footer />
 				</BrowserRouter>
 			</Theme>

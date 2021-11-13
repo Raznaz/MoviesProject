@@ -20,7 +20,6 @@ import {
 import ThemeSwitch from '../UI/Switch/Switch';
 import Box from '@mui/material/Box';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
-import { fetchMovie } from '../../redux/actions/thunk';
 
 function Header() {
 	const dispatch = useDispatch();

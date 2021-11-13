@@ -14,7 +14,6 @@ import { generateSessionAndGetUser } from '../../redux/actions/thunk';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { schemaLogIn } from '../../helper/validationSchema';
 
 function LoginForm() {

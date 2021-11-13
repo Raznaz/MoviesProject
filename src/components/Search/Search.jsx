@@ -12,7 +12,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useForm } from 'react-hook-form';
 import Form from '../UI/Form/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { schemaSearchForm } from '../../helper';
 
 function MySearch() {

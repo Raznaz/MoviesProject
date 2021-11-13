@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import MyButton from '../UI/Button/MyButton';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import MainModal from '../UI/Modal/MainModal';
 import { toggleModalWindow } from '../../redux/actions/appActions';
 import { useDispatch } from 'react-redux';
