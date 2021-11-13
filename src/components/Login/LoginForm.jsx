@@ -25,7 +25,8 @@ function LoginForm() {
 	const search = useLocation().search;
 	const [fetchToken] = useFetching(async () => {
 		const token = await generateToken();
-		const redirectURL = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/login`;
+		// const redirectURL = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/login`;
+		const redirectURL = `https://www.themoviedb.org/authenticate/${token}?redirect_to=${process.env.REACT_APP_REDIRECTION_LINK}`;
 		window.open(redirectURL, '_blank', 'noopener noreferrer');
 	});
 	const history = useHistory();
