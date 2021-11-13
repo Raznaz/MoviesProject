@@ -44,7 +44,7 @@ function MovieById() {
 	useEffect(() => {
 		dispatch(getInfoAboutMovieById(movieId));
 		return () => {
-			dispatch(showInfoMovieById({ original_title: 'Loading...' }));
+			dispatch(showInfoMovieById({}));
 		};
 	}, [movieId, dispatch]);
 
@@ -55,6 +55,19 @@ function MovieById() {
 
 	if (isLoading) {
 		return <Loader />;
+	}
+
+	if (!movieById.title) {
+		return (
+			<Typography
+				component="p"
+				variant="h6"
+				color="error.dark"
+				sx={{ fontWeight: '700', textAlign: 'center', mt: '3rem' }}
+			>
+				Loading ...
+			</Typography>
+		);
 	}
 
 	return (

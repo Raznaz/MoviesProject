@@ -33,7 +33,7 @@ function FavMoviesList() {
 				color="error.dark"
 				sx={{ fontWeight: '700', textAlign: 'center', mt: '3rem' }}
 			>
-				You don't have any favorite movies :(
+				You don't have any favorite movies.
 			</Typography>
 		);
 	}
