@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { rootReducer } from '../reducers';
 import {
@@ -27,13 +27,13 @@ const userMiddleware = (store) => (next) => async (action) => {
 	next(action);
 };
 
-const middlewares = [thunk, logger, userMiddleware];
+const middlewares = [thunk, userMiddleware];
 
-const isDevelopmentMode = process.env.NODE_ENV === 'development';
+// const isDevelopmentMode = process.env.NODE_ENV === 'development';
 
-if (isDevelopmentMode) {
-	// middlewares.push(logger, routerMiddlware(history));
-}
+// if (isDevelopmentMode) {
+// 	// middlewares.push(logger, routerMiddlware(history));
+// }
 
 export const store = createStore(
 	rootReducer,

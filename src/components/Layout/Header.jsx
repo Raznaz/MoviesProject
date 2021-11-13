@@ -36,6 +36,7 @@ function Header() {
 	const history = useHistory();
 	// console.log(usersArr.currentUser.username);
 
+	// TODO: Удалить если не реализовал LOG OUT
 	const handleLogOut = () => {
 		console.log('LOGOUT');
 		history.push('/');
