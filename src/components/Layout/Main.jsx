@@ -62,11 +62,20 @@ function Main() {
 				>
 					Popular movies.
 				</Typography>
-				<Grid container spacing={2} sx={{ mb: 2 }}>
-					<Grid item xs={3}>
+				<Grid
+					container
+					spacing={2}
+					sx={{
+						mb: 2,
+						display: 'flex',
+						flexDirection: { sm: 'column', md: 'row' },
+					}}
+				>
+					{/* <Grid item xs={3} sm={12}> */}
+					<Grid item xs={12} md={3}>
 						<Aside />
 					</Grid>
-					<Grid item xs={9}>
+					<Grid item xs={12} md={9}>
 						{/* <PaginationMovies
 						totalPages={movies.total_pages}
 						currentPage={pageNumberPagination}

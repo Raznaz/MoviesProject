@@ -71,7 +71,10 @@ function Header() {
 								component={LinkRoute}
 								color="inherit"
 								to="/"
-								sx={{ textDecoration: 'none' }}
+								sx={{
+									textDecoration: 'none',
+									display: { xs: 'none', sm: 'inline-block' },
+								}}
 							>
 								Movie Universe
 							</Link>
@@ -83,7 +86,7 @@ function Header() {
 								display: 'flex',
 								flexDirection: 'column',
 								alignItems: 'center',
-								mr: 2,
+								mr: { xs: 0, sm: 2 },
 								'&:hover': {
 									color: 'error.light',
 									cursor: 'pointer',
@@ -92,7 +95,6 @@ function Header() {
 							onClick={() => history.push('/movies')}
 						>
 							<LocalMoviesIcon sx={{ width: 56, height: 56 }} />
-
 							<Typography>Movies</Typography>
 						</Box>
 						{/* FAVORITE */}

@@ -97,7 +97,7 @@ export default function NestedList() {
 		<List
 			sx={{
 				width: '100%',
-				maxWidth: 360,
+				maxWidth: '100%',
 				bgcolor: 'background.paper',
 				mt: 2,
 			}}
