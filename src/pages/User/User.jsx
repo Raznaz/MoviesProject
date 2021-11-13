@@ -56,8 +56,14 @@ function User() {
 					{currentUser.name}
 				</Typography>
 			</Box>
-			<Grid container>
-				<Grid item xs={4}>
+			<Grid
+				container
+				sx={{
+					display: 'flex',
+					flexDirection: { xs: 'column', sm: 'row' },
+				}}
+			>
+				<Grid item xs={12} sm={4}>
 					<Card sx={{ maxWidth: 345 }}>
 						<CardHeader
 							avatar={
@@ -88,7 +94,7 @@ function User() {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item xs={8}>
+				<Grid item xs={12} sm={8}>
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 					Iusto in id ducimus delectus placeat cum atque totam
 					suscipit! Mollitia, quisquam. Pariatur ab excepturi velit
