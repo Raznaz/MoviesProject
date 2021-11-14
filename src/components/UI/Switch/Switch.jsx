@@ -97,13 +97,11 @@ function MUISwitch(props) {
 			<SwitchTrack>
 				<SwitchThumb className={clsx(stateClasses)} />
 			</SwitchTrack>
-			<SwitchInput {...getInputProps()} aria-label="Demo switch" />
+			<SwitchInput {...getInputProps()} />
 		</SwitchRoot>
 	);
 }
 
 export default function ThemeSwitch() {
-	// TODO: ТЕСТИРОВАТЬ РАБОТАЕТ ИЛИ НЕТ?
-	// const { isLightMode } = useSelector((state) => state.theme);
 	return <MUISwitch isLightMode />;
 }
