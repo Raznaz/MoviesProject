@@ -150,7 +150,7 @@ export default function NestedList() {
 				</Typography>
 				<Box
 					component="form"
-					sx={{ mb: 2 }}
+					sx={{ mb: 1 }}
 					noValidate
 					autoComplete="off"
 				>
@@ -163,11 +163,25 @@ export default function NestedList() {
 						variant="outlined"
 						fullWidth
 					>
-						{languages.map((lang, i) => (
-							<MenuItem key={i} value={lang.iso_639_1}>
-								{lang.english_name}
-							</MenuItem>
-						))}
+						{languages
+							.sort(function (a, b) {
+								if (
+									a.english_name.toLowerCase() <
+									b.english_name.toLowerCase()
+								)
+									return -1;
+								if (
+									a.english_name.toLowerCase() >
+									b.english_name.toLowerCase()
+								)
+									return 1;
+								return 0;
+							})
+							.map((lang, i) => (
+								<MenuItem key={i} value={lang.iso_639_1}>
+									{lang.english_name}
+								</MenuItem>
+							))}
 					</TextField>
 				</Box>
 				<Box sx={{ display: 'flex' }}>

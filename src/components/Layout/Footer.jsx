@@ -34,7 +34,7 @@ function Footer() {
 							<Box>
 								<Link
 									component={LinkRoute}
-									to="/movie/999"
+									to="/movie/516151"
 									color="inherit"
 								>
 									MovieById
@@ -62,7 +62,7 @@ function Footer() {
 							<Box>
 								<Link
 									component={LinkRoute}
-									to="/movie/999"
+									to="/movie/516151"
 									color="inherit"
 								>
 									MovieById
@@ -91,7 +91,7 @@ function Footer() {
 							<Box>
 								<Link
 									component={LinkRoute}
-									to="/movie/999"
+									to="/movie/516151"
 									color="inherit"
 								>
 									MovieById
