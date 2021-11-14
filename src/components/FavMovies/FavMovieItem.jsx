@@ -1,13 +1,13 @@
 import React from 'react';
-import ListItem from '@mui/material/ListItem';
-import Typography from '@mui/material/Typography';
-import { Box } from '@mui/system';
 import { useHistory } from 'react-router-dom';
+import { Box } from '@mui/system';
 import {
 	Card,
 	CardActionArea,
 	CardContent,
 	CardMedia,
+	ListItem,
+	Typography,
 } from '@mui/material';
 import { getImage } from '../../helper/getImage';
 
@@ -38,7 +38,6 @@ export default function FavMovieItem(props) {
 						alt={title}
 					/>
 				</CardActionArea>
-
 				<Box>
 					<CardContent sx={{ flex: '1 0 auto', py: 0 }}>
 						<Typography component="div" variant="h5">

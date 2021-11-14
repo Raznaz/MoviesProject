@@ -69,7 +69,6 @@ export const getFavoriteMovies = async (accountId, sessionId) => {
 			},
 		},
 	);
-
 	return data;
 };
 

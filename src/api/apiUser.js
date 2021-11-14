@@ -16,7 +16,6 @@ export const generateToken = async () => {
 	const {
 		data: { request_token },
 	} = await movieAPI.get(`/authentication/token/new`);
-	// localStorage.setItem('request_token', request_token); //Проверить
 	return request_token;
 };
 
@@ -65,6 +64,5 @@ export const markFavoriteMovie = async (
 			},
 		},
 	);
-	console.log(data);
 	return data;
 };
