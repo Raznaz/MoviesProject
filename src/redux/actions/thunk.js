@@ -5,7 +5,6 @@ import {
 	getInformationMovieById,
 	getListGenres,
 	getListLanguages,
-	// generateToken,
 	getFavoriteMovies,
 	getMovieStatusById,
 } from '../../api/api';
@@ -20,7 +19,6 @@ import {
 	showLoader,
 } from './appActions';
 import {
-	// fetchMovieReject,
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
 	searchMovieArr,
@@ -38,11 +36,8 @@ export const fetchMovie = (page = 1) => {
 		try {
 			dispatch(showLoader());
 			const movies = await fetchMovies(page);
-			// console.log('movies thunk', movies);
-
 			dispatch(fetchMoviesSuccess(movies.data));
 			dispatch(hideLoader());
-			// dispatch(toggleAlertSnackMsg('its my error for example'));
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
 		}
