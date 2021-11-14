@@ -22,7 +22,6 @@ import {
 	Typography,
 } from '@mui/material';
 import { LocalMovies } from '@mui/icons-material';
-import './list.scss';
 import { Box } from '@mui/system';
 import {
 	changePageNumber,
@@ -43,6 +42,9 @@ export default function NestedList() {
 	useEffect(() => {
 		dispatch(listGenres());
 		dispatch(listLanguages());
+		return () => {
+			dispatch(resetFilter());
+		};
 	}, [dispatch]);
 
 	// useEffect(() => {

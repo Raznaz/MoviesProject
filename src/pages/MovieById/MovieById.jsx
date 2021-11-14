@@ -85,19 +85,13 @@ function MovieById() {
 			<Grid
 				container
 				spacing={2}
-				// sx={{ backgroundImage: `url(${imgPoster})` }}
+				sx={{
+					display: 'flex',
+					flexDirection: { xs: 'column', sm: 'row' },
+				}}
 			>
-				<Grid
-					item
-					xs={12}
-					// sx={{
-					// 	backgroundImage: `url(https://image.tmdb.org/t/p/original/rhLspFB1B8ZCkWEHFYmc3NKagzq.jpg)`,
-					// 	backgroundSize: 'cover',
-					// 	backgroundRepeat: 'no-repeat',
-					// 	backgroundColor: '#212121',
-					// }}
-				></Grid>
-				<Grid item xs={6}>
+				<Grid item xs={12}></Grid>
+				<Grid item xs={12} sm={6}>
 					<Card sx={{ maxWidth: '100%' }}>
 						<CardMedia
 							component="img"
@@ -117,7 +111,7 @@ function MovieById() {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={12} sm={6}>
 					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<PushPin />
 						<Typography>Status:</Typography>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
