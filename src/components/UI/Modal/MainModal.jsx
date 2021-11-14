@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleModalWindow } from '../../../redux/actions/appActions';
 import { useHistory } from 'react-router';
+import { toggleModalWindow } from '../../../redux/actions/appActions';
 
 const style = {
 	position: 'absolute',
@@ -19,8 +19,6 @@ const style = {
 };
 
 export default function MainModal() {
-	// const [open, setOpen] = React.useState(false);
-	// const handleOpen = () => setOpen(true);
 	const history = useHistory();
 	const dispatch = useDispatch();
 
@@ -29,55 +27,51 @@ export default function MainModal() {
 		history.push('/login');
 	};
 	const { isOpenModalWindow } = useSelector((state) => state.app);
-	// console.log(isOpenModalWindow);
 
 	return (
-		<div>
-			{/* <Button onClick={handleOpen}>Open modal</Button> */}
-			<Modal
-				open={isOpenModalWindow}
-				onClose={handleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
-			>
-				<Box sx={style}>
+		<Modal
+			open={isOpenModalWindow}
+			onClose={handleClose}
+			aria-labelledby="modal-modal-title"
+			aria-describedby="modal-modal-description"
+		>
+			<Box sx={style}>
+				<Typography
+					id="modal-modal-title"
+					variant="h5"
+					component="h2"
+				>
+					Congratulation !!!
+				</Typography>
+				<Typography
+					id="modal-modal-description"
+					sx={{ mt: 2, color: 'success.main' }}
+				>
+					The registration was successfully
+				</Typography>
+				<Typography
+					id="modal-modal-description"
+					sx={{ mt: 2, color: 'success.main' }}
+					onClick={() => handleClose()}
+				>
+					Move to{' '}
 					<Typography
-						id="modal-modal-title"
-						variant="h5"
-						component="h2"
-					>
-						Congratulation !!!
-					</Typography>
-					<Typography
+						variant="p"
+						component="span"
 						id="modal-modal-description"
-						sx={{ mt: 2, color: 'success.main' }}
-					>
-						The registration was successfully
-					</Typography>
-					<Typography
-						id="modal-modal-description"
-						sx={{ mt: 2, color: 'success.main' }}
+						sx={{
+							mt: 2,
+							color: 'info.main',
+							'&:hover': {
+								cursor: 'pointer',
+							},
+						}}
 						onClick={() => handleClose()}
 					>
-						Move to{' '}
-						<Typography
-							variant="p"
-							component="span"
-							id="modal-modal-description"
-							sx={{
-								mt: 2,
-								color: 'info.main',
-								'&:hover': {
-									cursor: 'pointer',
-								},
-							}}
-							onClick={() => handleClose()}
-						>
-							LOG IN
-						</Typography>
+						LOG IN
 					</Typography>
-				</Box>
-			</Modal>
-		</div>
+				</Typography>
+			</Box>
+		</Modal>
 	);
 }
