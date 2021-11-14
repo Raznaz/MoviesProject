@@ -1,3 +1,4 @@
+import React from 'react';
 import { Favorite, Login, Logout } from '@mui/icons-material';
 import { Link as LinkRoute } from 'react-router-dom';
 import {
@@ -9,37 +10,22 @@ import {
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import Box from '@mui/material/Box';
 import {
 	fetchUserSuccess,
 	userLogOut,
 } from '../../redux/actions/userActions';
 import ThemeSwitch from '../UI/Switch/Switch';
-import Box from '@mui/material/Box';
-import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 
 function Header() {
 	const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	const sessionId = localStorage.getItem('session_id');
 
-	// 	const { id: accountId } = JSON.parse(
-	// 		localStorage.getItem('user'),
-	// 	);
-	// 	// console.log('FAV', accountId, sessionId);
-	// 	dispatch(showFavoriteMovies(accountId, sessionId));
-	// }, [dispatch]);
-
-	// const { favoriteMovies } = useSelector((state) => state.moviesArr);
 	const usersArr = useSelector((state) => state.usersArr);
-	// console.log(favoriteMovies);
 	const history = useHistory();
-	// console.log(usersArr.currentUser.username);
 
-	// TODO: Удалить если не реализовал LOG OUT
 	const handleLogOut = () => {
 		localStorage.removeItem('session_id');
 		dispatch(userLogOut());
@@ -77,7 +63,6 @@ function Header() {
 							>
 								Movie Universe
 							</Link>
-
 							<ThemeSwitch />
 						</Typography>
 						<Box
@@ -96,7 +81,6 @@ function Header() {
 							<LocalMoviesIcon sx={{ width: 56, height: 56 }} />
 							<Typography>Movies</Typography>
 						</Box>
-						{/* FAVORITE */}
 						<Box
 							sx={{
 								display: 'flex',
@@ -109,19 +93,6 @@ function Header() {
 							}}
 							onClick={() => history.push('/favorite')}
 						>
-							{/* <Badge
-								color="secondary"
-								badgeContent={favoriteMovies.total_results}
-								sx={{
-									'& .MuiBadge-badge': {
-										right: 30,
-										top: 27,
-										border: `2px solid background.paper`,
-										padding: '0 4px',
-									},
-								}}
-							>
-							</Badge> */}
 							<Favorite sx={{ width: 56, height: 56 }} />
 
 							<Typography>Favorite</Typography>
@@ -187,13 +158,6 @@ function Header() {
 					>
 						<Login />
 					</IconButton>
-					{/* <IconButton
-						color="inherit"
-						component={LinkRoute}
-						to="/login"
-					>
-						<AccountCircle />
-					</IconButton> */}
 				</Toolbar>
 			</Container>
 		</AppBar>
