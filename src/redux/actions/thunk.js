@@ -5,7 +5,6 @@ import {
 	getInformationMovieById,
 	getListGenres,
 	getListLanguages,
-	// generateToken,
 	getFavoriteMovies,
 	getMovieStatusById,
 } from '../../api/api';
@@ -20,7 +19,6 @@ import {
 	showLoader,
 } from './appActions';
 import {
-	// fetchMovieReject,
 	fetchMoviesSuccess,
 	filterMoviesByGenre,
 	searchMovieArr,
@@ -38,11 +36,8 @@ export const fetchMovie = (page = 1) => {
 		try {
 			dispatch(showLoader());
 			const movies = await fetchMovies(page);
-			// console.log('movies thunk', movies);
-
 			dispatch(fetchMoviesSuccess(movies.data));
 			dispatch(hideLoader());
-			// dispatch(toggleAlertSnackMsg('its my error for example'));
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
 		}
@@ -55,7 +50,6 @@ export const findMovie = (searchValue, page) => {
 		try {
 			dispatch(showLoader());
 			const movies = await findMovies(searchValue, page);
-			// console.log('FILTER movie thunk', movies);
 			dispatch(searchMovieArr(movies.data));
 			dispatch(hideLoader());
 		} catch (error) {
@@ -66,12 +60,10 @@ export const findMovie = (searchValue, page) => {
 
 // FILTER
 export const filterMovie = (filter, page) => {
-	// console.log('111 filter:', filter);
 	return async (dispatch) => {
 		try {
 			dispatch(showLoader());
 			const filteredMovies = await filterMovies(filter, page);
-			// console.log('FILTERED genres thunk', filteredMovies.data.results);
 			dispatch(filterMoviesByGenre(filteredMovies.data));
 			dispatch(hideLoader());
 		} catch (error) {
@@ -85,7 +77,6 @@ export const listGenres = () => {
 	return async (dispatch) => {
 		try {
 			const genres = await getListGenres();
-			// console.log('LIST genres thunk', genres.data);
 			dispatch(showListGenres(genres.data.genres));
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
@@ -99,7 +90,6 @@ export const listLanguages = () => {
 		try {
 			dispatch(showLoader());
 			const languages = await getListLanguages();
-			// console.log('LIST LANG thunk', languages.data);
 			dispatch(showListLanguages(languages.data));
 			dispatch(hideLoader());
 		} catch (error) {
@@ -137,7 +127,7 @@ export const generateSessionAndGetUser = (requestToken) => {
 	};
 };
 
-// mark favorite
+// MARK FAVORITE
 
 export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
 	return async (dispatch) => {
@@ -147,14 +137,13 @@ export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
 				sessionId,
 				movieId,
 			);
-			console.log(info);
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
 		}
 	};
 };
 
-// get favorite movies
+// GET FAVORITE MOVIES
 
 export const showFavoriteMovies = (accountId, sessionId) => {
 	return async (dispatch) => {
@@ -171,13 +160,12 @@ export const showFavoriteMovies = (accountId, sessionId) => {
 	};
 };
 
-// get status movie
+// GET FAV STATUS MOVIE
 
 export const showStatusMovieById = (sessionId, movieId) => {
 	return async (dispatch) => {
 		try {
 			const data = await getMovieStatusById(sessionId, movieId);
-			console.log('STATUS', data);
 			dispatch(statusMovieById(data));
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));

@@ -19,7 +19,6 @@ const initialState = {
 	movieById: {},
 	searchMovies: [],
 	favoriteMovies: {},
-	// amountFavMovies: 0,
 	typeList: '',
 	pageNumberPagination: 1,
 	searchValue: '',
@@ -36,15 +35,17 @@ export const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case INFO_MOVIE_BY_ID:
 			return { ...state, movieById: action.payload.currentMovie };
+
 		case FETCH_MOVIES_SUCCESS:
-			// console.log('movie reducer', action.payload.movies);
 			return {
 				...state,
 				movies: action.payload.movies,
 				typeList: 'popular',
 			};
+
 		case SEARCH_MOVIES:
 			return { ...state, searchValue: action.payload.value };
+
 		case SEARCH_MOVIES_ARR:
 			return {
 				...state,
@@ -52,7 +53,6 @@ export const movieReducer = (state = initialState, action) => {
 				typeList: 'search',
 			};
 		case CREATE_FILTER_GENRES:
-			console.log('CREATE FILTER GENRES:', action.payload);
 			if (
 				state.filter.genres.find(
 					(genre) => action.payload.id === genre,
@@ -75,8 +75,8 @@ export const movieReducer = (state = initialState, action) => {
 					genres: [...state.filter.genres, action.payload.id],
 				},
 			};
+
 		case CREATE_FILTER_LANGUAGE:
-			console.log('CREATE FILTER LANG:', action.payload);
 			return {
 				...state,
 				filter: {
@@ -84,6 +84,7 @@ export const movieReducer = (state = initialState, action) => {
 					language: action.payload.lang,
 				},
 			};
+
 		case RESET_FILTER:
 			return {
 				...state,
@@ -93,6 +94,7 @@ export const movieReducer = (state = initialState, action) => {
 				},
 				pageNumberPagination: 1,
 			};
+
 		case FILTER_MOVIES:
 			return {
 				...state,
@@ -100,12 +102,16 @@ export const movieReducer = (state = initialState, action) => {
 				searchValue: '',
 				typeList: 'filtered',
 			};
+
 		case LIST_GENRES:
 			return { ...state, genres: action.payload.genres };
+
 		case LIST_LANGUAGES:
 			return { ...state, languages: action.payload.lang };
+
 		case SHOW_FAVORITE_MOVIES:
 			return { ...state, favoriteMovies: action.payload.favMovies };
+
 		case PAGE_NUMBER_PAGINATION:
 			return {
 				...state,

@@ -15,7 +15,6 @@ export const schemaRegistrationForm = yup.object().shape({
 		.email('Must be a valid email')
 		.required('Email is required.'),
 	birthDay: yup
-		// .string('correct date DD:MM:YEAR')
 		.date()
 		.max(new Date())
 		.required('Birth of day is required field. '),

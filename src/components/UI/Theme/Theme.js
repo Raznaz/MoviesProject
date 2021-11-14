@@ -1,8 +1,8 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
-import { darkTheme, lightTheme } from '../../../theme/themes';
 import { CssBaseline } from '@mui/material';
+import { darkTheme, lightTheme } from '../../../theme/themes';
 
 function Theme({ children }) {
 	const { isLightMode } = useSelector((state) => state.theme);
