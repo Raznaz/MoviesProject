@@ -50,7 +50,6 @@ export const findMovie = (searchValue, page) => {
 		try {
 			dispatch(showLoader());
 			const movies = await findMovies(searchValue, page);
-			// console.log('FILTER movie thunk', movies);
 			dispatch(searchMovieArr(movies.data));
 			dispatch(hideLoader());
 		} catch (error) {
@@ -61,12 +60,10 @@ export const findMovie = (searchValue, page) => {
 
 // FILTER
 export const filterMovie = (filter, page) => {
-	// console.log('111 filter:', filter);
 	return async (dispatch) => {
 		try {
 			dispatch(showLoader());
 			const filteredMovies = await filterMovies(filter, page);
-			// console.log('FILTERED genres thunk', filteredMovies.data.results);
 			dispatch(filterMoviesByGenre(filteredMovies.data));
 			dispatch(hideLoader());
 		} catch (error) {
@@ -80,7 +77,6 @@ export const listGenres = () => {
 	return async (dispatch) => {
 		try {
 			const genres = await getListGenres();
-			// console.log('LIST genres thunk', genres.data);
 			dispatch(showListGenres(genres.data.genres));
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
@@ -94,7 +90,6 @@ export const listLanguages = () => {
 		try {
 			dispatch(showLoader());
 			const languages = await getListLanguages();
-			// console.log('LIST LANG thunk', languages.data);
 			dispatch(showListLanguages(languages.data));
 			dispatch(hideLoader());
 		} catch (error) {
