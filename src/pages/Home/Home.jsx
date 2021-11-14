@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
-// import Main from '../../components/Layout/Main';
 import poster from '../../theme/images/poster.jpg';
 
 const sectionStyle = {
