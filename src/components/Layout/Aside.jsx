@@ -1,12 +1,12 @@
 import React from 'react';
 import Search from '../Search/Search';
-import List from '../List/List';
+import Filter from '../Filter/Filter';
 
 function Aside() {
 	return (
 		<>
 			<Search />
-			<List />
+			<Filter />
 		</>
 	);
 }
