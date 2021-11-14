@@ -138,7 +138,7 @@ function Header() {
 
 	// NOT LOGIN
 	return (
-		<AppBar position="static" sx={{ mb: 0 }}>
+		<AppBar position="static" sx={{ py: 1 }}>
 			<Container maxWidth="lg" disableGutters>
 				<Toolbar>
 					<Link
