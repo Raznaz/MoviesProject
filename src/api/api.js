@@ -3,8 +3,6 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_KEY;
 
-// export const testAPI = `${API_URL}`;
-
 const movieAPI = axios.create({
 	baseURL: API_URL,
 	params: {
@@ -12,12 +10,6 @@ const movieAPI = axios.create({
 		language: 'en-US',
 	},
 });
-
-// TEST MOVIE
-// export const getMovie = async (movieId) => {
-// 	const { data } = await movieAPI.get(`/movie/${movieId}`);
-// 	return data;
-// };
 
 // POPULAR MOVIES
 export function fetchMovies(page) {
@@ -29,7 +21,6 @@ export function fetchMovies(page) {
 }
 
 //FIND MOVIE
-// TODO: Исправить значение по умолчанию при поиске
 export function findMovies(str, page) {
 	return movieAPI.get('/search/movie', {
 		params: {
@@ -39,18 +30,19 @@ export function findMovies(str, page) {
 	});
 }
 
+// LIST GENRES
 export function getListGenres() {
 	return movieAPI.get('/genre/movie/list');
 }
 
+// LIST LANGUAGES
 export function getListLanguages() {
 	return movieAPI.get('/configuration/languages');
 }
 
-// FILTER TODO:Преобразовать массив в строку
+// FILTER
 export function filterMovies(filter, page) {
 	const genresStr = filter.genres.join(',');
-	// console.log(genresStr, filter.language);
 	return movieAPI.get('/discover/movie', {
 		params: {
 			sort_by: 'popularity.desc',
@@ -61,12 +53,12 @@ export function filterMovies(filter, page) {
 	});
 }
 
+// MOVIE BY ID
 export function getInformationMovieById(movieId) {
 	return movieAPI.get(`/movie/${movieId}`);
 }
 
 // SHOW FAVORITE MOVIES
-
 export const getFavoriteMovies = async (accountId, sessionId) => {
 	const { data } = await movieAPI.get(
 		`/account/${accountId}/favorite/movies`,
@@ -82,7 +74,6 @@ export const getFavoriteMovies = async (accountId, sessionId) => {
 };
 
 // GET MOVIE STATUS
-
 export const getMovieStatusById = async (session_id, movieId) => {
 	const { data } = await movieAPI.get(
 		`/movie/${movieId}/account_states`,
