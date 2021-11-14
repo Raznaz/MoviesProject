@@ -17,7 +17,6 @@ import {
 } from '@mui/material';
 import Loader from '../../components/UI/Loader/Loader';
 import { getImage } from '../../helper/getImage';
-// import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import {
 	AttachMoney,
@@ -26,21 +25,11 @@ import {
 } from '@mui/icons-material';
 import { showInfoMovieById } from '../../redux/actions/movieActinos';
 
-// const useStylesBase = makeStyles({
-// 	root: {
-// 		backgroundColor: 'red',
-// 	},
-// });
-
 function MovieById() {
-	// const classes = useStylesBase();
-
 	const { movieId } = useParams();
-	// console.log(movieId);
 	const dispatch = useDispatch();
 	const { movieById } = useSelector((state) => state.moviesArr);
-	// console.log(movieById);
-	// console.log(movieById.production_companies);
+
 	useEffect(() => {
 		dispatch(getInfoAboutMovieById(movieId));
 		return () => {
@@ -98,11 +87,9 @@ function MovieById() {
 							component="img"
 							alt="green iguana"
 							height="100%"
-							// image={`https://image.tmdb.org/t/p/w500/${movieById.poster_path}`}
 							image={imgPoster}
 						/>
 						<CardContent>
-							{/* TODO: исправить этот текст */}
 							<Typography component="div" variant="h5">
 								{movieById.homepage}
 							</Typography>

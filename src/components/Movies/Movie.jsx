@@ -50,8 +50,6 @@ function Movie(props) {
 		const { id: accountId } = JSON.parse(
 			localStorage.getItem('user'),
 		);
-
-		console.log('ADD TO FAVORITE');
 		dispatch(addToFavoriteMovie(accountId, sessionId, id));
 		dispatch(toggleSnackMessage());
 		setStatus(true);
