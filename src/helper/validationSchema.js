@@ -22,8 +22,8 @@ export const schemaRegistrationForm = yup.object().shape({
 	userName: yup
 		.string()
 		.matches(
-			/^([a-z, 0-9, _ ]*)$/,
-			'User name should contains just small latter, digits, . or _',
+			/^([a-z]+[._0-9A-Za-z]*)$/g,
+			'User name should start from small letter, and contains letters, digits, . or _',
 		)
 		.required('Should be required'),
 	password: yup
