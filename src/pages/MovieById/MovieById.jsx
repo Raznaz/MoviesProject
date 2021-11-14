@@ -78,6 +78,7 @@ function MovieById() {
 				sx={{
 					textAlign: 'center',
 					fontWeight: '700',
+					fontSize: { xs: '30px', sm: '60px' },
 				}}
 			>
 				{movieById.original_title}
