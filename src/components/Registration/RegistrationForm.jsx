@@ -1,6 +1,5 @@
-import { Box } from '@mui/system';
 import React from 'react';
-import { MyInput } from '../UI/Input/MyInput';
+import { Box } from '@mui/system';
 import Form from '../UI/Form/Form';
 import { Controller, useForm } from 'react-hook-form';
 import {
@@ -10,50 +9,13 @@ import {
 	RadioGroup,
 	Typography,
 } from '@mui/material';
-import MyButton from '../UI/Button/MyButton';
 import { yupResolver } from '@hookform/resolvers/yup';
+import MyButton from '../UI/Button/MyButton';
 import MainModal from '../UI/Modal/MainModal';
+import { MyInput } from '../UI/Input/MyInput';
 import { toggleModalWindow } from '../../redux/actions/appActions';
 import { useDispatch } from 'react-redux';
 import { schemaRegistrationForm } from '../../helper/validationSchema';
-
-// TODO:Вынести schema  в отдельный файл
-// const schema = yup.object().shape({
-// 	firstName: yup
-// 		.string()
-// 		.matches(/^([^0-9]*)$/, 'First name should not contain numbers.')
-// 		.required('First name is required field'),
-// 	lastName: yup
-// 		.string()
-// 		.matches(/^([^0-9]*)$/, 'Last name should not contain numbers.')
-// 		.required('Last name is required field'),
-// 	email: yup
-// 		.string()
-// 		.max(255)
-// 		.email('Must be a valid email')
-// 		.required('Email is required.'),
-// 	birthDay: yup
-// 		// .string('correct date DD:MM:YEAR')
-// 		.date()
-// 		.max(new Date())
-// 		.required('Birth of day is required field. '),
-// 	userName: yup
-// 		.string()
-// 		.matches(
-// 			/^([a-z, 0-9, _ ]*)$/,
-// 			'User name should contains just small latter, digits, . or _',
-// 		)
-// 		.required('Should be required'),
-// 	password: yup
-// 		.string()
-// 		.required('Password is required field')
-// 		.min(3, 'Should be more then 3 characters')
-// 		.max(20),
-// 	confirmPassword: yup
-// 		.string()
-// 		.required('Password is required field')
-// 		.oneOf([yup.ref('password'), null], 'Password must match.'),
-// });
 
 function RegistrationForm() {
 	const {
@@ -74,7 +36,6 @@ function RegistrationForm() {
 	const dispatch = useDispatch();
 
 	const onSubmit = (data) => {
-		console.log(data);
 		dispatch(toggleModalWindow());
 		reset();
 	};
@@ -125,7 +86,6 @@ function RegistrationForm() {
 					error={!!errors.email}
 					helperText={errors?.email?.message}
 				/>
-				{/* ================================================ */}
 				<FormControl fullWidth component="fieldset">
 					<Controller
 						control={control}
@@ -154,12 +114,10 @@ function RegistrationForm() {
 					/>
 				</FormControl>
 
-				{/* TODO:Попробовать пофиксить дату */}
 				<MyInput
 					{...register('birthDay')}
 					id="birthDay"
 					type="date"
-					// label="Birth of Day"
 					name="birthDay"
 					defaultValue=""
 					sx={{ mb: 2 }}
@@ -178,7 +136,6 @@ function RegistrationForm() {
 				/>
 				<MyInput
 					{...register('password')}
-					// id="password"
 					type="password"
 					label="Password"
 					name="password"
@@ -188,7 +145,6 @@ function RegistrationForm() {
 				/>
 				<MyInput
 					{...register('confirmPassword')}
-					// id="confirmPassword"
 					type="password"
 					label="Confirm Password"
 					name="confirmPassword"
@@ -196,7 +152,6 @@ function RegistrationForm() {
 					error={!!errors.confirmPassword}
 					helperText={errors?.confirmPassword?.message}
 				/>
-				{/* Radio */}
 				<MyButton color="success">Registration</MyButton>
 			</Form>
 			<MainModal />
