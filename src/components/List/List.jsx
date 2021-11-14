@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import ListSubheader from '@mui/material/ListSubheader';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Collapse from '@mui/material/Collapse';
+import { useSelector, useDispatch } from 'react-redux';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { useSelector } from 'react-redux';
+import { LocalMovies } from '@mui/icons-material';
 import {
-	fetchMovie,
-	filterMovie,
-	listGenres,
-	listLanguages,
-} from '../../redux/actions/thunk';
-import { useDispatch } from 'react-redux';
-import {
+	Collapse,
+	ListItemText,
+	ListItemIcon,
+	ListItemButton,
+	List,
+	ListSubheader,
 	Button,
 	MenuItem,
 	TextField,
 	Typography,
 } from '@mui/material';
-import { LocalMovies } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import {
 	changePageNumber,
@@ -29,13 +22,14 @@ import {
 	createFilterLanguage,
 	resetFilter,
 } from '../../redux/actions/movieActinos';
+import {
+	filterMovie,
+	listGenres,
+	listLanguages,
+} from '../../redux/actions/thunk';
 
 export default function NestedList() {
 	const [open, setOpen] = useState(false);
-	// const [filter, setFilter] = useState({
-	// 	genres: [],
-	// 	language: '',
-	// });
 
 	const dispatch = useDispatch();
 
@@ -47,52 +41,29 @@ export default function NestedList() {
 		};
 	}, [dispatch]);
 
-	// useEffect(() => {
-	// 	dispatch(createFilter(filter));
-	// }, [filter]);
-
 	const { genres, languages, filter } = useSelector(
 		(state) => state.moviesArr,
 	);
 
-	// console.log('FILTER:', filter);
-	// console.log('LIST', mainFilter);
 	const handleClick = () => {
 		setOpen(!open);
 	};
 
-	// Languages
-
 	const handleChange = (event) => {
-		// setFilter({ ...filter, language: event.target.value });
-
 		dispatch(createFilterLanguage(event.target.value));
 	};
 
 	const handleGenreChoose = (e, id) => {
-		console.log('id', id);
 		dispatch(createFilterGenres(id));
-		// if (filter.genres.find((item) => id === item)) {
-		// 	setFilter({
-		// 		...filter,
-		// 		genres: filter.genres.filter((item) => item !== id),
-		// 	});
-		// } else {
-		// 	setFilter({ ...filter, genres: [...filter.genres, id] });
-		// }
 	};
 
 	const startFilter = () => {
-		// console.log('START FILTER', filter.genres);
-		// dispatch(createFilter(filter));
 		dispatch(filterMovie(filter));
 		dispatch(changePageNumber(1));
 	};
 
 	const handleResetFilter = () => {
 		dispatch(resetFilter());
-		// setFilter({ genres: [], language: '' });
-		dispatch(fetchMovie());
 	};
 
 	return (
@@ -135,8 +106,6 @@ export default function NestedList() {
 				</Typography>
 				{genres.map((genre) => {
 					let id = filter.genres.find((item) => item === genre.id);
-					// console.log('ID:', id);
-
 					if (id === genre.id) {
 						return (
 							<Button
@@ -153,7 +122,6 @@ export default function NestedList() {
 							</Button>
 						);
 					}
-
 					return (
 						<Button
 							key={genre.id}
@@ -182,9 +150,6 @@ export default function NestedList() {
 				</Typography>
 				<Box
 					component="form"
-					// sx={{
-					// 	'& .MuiTextField-root': { mb: 2 },
-					// }}
 					sx={{ mb: 2 }}
 					noValidate
 					autoComplete="off"
@@ -195,7 +160,6 @@ export default function NestedList() {
 						label="Select language"
 						value={filter.language}
 						onChange={handleChange}
-						// helperText="Please select language"
 						variant="outlined"
 						fullWidth
 					>
