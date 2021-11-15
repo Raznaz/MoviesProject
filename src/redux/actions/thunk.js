@@ -129,10 +129,10 @@ export const generateSessionAndGetUser = (requestToken) => {
 
 // mark favorite
 
-export const addToFavoriteMovie = (accountId, sessionId, movieId) => {
+export const addToFavoriteMovie = (accountId, sessionId, movieId, status) => {
 	return async (dispatch) => {
 		try {
-			await markFavoriteMovie(accountId, sessionId, movieId);
+			await markFavoriteMovie(accountId, sessionId, movieId, status);
 		} catch (error) {
 			dispatch(openAlertSnackMsg(error));
 		}

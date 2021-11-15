@@ -47,13 +47,16 @@ export const markFavoriteMovie = async (
 	accountId,
 	sessionId,
 	movieId,
+	status,
 ) => {
+	console.log(status);
 	const data = await movieAPI.post(
 		`/account/${accountId}/favorite`,
 		{
 			media_type: 'movie',
 			media_id: movieId,
-			favorite: true,
+			// favorite: true,
+			favorite: status,
 		},
 		{
 			params: {

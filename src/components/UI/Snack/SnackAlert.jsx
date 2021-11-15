@@ -37,5 +37,4 @@ SnackAlert.defaultProps = {
 SnackAlert.propTypes = {
 	isOpen: PropTypes.bool.isRequired,
 	handleClose: PropTypes.func,
-	error: PropTypes.object,
 };

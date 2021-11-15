@@ -26,7 +26,7 @@ function Movie(props) {
 		props;
 	const dispatch = useDispatch();
 
-	const [status, setStatus] = useState(false);
+	const [status, setStatus] = useState(true);
 
 	const [fetchMovie] = useFetching(async () => {
 		const sessionId = localStorage.getItem('session_id');
@@ -50,9 +50,16 @@ function Movie(props) {
 		const { id: accountId } = JSON.parse(
 			localStorage.getItem('user'),
 		);
-		dispatch(addToFavoriteMovie(accountId, sessionId, id));
+
+		if (status) {
+			dispatch(addToFavoriteMovie(accountId, sessionId, id, false));
+			setStatus(false);
+		} else {
+			dispatch(addToFavoriteMovie(accountId, sessionId, id, true));
+			setStatus(true);
+		}
+
 		dispatch(toggleSnackMessage());
-		setStatus(true);
 	};
 	return (
 		<Grid item xs={12} sm={6} md={4}>
@@ -78,13 +85,14 @@ function Movie(props) {
 					<Typography>{release_date}</Typography>
 				</CardContent>
 				<CardActions sx={{ justifyContent: 'space-between' }}>
-					{status ? (
-						<Favorite sx={{ color: 'error.dark' }} />
-					) : (
-						<IconButton onClick={() => handleAddToFavorite()}>
+					<IconButton onClick={() => handleAddToFavorite()}>
+						{status ? (
+							<Favorite sx={{ color: 'error.dark' }} />
+						) : (
 							<FavoriteBorder />
-						</IconButton>
-					)}
+						)}
+					</IconButton>
+
 					<Box
 						sx={{
 							position: 'relative',
