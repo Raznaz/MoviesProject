@@ -185,20 +185,25 @@ export default function Filter() {
 							))}
 					</TextField>
 				</Box>
-				<Box sx={{ display: 'flex' }}>
+				<Box
+					sx={{ display: 'flex', justifyContent: 'space-between' }}
+				>
 					<Button
-						fullWidth
+						// fullWidth
 						variant="contained"
 						color="success"
 						onClick={() => startFilter()}
+						disabled={!filter.language && !filter.genres.length}
+						sx={{ flexBasis: '45%' }}
 					>
 						Confirm
 					</Button>
 					<Button
-						fullWidth
+						// fullWidth
 						variant="contained"
-						sx={{ bgcolor: 'error.light' }}
+						sx={{ bgcolor: 'error.light', flexBasis: '45%' }}
 						onClick={() => handleResetFilter()}
+						disabled={!filter.language && !filter.genres.length}
 					>
 						Reset
 					</Button>
