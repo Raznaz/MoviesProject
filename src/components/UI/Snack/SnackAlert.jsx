@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Alert, Snackbar } from '@mui/material';
 
 function SnackAlert(props) {
@@ -29,3 +30,12 @@ function SnackAlert(props) {
 }
 
 export default SnackAlert;
+
+SnackAlert.defaultProps = {
+	isOpen: false,
+};
+SnackAlert.propTypes = {
+	isOpen: PropTypes.bool.isRequired,
+	handleClose: PropTypes.func,
+	error: PropTypes.object,
+};

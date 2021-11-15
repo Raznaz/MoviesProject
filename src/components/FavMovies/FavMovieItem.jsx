@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
 import {
 	Card,
@@ -59,3 +60,10 @@ export default function FavMovieItem(props) {
 		</ListItem>
 	);
 }
+
+FavMovieItem.propTypes = {
+	id: PropTypes.number,
+	title: PropTypes.string,
+	overview: PropTypes.string,
+	poster_path: PropTypes.string,
+};
