@@ -27,6 +27,7 @@ import {
 	listGenres,
 	listLanguages,
 } from '../../redux/actions/thunk';
+import MyButton from '../UI/Button/MyButton';
 
 export default function Filter() {
 	const [open, setOpen] = useState(false);
@@ -188,7 +189,7 @@ export default function Filter() {
 				<Box
 					sx={{ display: 'flex', justifyContent: 'space-between' }}
 				>
-					<Button
+					<MyButton
 						// fullWidth
 						variant="contained"
 						color="success"
@@ -197,8 +198,8 @@ export default function Filter() {
 						sx={{ flexBasis: '45%' }}
 					>
 						Confirm
-					</Button>
-					<Button
+					</MyButton>
+					<MyButton
 						// fullWidth
 						variant="contained"
 						sx={{ bgcolor: 'error.light', flexBasis: '45%' }}
@@ -206,7 +207,7 @@ export default function Filter() {
 						disabled={!filter.language && !filter.genres.length}
 					>
 						Reset
-					</Button>
+					</MyButton>
 				</Box>
 			</Collapse>
 		</List>
